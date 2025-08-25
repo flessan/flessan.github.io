@@ -3,8 +3,8 @@ layout: post
 title: FreedomGDPS!!11
 description: My custom Geometry Dash private sever offers freedom in it
 date: 2024-11-22 15:20:00 +0900
-categories: [Casual]
-tags: [casual]
+categories: [Game]
+tags: [GDPS]
 ---
 
 <h1 align="center">
@@ -13,7 +13,7 @@ tags: [casual]
 </h1>
 
 <p align="center">
-  <em>A passion-driven GDPS with quirks and charm — where imperfect creation meets a genuine community</em>
+  <em>A passion-driven GDPS with quirks and charm, where imperfect creation meets a genuine community</em>
 </p>
 
 <div align="center">
