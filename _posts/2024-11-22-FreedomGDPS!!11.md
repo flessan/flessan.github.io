@@ -17,9 +17,11 @@ tags: [casual]
 </p>
 
 <div align="center">
-  [![GDPS Version](https://img.shields.io/badge/version-2.1.3-orange)](https://fless.rf.gd/download.php)
+
+  [![GDPS Version](https://img.shields.io/badge/version-2.1.3-orange)](https://fless.netlify.app)
   [![Server Status](https://img.shields.io/badge/status-🟢_Alive-green)](https://fless.ps.fhgdps.com)
   [![Community Age](https://img.shields.io/badge/active_since-2024-blue)]()
+  
 </div>
 
 ---
@@ -96,7 +98,7 @@ tags: [casual]
 **Help keep our dream alive:**  
 [![Tako](https://img.shields.io/badge/Support-Tako-4292C6)](https://tako.id/fless)  
 [![Saweria](https://img.shields.io/badge/Support-Saweria-FFD700)](https://saweria.co/thiosaputra)  
-[![SociaBuzz](https://img.shields.io/badge/Back-SociaBuzz-FF69B4)](https://sociabuzz.com/ameliapt)
+[![SociaBuzz](https://img.shields.io/badge/Support-SociaBuzz-FF69B4)](https://sociabuzz.com/ameliapt)
 
 **Creative Support:**  
 🎨 [My Portfolio](https://flessan.pages.dev/)
