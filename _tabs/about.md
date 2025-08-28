@@ -13,8 +13,8 @@ Hello! I'm **Thio Saputra**, a young digital creator and developer passionate ab
 ## 📌 About Me
 
 - 🎓 Vocational High School student majoring in Software Engineering (RPL)
-- 💻 Focusing on web development, Android app development, and Discord bots
-- 🎮 Manager of **FreedomGDPS!!11**, a Geometry Dash Private Server with a vibrant community
+- 💻 Focusing on web development, modding games, and Discord bots
+- 🎮 Owner of **FreedomGDPS!!11**, a Geometry Dash Private Server with a vibrant community
 - 🎨 Hobbies include UI/UX design, animation, and experimenting with game modifications
 
 ---
@@ -22,7 +22,7 @@ Hello! I'm **Thio Saputra**, a young digital creator and developer passionate ab
 ## 🛠️ Skillset
 
 - **Programming Languages**: HTML, CSS, JavaScript, PHP, Python, Kotlin
-- **Tools/Frameworks**: TrebEdit, Termux, Supabase, GitHub Pages, Railway, QuickEdit+
+- **Tools/Frameworks**: TrebEdit, Termux, Cloudflare Workspace & Pages, Vercel, Netlify, WinSCP, GitHub Pages, Railway, Replit, QuickEdit+
 - **Design**: Canva, IbisPaint, Alight Motion, PixelLab
 
 ---
@@ -31,8 +31,8 @@ Hello! I'm **Thio Saputra**, a young digital creator and developer passionate ab
 
 | Name | URL | Description |
 |------------------|-------------------------------------------------------|---------------------------------------------|
-| FreedomGDPS!!11 | [freedomgdps.com](https://fless.ps.fhgdps.com) | The main GDPS site I manage |
-| GDPS Tools | [freedomtools.com](https://fless.netlify.app) | Quite comprehensive tools for a GDPS |
+| FreedomGDPS!!11 | [freedom.gamer.gd](https://fless.ps.fhgdps.com) | The main GDPS site I manage |
+| GDPS Tools | [fless.rf.gd](https://fless.netlify.app) | Quite comprehensive tools for a GDPS |
 | GitHub Profile | [@flessan](https://github.com/flessan) | Public project and tools repository |
 
 ---
@@ -43,7 +43,7 @@ Hello! I'm **Thio Saputra**, a young digital creator and developer passionate ab
 > A modified GDPS full of unique features and a distinctive visual appearance. Provides a rate level system, leaderboard, login system, and a modern web UI.
 
 - 🔗 [Web Link](https://fless.ps.fhgdps.com)
-- 🛠️ Backend: PHP & MySQL, custom API
+- 🛠️ Backend: PHP & MySQL
 - 🎨 UI Design: Dark Mode, mobile responsive
 
 ---
@@ -52,8 +52,8 @@ Hello! I'm **Thio Saputra**, a young digital creator and developer passionate ab
 > Very lightweight and open source application with translation search features, prayer times, Qibla direction, and digital prayer beads.
 
 - 📱 Built using Kotlin via AIDE
-- 🔧 Includes: dark mode, custom UI, offline PDF
-- 📦 Status: Still in testing
+- 🔧 Includes: dark mode, custom UI, offline, size adjuster, search button, etc.
+- 📦 Status: Still Daydreaming
 
 ---
 
@@ -67,9 +67,9 @@ Hello! I'm **Thio Saputra**, a young digital creator and developer passionate ab
 
 ## 📫 Contact & Social Media
 
-- ✉️ Email: [admin@frgdps.com](mailto:kirimwanjay@gmail.com)
+- ✉️ Email: [flessan.yahoo.com](mailto:flessan@yahoo.com)
 - 🌐 GitHub: [@flessan](https://github.com/flessan)
-- 🎥 YouTube: [Channel](https://youtube.com/@ameliaptz)
+- 🎥 YouTube: [Fless](https://youtube.com/@ameliaptz)
 - 💬 Discord: `ameliaptz`
 
 ---
