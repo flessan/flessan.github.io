@@ -21,7 +21,7 @@ Hello! I'm **Thio Saputra**, a young digital creator and developer passionate ab
 
 ## 🛠️ Skillset
 
-- **Programming Languages**: HTML, CSS, JavaScript, PHP, Python, Kotlin
+- **Programming Languages**: CSS, Java, JavaScript, PHP, Python, Kotlin
 - **Tools/Frameworks**: TrebEdit, Termux, Cloudflare Workspace & Pages, Vercel, Netlify, WinSCP, GitHub Pages, Railway, Replit, QuickEdit+
 - **Design**: Canva, IbisPaint, Alight Motion, PixelLab
 
@@ -67,10 +67,10 @@ Hello! I'm **Thio Saputra**, a young digital creator and developer passionate ab
 
 ## 📫 Contact & Social Media
 
-- ✉️ Email: [flessan.yahoo.com](mailto:flessan@yahoo.com)
+- ✉️ Email: [flessan@yahoo.com](mailto:flessan@yahoo.com)
 - 🌐 GitHub: [@flessan](https://github.com/flessan)
 - 🎥 YouTube: [Fless](https://youtube.com/@ameliaptz)
-- 💬 Discord: `ameliaptz`
+- 💬 Discord: `thiosaputra`
 
 ---
 
