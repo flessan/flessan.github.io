@@ -1,6 +1,5 @@
 import type { Metadata } from 'next';
-import { GeistSans } from 'geist/font/sans';
-import { GeistMono } from 'geist/font/mono';
+import { Space_Grotesk, Inter } from 'next/font/google';
 import './globals.css';
 import { Header } from '@/components/header';
 import { Footer } from '@/components/footer';
@@ -13,6 +12,16 @@ export const metadata: Metadata = {
   description: 'A professional, minimalist portfolio and blog website.',
 };
 
+const spaceGrotesk = Space_Grotesk({ 
+  subsets: ['latin'],
+  variable: '--font-space-grotesk',
+});
+const inter = Inter({ 
+  subsets: ['latin'],
+  variable: '--font-inter',
+});
+
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -22,9 +31,9 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body
         className={cn(
-          'min-h-screen bg-background font-sans antialiased',
-          GeistSans.variable,
-          GeistMono.variable
+          'min-h-screen bg-background font-body antialiased',
+          spaceGrotesk.variable,
+          inter.variable
         )}
       >
         <ThemeProvider

@@ -18,9 +18,8 @@ export default {
     },
     extend: {
       fontFamily: {
-        sans: ['var(--font-geist-sans)'],
-        mono: ['var(--font-geist-mono)'],
-        heading: ['var(--font-geist-sans)'],
+        headline: ['var(--font-space-grotesk)'],
+        body: ['var(--font-inter)'],
       },
       colors: {
         background: 'hsl(var(--background))',
@@ -93,9 +92,9 @@ export default {
             '--tw-prose-quotes': theme('colors.foreground'),
             '--tw-prose-quote-borders': theme('colors.border'),
             '--tw-prose-captions': theme('colors.muted.foreground'),
-            '--tw-prose-code': theme('colors.primary.DEFAULT'),
-            '--tw-prose-pre-code': theme('colors.primary.foreground'),
-            '--tw-prose-pre-bg': theme('colors.primary.DEFAULT'),
+            '--tw-prose-code': theme('colors.accent.DEFAULT'),
+            '--tw-prose-pre-code': theme('colors.accent.foreground'),
+            '--tw-prose-pre-bg': theme('colors.accent.DEFAULT'),
             '--tw-prose-th-borders': theme('colors.border'),
             '--tw-prose-td-borders': theme('colors.border'),
           },

@@ -31,10 +31,6 @@ export async function generateMetadata({ params }: BlogPostPageProps) {
   };
 }
 
-const MarkdownContent = ({ content }: { content: string }) => {
-    return <div className="max-w-none prose dark:prose-invert" dangerouslySetInnerHTML={{ __html: content }} />;
-};
-
 export default async function BlogPostPage({ params }: BlogPostPageProps) {
   const post = await getBlogPostWithContent(params.slug);
 
@@ -63,9 +59,10 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
         />
       </div>
 
-      <div className="mt-12">
-        <MarkdownContent content={post.content} />
-      </div>
+      <div 
+        className="mt-12 max-w-none prose dark:prose-invert" 
+        dangerouslySetInnerHTML={{ __html: post.content }} 
+      />
     </article>
   );
 }

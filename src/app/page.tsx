@@ -3,8 +3,7 @@ import Link from 'next/link';
 
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { aboutMeImage } from '@/lib/data';
-import { getAllProjects } from '@/lib/api';
+import { getAllProjects, aboutMeImage } from '@/lib/api';
 import { ArrowRight } from 'lucide-react';
 
 export default function Home() {
@@ -66,7 +65,7 @@ export default function Home() {
                 <CardContent className="p-6">
                   <CardTitle className="font-headline text-xl">{project.title}</CardTitle>
                   <CardDescription className="mt-2">{project.description}</CardDescription>
-                  <div className="mt-4 flex items-center text-sm font-medium text-primary">
+                  <div className="mt-4 flex items-center text-sm font-medium text-accent-foreground dark:text-accent">
                     View Project <ArrowRight className="ml-1 h-4 w-4 transition-transform group-hover:translate-x-1" />
                   </div>
                 </CardContent>
@@ -75,7 +74,7 @@ export default function Home() {
           ))}
         </div>
         <div className="mt-8 flex justify-center">
-            <Button asChild variant="link" className="text-lg">
+            <Button asChild variant="link" className="text-lg text-accent-foreground dark:text-accent">
                 <Link href="/projects">
                     View All Projects
                     <ArrowRight className="ml-2 h-5 w-5" />

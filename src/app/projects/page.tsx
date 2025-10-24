@@ -39,7 +39,7 @@ export default function ProjectsPage() {
               <CardContent className="p-6">
                 <CardTitle className="font-headline text-xl">{project.title}</CardTitle>
                 <CardDescription className="mt-2">{project.description}</CardDescription>
-                <div className="mt-4 flex items-center text-sm font-medium text-primary">
+                <div className="mt-4 flex items-center text-sm font-medium text-accent-foreground dark:text-accent">
                   View Details <ArrowRight className="ml-1 h-4 w-4 transition-transform group-hover:translate-x-1" />
                 </div>
               </CardContent>

@@ -19,7 +19,7 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: ProjectPageProps) {
-  const project = getProjectWithContent(params.slug);
+  const project = await getProjectWithContent(params.slug);
 
   if (!project) {
     return {
@@ -28,15 +28,10 @@ export async function generateMetadata({ params }: ProjectPageProps) {
   }
 
   return {
-    title: `${(await project).title} | MinimalFolio`,
-    description: (await project).description,
+    title: `${project.title} | MinimalFolio`,
+    description: project.description,
   };
 }
-
-const MarkdownContent = ({ content }: { content: string }) => {
-    return <div className="max-w-none prose dark:prose-invert" dangerouslySetInnerHTML={{ __html: content }} />;
-};
-
 
 export default async function ProjectPage({ params }: ProjectPageProps) {
   const project = await getProjectWithContent(params.slug);
@@ -85,9 +80,11 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
         />
       </div>
 
-      <div className="mt-12">
-        <MarkdownContent content={project.content} />
-      </div>
+      <div 
+        className="mt-12 max-w-none prose dark:prose-invert"
+        dangerouslySetInnerHTML={{ __html: project.content }}
+       />
+
     </article>
   );
 }

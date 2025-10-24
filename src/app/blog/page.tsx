@@ -34,7 +34,7 @@ export default function BlogPage() {
                 <CardDescription>{post.excerpt}</CardDescription>
               </CardContent>
               <CardFooter>
-                 <div className="flex items-center text-sm font-medium text-primary">
+                 <div className="flex items-center text-sm font-medium text-accent-foreground dark:text-accent">
                   Read More <ArrowRight className="ml-1 h-4 w-4 transition-transform group-hover:translate-x-1" />
                 </div>
               </CardFooter>
