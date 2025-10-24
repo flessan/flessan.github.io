@@ -1,4 +1,4 @@
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import { Space_Grotesk, Inter } from 'next/font/google';
 import './globals.css';
 import { Header } from '@/components/header';
@@ -7,10 +7,46 @@ import { Toaster } from '@/components/ui/toaster';
 import { cn } from '@/lib/utils';
 import { ThemeProvider } from '@/components/theme-provider';
 
+const APP_NAME = "MinimalFolio";
+const APP_DESCRIPTION = "A professional, minimalist portfolio and blog for Thio Saputra.";
+const APP_URL = "https://flessan.pages.dev"; // Ganti dengan URL Anda nanti
+
 export const metadata: Metadata = {
-  title: 'MinimalFolio',
-  description: 'A professional, minimalist portfolio and blog website.',
+  title: {
+    default: `${APP_NAME} | Developer & Designer`,
+    template: `%s | ${APP_NAME}`,
+  },
+  description: APP_DESCRIPTION,
+  applicationName: APP_NAME,
+  metadataBase: new URL(APP_URL),
+  openGraph: {
+    title: {
+      default: `${APP_NAME} | Developer & Designer`,
+      template: `%s | ${APP_NAME}`,
+    },
+    description: APP_DESCRIPTION,
+    url: APP_URL,
+    siteName: APP_NAME,
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: {
+      default: `${APP_NAME} | Developer & Designer`,
+      template: `%s | ${APP_NAME}`,
+    },
+    description: APP_DESCRIPTION,
+  },
 };
+
+export const viewport: Viewport = {
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "white" },
+    { media: "(prefers-color-scheme: dark)", color: "black" },
+  ],
+};
+
 
 const spaceGrotesk = Space_Grotesk({ 
   subsets: ['latin'],

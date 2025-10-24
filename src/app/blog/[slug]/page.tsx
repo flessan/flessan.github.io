@@ -28,7 +28,7 @@ export async function generateMetadata({ params }: BlogPostPageProps) {
   }
 
   return {
-    title: `${post.title} | MinimalFolio`,
+    title: post.title,
     description: post.excerpt,
   };
 }
@@ -71,7 +71,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
       </article>
       
-      <aside className="w-64">
+      <aside className="w-64 sticky top-28 self-start hidden lg:block">
         <TableOfContents toc={post.toc} />
       </aside>
     </div>

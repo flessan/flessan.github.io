@@ -29,7 +29,7 @@ export async function generateMetadata({ params }: ProjectPageProps) {
   }
 
   return {
-    title: `${project.title} | MinimalFolio`,
+    title: project.title,
     description: project.description,
   };
 }
@@ -42,7 +42,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
   }
 
   return (
-    <div className="container max-w-6xl py-12 md:py-16 lg:py-20 flex gap-12">
+    <div className="container max-w-6xl py-12 md:py-16 lg:py-20 flex flex-col lg:flex-row gap-12">
         <article className="flex-1 max-w-full">
             <div className="space-y-4">
                 <h1 className="font-headline text-3xl font-bold tracking-tighter md:text-5xl">{project.title}</h1>
@@ -89,7 +89,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
 
         </article>
         
-        <aside className="w-64">
+        <aside className="w-full lg:w-64 lg:sticky top-28 self-start">
             <TableOfContents toc={project.toc} />
         </aside>
     </div>
