@@ -1,7 +1,19 @@
-
 import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
+import { remark } from 'remark';
+import html from 'remark-html';
+import slug from 'remark-slug';
+import { visit } from 'unist-util-visit';
+import type { Root } from 'remark-parse/lib';
+
+
+// Define types for TOC
+export interface TocEntry {
+  level: number;
+  text: string;
+  slug: string;
+}
 
 export interface Project {
   slug: string;
@@ -10,6 +22,7 @@ export interface Project {
   image: string;
   detailImage: string;
   content: string;
+  toc: TocEntry[];
   links?: {
     github?: string;
     live?: string;
@@ -24,17 +37,44 @@ export interface BlogPost {
   date: string;
   image: string;
   content: string;
+  toc: TocEntry[];
   [key:string]: any;
 }
 
 const contentDirectory = path.join(process.cwd(), '_content');
 
+// Custom plugin to extract TOC
+const tocPlugin = () => (tree: Root, file: any) => {
+  const toc: TocEntry[] = [];
+  visit(tree, 'heading', (node) => {
+    if (node.depth === 2 || node.depth === 3) { // Only H2 and H3
+      const text = node.children.map(child => (child.type === 'text' ? child.value : '')).join('');
+      if (node.data && (node.data as any).id) {
+          toc.push({
+          level: node.depth,
+          text: text,
+          slug: (node.data as any).id,
+        });
+      }
+    }
+  });
+  file.data.toc = toc;
+};
+
+
 async function getParsedMarkdown(content: string) {
-    const { remark } = await import('remark');
-    const { default: html } = await import('remark-html');
-    const processedContent = await remark().use(html).process(content);
-    return processedContent.toString();
+    const file = await remark()
+      .use(slug)
+      .use(tocPlugin)
+      .use(html, { sanitize: false })
+      .process(content);
+      
+    return {
+      content: file.toString(),
+      toc: file.data.toc as TocEntry[],
+    };
 }
+
 
 function getItemBySlug<T extends {slug: string; content: string}>(collection: 'blog' | 'projects', slug: string): T {
   const realSlug = slug.replace(/\.md$/, '');
@@ -71,7 +111,9 @@ export function getAllBlogPosts(): BlogPost[] {
 
 export async function getBlogPostWithContent(slug: string): Promise<BlogPost> {
     const post = getItemBySlug<BlogPost>('blog', slug);
-    post.content = await getParsedMarkdown(post.content || '');
+    const { content, toc } = await getParsedMarkdown(post.content || '');
+    post.content = content;
+    post.toc = toc;
     return post;
 }
 
@@ -83,6 +125,8 @@ export function getAllProjects(): Project[] {
 
 export async function getProjectWithContent(slug: string): Promise<Project> {
     const project = getItemBySlug<Project>('projects', slug);
-    project.content = await getParsedMarkdown(project.content || '');
+    const { content, toc } = await getParsedMarkdown(project.content || '');
+    project.content = content;
+    project.toc = toc;
     return project;
 }
