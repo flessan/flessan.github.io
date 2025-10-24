@@ -1,40 +1,28 @@
 {
   "placeholderImages": [
     {
-      "id": "project-one",
+      "id": "code-text-cleaner-thumbnail",
       "description": "Abstract geometric shapes",
       "imageUrl": "https://images.unsplash.com/photo-1488972685288-c3fd157d7c7a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxhYnN0cmFjdCUyMGdlb21ldHJpY3xlbnwwfHx8fDE3NjEyMDQxMjF8MA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "abstract geometric"
     },
     {
-      "id": "project-two",
+      "id": "jam-clock-thumbnail",
       "description": "Modern architecture building",
       "imageUrl": "https://images.unsplash.com/photo-1521713362244-1b5e5d150b29?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxtb2Rlcm4lMjBhcmNoaXRlY3R1cmV8ZW58MHx8fHwxNzYxMTc4NjMzfDA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "modern architecture"
     },
     {
-      "id": "project-three",
+      "id": "list-and-do-thumbnail",
       "description": "Code on a computer screen",
       "imageUrl": "https://images.unsplash.com/photo-1615494937408-7f4e41bf45d9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxjb2RlJTIwc2NyZWVufGVufDB8fHx8MTc2MTE5NjAzOXww&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "code screen"
     },
     {
-      "id": "project-four",
+      "id": "av-test-studio-thumbnail",
       "description": "A person writing on a notebook",
       "imageUrl": "https://images.unsplash.com/photo-1488748809185-53ad203ca5cf?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHx3cml0aW5nJTIwbm90ZWJvb2t8ZW58MHx8fHwxNzYxMjExNDA1fDA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "writing notebook"
-    },
-    {
-      "id": "project-detail-one",
-      "description": "A close-up of a keyboard",
-      "imageUrl": "https://images.unsplash.com/photo-1637734426495-c90f016fd57a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxrZXlib2FyZCUyMGNsb3NldXB8ZW58MHx8fHwxNzYxMjU5NjU3fDA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "keyboard closeup"
-    },
-    {
-      "id": "project-detail-two",
-      "description": "A web design wireframe",
-      "imageUrl": "https://images.unsplash.com/photo-1532102235608-dc8fc689c9ab?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxkZXNpZ24lMjB3aXJlZnJhbWV8ZW58MHx8fHwxNzYxMjU5NjU3fDA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "design wireframe"
     },
     {
       "id": "blog-one",

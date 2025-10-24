@@ -1,7 +1,7 @@
 title: 'AV Test Studio Pro'
 description: 'A professional audio-visual testing and diagnostics tool for testing camera and microphone functionality directly in your browser.'
 image: 'av-test-studio-thumbnail'
-detailImage: 'https://github.com/user-attachments/assets/2129f2d3-75d7-496f-a51d-0f320bd42544'
+detailImage: 'av-test-studio-thumbnail'
 links:
   github: '#'
   live: 'https://flessan.pages.dev/cam'

@@ -1,7 +1,7 @@
 title: 'ListAndDo++'
 description: 'A powerful, offline-ready Progressive Web App (PWA) for advanced task management and productivity.'
 image: 'list-and-do-thumbnail'
-detailImage: 'https://github.com/user-attachments/assets/5ecd3319-d0f5-448b-be69-fb91dfe93c20'
+detailImage: 'list-and-do-thumbnail'
 links:
   github: '#'
   live: 'https://flessan.pages.dev/list'

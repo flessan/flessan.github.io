@@ -1,7 +1,7 @@
 title: 'Jam++'
 description: 'A modern, all-in-one time management web app featuring analog/digital clocks and a suite of productivity tools.'
 image: 'jam-clock-thumbnail'
-detailImage: 'https://github.com/user-attachments/assets/95c27bdf-7145-4724-a956-5d3fba4a05f3'
+detailImage: 'jam-clock-thumbnail'
 links:
   github: '#'
   live: 'https://flessan.pages.dev/jam'

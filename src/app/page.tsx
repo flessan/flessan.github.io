@@ -3,12 +3,17 @@ import Link from 'next/link';
 
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { getAllProjects, getAboutMeImage } from '@/lib/api';
+import { getAllProjects } from '@/lib/api';
 import { ArrowRight } from 'lucide-react';
 
 export default function Home() {
   const featuredProjects = getAllProjects().slice(0, 2);
-  const aboutMeImage = getAboutMeImage();
+  const aboutMeImage = {
+      "id": "about-me",
+      "description": "A minimalist workspace",
+      "imageUrl": "https://images.unsplash.com/photo-1549833971-c4283bad0032?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxtaW5pbWFsaXN0JTIwd29ya3NwYWNlfGVufDB8fHx8MTc2MTIxODYyOHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "minimalist workspace"
+    };
 
   return (
     <div className="flex flex-col gap-12 md:gap-20 lg:gap-24">
