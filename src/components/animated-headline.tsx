@@ -5,6 +5,11 @@ import { cn } from '@/lib/utils';
 
 const words = ['Developer', 'Artist', 'Creator', 'Designer'];
 
+// Fungsi kecil untuk menentukan artikel 'a' atau 'an'
+const getArticle = (word) => {
+  return ['a', 'e', 'i', 'o', 'u'].includes(word[0].toLowerCase()) ? 'an' : 'a';
+};
+
 export function AnimatedHeadline() {
   const [index, setIndex] = useState(0);
   const [subIndex, setSubIndex] = useState(0);
@@ -15,19 +20,15 @@ export function AnimatedHeadline() {
   // Typing effect
   useEffect(() => {
     if (index === words.length) {
-      // Loop back to the start, though this won't be reached in this setup
-      // setIndex(0); 
       return;
     }
 
     if (subIndex === words[index].length + 1 && !isDeleting) {
-      // Finished typing the word
       setTimeout(() => setIsDeleting(true), 1000);
       return;
     }
 
     if (subIndex === 0 && isDeleting) {
-      // Finished deleting the word
       setIsDeleting(false);
       setIndex((prev) => (prev + 1) % words.length);
       return;
@@ -51,8 +52,9 @@ export function AnimatedHeadline() {
 
   return (
     <>
-      A <span className="text-primary">{text}</span>
-      <span className={cn('inline-block w-1 h-8 md:h-12 bg-foreground transition-opacity duration-300', blink ? 'opacity-100' : 'opacity-0')}></span> and Designer Crafting Digital Experiences
+      {/* Menggunakan fungsi getArticle dan kalimat yang lebih mengalir */}
+      Hello, I'm {getArticle(words[index])} <span className="text-primary">{text}</span>
+      <span className={cn('inline-block w-1 h-8 md:h-12 bg-foreground transition-opacity duration-300', blink ? 'opacity-100' : 'opacity-0')}></span> crafting digital experiences.
     </>
   );
 }
