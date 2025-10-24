@@ -1,33 +1,130 @@
+---
 title: 'Code & Text Cleaner Pro'
 description: 'A no-nonsense, offline-friendly web toolbox for cleaning, converting, and managing text and code directly in your browser.'
-image: 'https://images.unsplash.com/photo-1488972685288-c3fd157d7c7a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxhYnN0cmFjdCUyMGdlb21ldHJpY3xlbnwwfHx8fDE3NjEyMDQxMjF8MA&ixlib=rb-4.1.0&q=80&w=1080'
-detailImage: 'https://images.unsplash.com/photo-1488972685288-c3fd157d7c7a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxhYnN0cmFjdCUyMGdlb21ldHJpY3xlbnwwfHx8fDE3NjEyMDQxMjF8MA&ixlib=rb-4.1.0&q=80&w=1080'
+image: 'code-text-cleaner-thumbnail'
+detailImage: 'https://github.com/user-attachments/assets/6076d21d-ec17-4598-9abb-8876d7a11d16'
 links:
   github: 'https://github.com/frgdps/fles/tree/main/ctc'
   live: 'https://flessan.pages.dev/ctc'
 ---
 
 ## Overview
-**Code & Text Cleaner Pro** is a powerful and efficient web-based toolbox designed for developers, writers, and anyone who works with text and code. It provides a comprehensive suite of tools to clean up, format, convert, and manage content without requiring an internet connection. Built with a modern glassmorphism UI, this application runs entirely in your browser, ensuring your data remains private and secure.
+**Code & Text Cleaner Pro** is a no-nonsense, offline-friendly web toolbox that helps you **clean up, convert, and manage text and code** (HTML, CSS, JS) fast—right in your browser, no internet needed. Just open it and go.
+
+> 💡 The 5th project by [**Thio Saputra**](https://flessan.pages.dev)  
+> Motto: **ATM — Amati, Tiru, Modifikasi** *(Observe, Copy, Modify)*
+
+---
 
 ### Key Features
-- **Comprehensive Text Tools**
-  - Convert text between lowercase, UPPERCASE, and Title Case.
-  - Remove extra spaces, blank lines, and utilize the JSON prettifier.
-  - Includes automatic word and character counting.
-- **Advanced Code Cleaner**
-  - Tidy up your workflow with tools to minify HTML, clean CSS, and clean JavaScript.
-  - Removes code comments and offers basic HTML pretty-printing.
-  - Provides a live preview in a secure sandboxed iframe.
-- **HTML Encoder/Decoder & Utilities**
-  - Easily convert HTML entities into readable text and vice versa.
-  - Combine separate HTML, CSS, and JS into one file, or split a bundled file into clean parts.
-- **Offline-First & Auto-Save**
-  - The application works completely offline.
-  - Automatically saves your work to `localStorage` every 5 seconds.
+
+#### 📝 Text Tools  
+- Convert text to **lowercase**, **UPPERCASE**, or **Title Case**  
+- Zap extra spaces and blank lines  
+- *Prettify JSON* (auto-indent + clean formatting)  
+- Auto-count **words** and **characters**  
+- Save, load, or reset your work using `localStorage`  
+- Drag & drop `.txt` or `.md` files straight into the editor  
+
+#### 💻 Code Cleaner  
+- *Minify HTML*, *Clean CSS*, and *Clean JS*  
+- Auto-remove code comments  
+- Basic HTML pretty-printing (nicer indentation)  
+- Live preview in a secure sandboxed iframe  
+- One-click copy or export of results  
+
+#### 🔡 HTML Decoder  
+- Turn HTML entities into readable text—and vice versa.  
+- Manual encode/decode toggle  
+- Auto-detect and decode on the fly  
+- Copy decoded/encoded output with a single click  
+
+#### 🔀 Combine Tool  
+- Merge separate HTML, CSS, and JS snippets into one neat HTML file.  
+- Auto-injects CSS into `<style>` and JS into `<script>` tags  
+- Preview, copy, or download the final `.html` file  
+
+#### ✂️ Split Tool  
+- Break down messy HTML files that bundle CSS and JS inside.  
+- Auto-split into three clean files: HTML, CSS, JS  
+- Copy or download each part individually  
 
 ### Technologies Used
-- Frontend: Pure HTML5 for structure and CSS3 featuring a modern glassmorphism design.
-- Logic: Implemented with clean, modular Vanilla JavaScript.
-- Storage: Utilizes the LocalStorage API for auto-saving and offline data persistence.
-- Security: Employs a sandboxed iframe to provide a secure environment for live code previews.
+- **Frontend**: Pure HTML5 for structure and CSS3 featuring a modern glassmorphism design.
+- **Logic**: Implemented with clean, modular Vanilla JavaScript.
+- **Storage**: Utilizes the LocalStorage API for auto-saving and offline data persistence.
+- **Security**: Employs a sandboxed iframe to provide a secure environment for live code previews.
+
+---
+
+## 🎨 Design & UI
+
+Built with a **Modern Glassmorphism** vibe:
+- Soft base colors: `#f5f7ff` & `#f0f2ff`  
+- Purple/indigo accents (`#6366f1`, `#a855f7`)  
+- Subtle shadows + transparent blur layers  
+- Smooth fade, slide, and hover animations  
+- Fully responsive—from desktop to mobile  
+
+---
+
+## ⚙️ File Structure
+
+- `index.html` → Main layout & structure  
+- `style.css` → Glassmorphism styling (inline or external)  
+- `sc.js` → Core logic (tabs, transforms, combine, split, etc.)
+
+---
+
+## 📦 How to Use It
+
+1. Open `index.html` in any browser (**works offline!**)  
+2. Pick your tool: **Text / Code / Decoder / Combine / Split**  
+3. Paste your content or drag & drop a file  
+4. Hit an action button (e.g., `Minify`, `Decode`, `Split`)  
+5. Copy, save, or download the result  
+
+---
+
+## 💾 Auto-Save Magic
+
+> Every 5 seconds, your text gets saved to `localStorage`. Close the tab or refresh? No worries—your last session loads right back up.
+
+---
+
+## 🔐 Privacy & Security
+
+- **100% runs in your browser**—zero server contact  
+- Your data never leaves your machine  
+- Previews run in a locked-down **sandboxed iframe** for safety  
+
+---
+
+## 👨‍💻 Made by
+
+**Thio Saputra**  
+> Web dev • Creator • Lifelong learner who loves the “ATM” method  
+> 🌐 [flessan.pages.dev](https://flessan.pages.dev)
+
+---
+
+## 🧭 License
+
+This project is **free to use, learn from, and tweak** for personal stuff. Feel free to copy, remix, or add new features—as long as you credit the original creator.
+
+---
+
+## 🐱‍👤 GitHub Project
+
+🔗 [the source-code](https://github.com/frgdps/fles/tree/main/ctc)
+
+---
+
+> “Clean your code, tidy your text, clear your mind.”  
+> — *Code & Text Cleaner*
+
+---
+
+**Current Version**: Beta 1.8.1  
+**Last Updated**: 2025  
+**Maintained by**: Rekaluna Development Team
