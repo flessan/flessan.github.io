@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { cn } from '@/lib/utils';
 
-const words = ['Developer', 'Artist', 'Creator', 'Designer'];
+const words = ['Developer', 'Artist', 'Content Creator', 'Programmer'];
 
 const getArticle = (word: string) => {
   if (!word) return 'a';
