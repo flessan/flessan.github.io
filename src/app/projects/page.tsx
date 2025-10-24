@@ -2,7 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { projects } from '@/lib/data';
+import { getAllProjects } from '@/lib/api';
 import { ArrowRight } from 'lucide-react';
 
 export const metadata = {
@@ -11,6 +11,7 @@ export const metadata = {
 };
 
 export default function ProjectsPage() {
+  const projects = getAllProjects();
   return (
     <section className="container py-12 md:py-16 lg:py-20">
       <div className="flex flex-col items-start gap-4">

@@ -1,4 +1,4 @@
-import { projects } from '@/lib/data';
+import { getProjectWithContent, getAllProjects } from '@/lib/api';
 import { notFound } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -12,13 +12,14 @@ type ProjectPageProps = {
 };
 
 export async function generateStaticParams() {
+  const projects = getAllProjects();
   return projects.map((project) => ({
     slug: project.slug,
   }));
 }
 
 export async function generateMetadata({ params }: ProjectPageProps) {
-  const project = projects.find((p) => p.slug === params.slug);
+  const project = getProjectWithContent(params.slug);
 
   if (!project) {
     return {
@@ -27,57 +28,18 @@ export async function generateMetadata({ params }: ProjectPageProps) {
   }
 
   return {
-    title: `${project.title} | MinimalFolio`,
-    description: project.description,
+    title: `${(await project).title} | MinimalFolio`,
+    description: (await project).description,
   };
 }
 
 const MarkdownContent = ({ content }: { content: string }) => {
-    const lines = content.trim().split('\n');
-    let inCodeBlock = false;
-    let codeContent = '';
-    const elements: React.ReactNode[] = [];
-
-    for (let i = 0; i < lines.length; i++) {
-        const line = lines[i];
-
-        if (line.startsWith('```')) {
-            if (inCodeBlock) {
-                elements.push(
-                    <pre key={`code-${i}`} className="bg-muted p-4 rounded-md my-4 text-sm font-code overflow-x-auto">
-                        <code>{codeContent.trim()}</code>
-                    </pre>
-                );
-                codeContent = '';
-            }
-            inCodeBlock = !inCodeBlock;
-            continue;
-        }
-
-        if (inCodeBlock) {
-            codeContent += line + '\n';
-            continue;
-        }
-        
-        if (line.trim() === '') continue;
-
-        if (line.startsWith('### ')) {
-            elements.push(<h3 key={i} className="font-headline text-xl font-bold mt-6 mb-2">{line.substring(4)}</h3>);
-        } else if (line.startsWith('## ')) {
-            elements.push(<h2 key={i} className="font-headline text-2xl font-bold mt-8 mb-3">{line.substring(3)}</h2>);
-        } else if (line.startsWith('- ')) {
-            elements.push(<li key={i} className="ml-4 list-disc">{line.substring(2)}</li>);
-        } else {
-            elements.push(<p key={i} className="mb-4 leading-relaxed">{line}</p>);
-        }
-    }
-    
-    return <div className="max-w-none text-foreground">{elements}</div>;
+    return <div className="max-w-none prose dark:prose-invert" dangerouslySetInnerHTML={{ __html: content }} />;
 };
 
 
-export default function ProjectPage({ params }: ProjectPageProps) {
-  const project = projects.find((p) => p.slug === params.slug);
+export default async function ProjectPage({ params }: ProjectPageProps) {
+  const project = await getProjectWithContent(params.slug);
 
   if (!project) {
     notFound();

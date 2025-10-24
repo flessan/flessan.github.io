@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { blogPosts } from '@/lib/data';
+import { getAllBlogPosts } from '@/lib/api';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { ArrowRight } from 'lucide-react';
 import { format } from 'date-fns';
@@ -10,7 +10,7 @@ export const metadata = {
 };
 
 export default function BlogPage() {
-  const sortedPosts = blogPosts.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+  const sortedPosts = getAllBlogPosts();
 
   return (
     <section className="container py-12 md:py-16 lg:py-20">
