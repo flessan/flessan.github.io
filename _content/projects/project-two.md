@@ -4,6 +4,9 @@ description: 'A modern, all-in-one time management web app featuring analog/digi
 image: 'https://images.unsplash.com/photo-1508921340878-ba53e1f416ec?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNzEyODZ8MHwxfGFsbHwxfHx8fHx8fHwxNjE3MjE1NjU4&ixlib=rb-1.2.1&q=80&w=1080'
 detailImage: 'https://images.unsplash.com/photo-1521713362244-1b5e5d150b29?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxtb2Rlcm4lMjBhcmNoaXRlY3R1cmV8ZW58MHx8fHwxNzYxMTc4NjMzfDA&ixlib=rb-4.1.0&q=80&w=1080'
 technologies: ['JavaScript', 'PWA', 'CSS3']
+links:
+  github: 'https://github.com/frgdps/fles/tree/main/jam'
+  live: 'https://flessan.pages.dev/jam/'
 ---
 
 ## Overview
