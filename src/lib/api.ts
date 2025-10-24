@@ -2,37 +2,15 @@
 import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
-import placeholderData from './placeholder-images.json';
 
-export type ImagePlaceholder = {
-  id: string;
-  description: string;
-  imageUrl: string;
-  imageHint: string;
-};
-
-const placeholderImages: ImagePlaceholder[] = placeholderData.placeholderImages;
-
-function getImage(id: string): ImagePlaceholder {
-  const image = placeholderImages.find((img) => img.id === id);
-  if (!image) {
-    // Return a default or throw an error
-    return {
-      id: 'default',
-      description: 'Default placeholder image',
-      imageUrl: 'https://picsum.photos/seed/default/600/400',
-      imageHint: 'placeholder',
-    };
-  }
-  return image;
-};
+// The ImagePlaceholder logic is removed. We'll use direct URLs.
 
 export interface Project {
   slug: string;
   title: string;
   description: string;
-  image: ImagePlaceholder;
-  detailImage: ImagePlaceholder;
+  image: string;
+  detailImage: string;
   content: string;
   links?: {
     github?: string;
@@ -46,7 +24,7 @@ export interface BlogPost {
   title: string;
   excerpt: string;
   date: string;
-  image: ImagePlaceholder;
+  image: string;
   content: string;
   [key:string]: any;
 }
@@ -71,13 +49,6 @@ function getItemBySlug<T extends {slug: string; content: string}>(collection: 'b
     slug: realSlug,
     content: content,
   } as T;
-
-  if ('image' in data && typeof data.image === 'string') {
-    (item as any).image = getImage(data.image);
-  }
-  if ('detailImage' in data && typeof data.detailImage === 'string') {
-    (item as any).detailImage = getImage(data.detailImage);
-  }
   
   return item;
 }
@@ -117,7 +88,3 @@ export async function getProjectWithContent(slug: string): Promise<Project> {
     project.content = await getParsedMarkdown(project.content || '');
     return project;
 }
-
-export function getAboutMeImage(): ImagePlaceholder {
-    return getImage('about-me');
-};

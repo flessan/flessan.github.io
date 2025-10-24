@@ -70,13 +70,13 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
 
       <div className="my-8 aspect-video relative overflow-hidden rounded-lg shadow-lg">
         <Image
-          src={project.detailImage.imageUrl}
-          alt={project.detailImage.description}
+          src={project.detailImage}
+          alt={project.title}
           fill
           className="object-cover"
           priority
           sizes="100vw"
-          data-ai-hint={project.detailImage.imageHint}
+          data-ai-hint={project.title}
         />
       </div>
 

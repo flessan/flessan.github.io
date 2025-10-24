@@ -27,12 +27,12 @@ export default function ProjectsPage() {
               <CardHeader className="p-0">
                 <div className="aspect-video relative">
                   <Image
-                    src={project.image.imageUrl}
-                    alt={project.image.description}
+                    src={project.image}
+                    alt={project.title}
                     fill
                     className="object-cover transition-transform group-hover:scale-105"
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                    data-ai-hint={project.image.imageHint}
+                    data-ai-hint={project.title}
                   />
                 </div>
               </CardHeader>

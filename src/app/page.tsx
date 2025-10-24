@@ -9,11 +9,10 @@ import { ArrowRight } from 'lucide-react';
 export default function Home() {
   const featuredProjects = getAllProjects().slice(0, 2);
   const aboutMeImage = {
-      "id": "about-me",
-      "description": "A minimalist workspace",
-      "imageUrl": "https://images.unsplash.com/photo-1549833971-c4283bad0032?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxtaW5pbWFsaXN0JTIwd29ya3NwYWNlfGVufDB8fHx8MTc2MTIxODYyOHww&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "minimalist workspace"
-    };
+    imageUrl: "https://images.unsplash.com/photo-1549833971-c4283bad0032?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxtaW5pbWFsaXN0JTIwd29ya3NwYWNlfGVufDB8fHx8MTc2MTIxODYyOHww&ixlib=rb-4.1.0&q=80&w=1080",
+    description: "A minimalist workspace",
+    imageHint: "minimalist workspace"
+  };
 
   return (
     <div className="flex flex-col gap-12 md:gap-20 lg:gap-24">
@@ -59,11 +58,11 @@ export default function Home() {
                 <CardHeader className="p-0">
                   <div className="aspect-video relative">
                     <Image
-                      src={project.image.imageUrl}
-                      alt={project.image.description}
+                      src={project.image}
+                      alt={project.title}
                       fill
                       className="object-cover transition-transform group-hover:scale-105"
-                      data-ai-hint={project.image.imageHint}
+                      data-ai-hint={project.title}
                        sizes="(max-width: 768px) 100vw, 50vw"
                     />
                   </div>

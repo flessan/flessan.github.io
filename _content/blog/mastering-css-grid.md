@@ -2,7 +2,7 @@
 title: 'A Complete Guide to Mastering CSS Grid'
 excerpt: 'In this post, we take a deep dive into CSS Grid, exploring its powerful features and how you can use it to create complex, responsive layouts with ease.'
 date: '2023-10-26'
-image: 'blog-one'
+image: 'https://images.unsplash.com/photo-1601546101027-753e8037792d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8Ym9va3MlMjBzdGFja3xlbnwwfHx8fDE3NjEyMTE0MzN8MA&ixlib=rb-4.1.0&q=80&w=1080'
 ---
 
 CSS Grid Layout is a two-dimensional layout system for the web. It lets you lay content out in rows and columns, and has many features that make building complex layouts straightforward.

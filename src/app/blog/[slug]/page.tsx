@@ -49,13 +49,13 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
       <div className="my-8 aspect-video relative overflow-hidden rounded-lg shadow-lg">
         <Image
-          src={post.image.imageUrl}
-          alt={post.image.description}
+          src={post.image}
+          alt={post.title}
           fill
           className="object-cover"
           priority
           sizes="100vw"
-          data-ai-hint={post.image.imageHint}
+          data-ai-hint={post.title}
         />
       </div>
 
