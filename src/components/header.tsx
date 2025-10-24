@@ -8,6 +8,7 @@ import { usePathname } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { cn } from '@/lib/utils';
+import { ThemeToggle } from './theme-toggle';
 
 const navLinks = [
   { href: '/', label: 'Home' },
@@ -38,7 +39,7 @@ export function Header() {
       <div className="container flex h-14 max-w-screen-2xl items-center">
         <div className="mr-4 flex items-center">
           <Link href="/" className="mr-6 flex items-center space-x-2">
-            <span className="font-bold font-headline text-lg text-foreground">MinimalFolio</span>
+            <span className="font-bold font-heading text-lg text-foreground">MinimalFolio</span>
           </Link>
           <nav className="hidden gap-6 md:flex">
             {navLinks.map((link) => (
@@ -46,7 +47,8 @@ export function Header() {
             ))}
           </nav>
         </div>
-        <div className="flex flex-1 items-center justify-end">
+        <div className="flex flex-1 items-center justify-end space-x-2">
+          <ThemeToggle />
           <Sheet open={isOpen} onOpenChange={setIsOpen}>
             <SheetTrigger asChild>
               <Button
@@ -63,7 +65,7 @@ export function Header() {
                 className="flex items-center pl-6"
                 onClick={() => setIsOpen(false)}
               >
-                <span className="font-bold font-headline text-lg">MinimalFolio</span>
+                <span className="font-bold font-heading text-lg">MinimalFolio</span>
               </Link>
               <div className="my-4 h-[calc(100vh-8rem)] px-6">
                 <div className="flex flex-col space-y-4">
