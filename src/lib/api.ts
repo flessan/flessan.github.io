@@ -1,8 +1,7 @@
+
 import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
-import { remark } from 'remark';
-import html from 'remark-html';
 import placeholderData from './placeholder-images.json';
 
 export type ImagePlaceholder = {
@@ -58,6 +57,8 @@ export interface BlogPost {
 const contentDirectory = path.join(process.cwd(), '_content');
 
 async function getParsedMarkdown(content: string) {
+    const { remark } = await import('remark');
+    const { default: html } = await import('remark-html');
     const processedContent = await remark().use(html).process(content);
     return processedContent.toString();
 }

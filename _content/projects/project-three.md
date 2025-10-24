@@ -1,24 +1,33 @@
----
-title: 'Mobile Task Manager'
-description: 'A cross-platform mobile app for organizing tasks and improving productivity.'
-image: 'project-three'
-detailImage: 'project-detail-one'
+title: 'ListAndDo++'
+description: 'A powerful, offline-ready Progressive Web App (PWA) for advanced task management and productivity.'
+image: 'list-and-do-thumbnail'
+detailImage: 'https://github.com/user-attachments/assets/5ecd3319-d0f5-448b-be69-fb91dfe93c20'
 links:
   github: '#'
-  live: '#'
+  live: 'https://flessan.pages.dev/list'
 ---
 
 ## Overview
-This is a simple yet effective task management application for iOS and Android. It helps users keep track of their daily tasks, set reminders, and categorize their to-do lists.
+**ListAndDo++** is a powerful, modern task management application built as a Progressive Web App (PWA). It is designed to enhance productivity and organization by providing a seamless, fast, and reliable experience across all devices. A core strength is its ability to function fully offline, ensuring that your task management workflow is never interrupted.
 
 ### Key Features
-- Task Creation: Easily add new tasks with due dates and priority levels.
-- Push Notifications: Get reminders for upcoming tasks.
-- Offline Sync: Works offline and syncs data when a connection is available.
-- Cross-Platform: A single codebase for both iOS and Android.
+- **Core Task Management**
+  - Seamlessly create, edit, and delete tasks.
+  - Organize your workflow with robust sorting options by priority, date, or custom categories.
+- **Progressive Web App (PWA) Experience**
+  - Enjoy a native app-like experience directly from your browser.
+  - Installable on your home screen and works completely offline.
+- **Advanced Customization**
+  - Personalize your workspace with a variety of custom themes.
+  - Easily switch between dark and light modes.
+- **Productivity Analytics**
+  - Gain valuable insights with built-in analytics.
+  - Track task completion rates and visualize your progress with dynamic charts.
+- **Quick Access Shortcuts**
+  - Boost your efficiency with integrated one-click shortcuts to essential tools like a calendar, Spotify, and GitHub.
 
 ### Technologies Used
-- React Native
-- Redux
-- Firebase
-- Expo
+- Modern JavaScript Framework
+- Custom Service Worker for PWA functionality
+- Local Storage with IndexedDB fallback
+- Cloudflare Pages for hosting
