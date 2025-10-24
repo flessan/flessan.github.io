@@ -1,4 +1,4 @@
-import { Github, Linkedin, Mail } from 'lucide-react';
+import { Github, Linkedin } from 'lucide-react';
 import Link from 'next/link';
 import { Button } from './ui/button';
 
@@ -22,11 +22,6 @@ export function Footer() {
           <Button variant="ghost" size="icon" asChild>
             <Link href="https://linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
               <Linkedin className="h-5 w-5" />
-            </Link>
-          </Button>
-          <Button variant="ghost" size="icon" asChild>
-            <Link href="mailto:hello@example.com" aria-label="Email">
-              <Mail className="h-5 w-5" />
             </Link>
           </Button>
         </div>

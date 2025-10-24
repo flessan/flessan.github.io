@@ -2,7 +2,6 @@ import { getBlogPostWithContent, getAllBlogPosts } from '@/lib/api';
 import { notFound } from 'next/navigation';
 import Image from 'next/image';
 import { format } from 'date-fns';
-import { GiscusComments } from '@/components/giscus-comments';
 import { Separator } from '@/components/ui/separator';
 import { TableOfContents } from '@/components/table-of-contents';
 
@@ -70,7 +69,6 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
         
         <Separator className="my-12" />
 
-        <GiscusComments />
       </article>
       
       <aside className="w-64">

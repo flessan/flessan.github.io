@@ -4,7 +4,19 @@ import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { getAllProjects } from '@/lib/api';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, Code } from 'lucide-react';
+import { Badge } from '@/components/ui/badge';
+
+const skills = [
+  'Next.js',
+  'React',
+  'TypeScript',
+  'JavaScript',
+  'Tailwind CSS',
+  'Firebase',
+  'Node.js',
+  'HTML5 & CSS3',
+];
 
 export default function Home() {
   const featuredProjects = getAllProjects().slice(0, 2);
@@ -24,12 +36,12 @@ export default function Home() {
           <p className="max-w-[600px] text-muted-foreground md:text-xl">
             I'm a passionate developer with a keen eye for design, specializing in building modern, responsive, and user-friendly web applications. Explore my work and get in touch.
           </p>
-          <div className="flex gap-4">
+          <div className="flex flex-wrap gap-4">
             <Button asChild size="lg">
               <Link href="/projects">View My Projects</Link>
             </Button>
             <Button asChild variant="outline" size="lg">
-              <Link href="/blog">Read My Blog</Link>
+              <Link href="/cv.pdf" target="_blank" rel="noopener noreferrer">View CV</Link>
             </Button>
           </div>
         </div>
@@ -43,6 +55,20 @@ export default function Home() {
             data-ai-hint={aboutMeImage.imageHint}
             priority
           />
+        </div>
+      </section>
+
+      <section className="container pb-12 md:pb-16 lg:pb-20">
+        <div className="flex flex-col items-start gap-4">
+          <h2 className="font-headline text-2xl font-bold tracking-tighter md:text-4xl">Technologies I Use</h2>
+          <p className="text-muted-foreground md:text-lg">A brief overview of my technical skills and favorite tools.</p>
+        </div>
+        <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
+          {skills.map((skill) => (
+            <Badge key={skill} variant="secondary" className="text-lg py-2 px-4 rounded-full">
+              {skill}
+            </Badge>
+          ))}
         </div>
       </section>
 
