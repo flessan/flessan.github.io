@@ -13,6 +13,10 @@ export interface TocEntry {
     content: string;
     toc: TocEntry[];
     technologies?: string[];
+    links?: {
+      github?: string;
+      live?: string;
+    };
     [key: string]: any;
   }
   

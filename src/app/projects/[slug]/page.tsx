@@ -53,7 +53,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                         {project.links.github && (
                             <Button asChild variant="outline">
                                 <Link href={project.links.github} target="_blank" rel="noopener noreferrer">
-                                    <Github className="mr-2" />
+                                    <Github className="mr-2 h-4 w-4" />
                                     GitHub
                                 </Link>
                             </Button>
@@ -61,7 +61,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                         {project.links.live && (
                             <Button asChild>
                                 <Link href={project.links.live} target="_blank" rel="noopener noreferrer">
-                                    <ExternalLink className="mr-2" />
+                                    <ExternalLink className="mr-2 h-4 w-4" />
                                     Live Demo
                                 </Link>
                             </Button>
