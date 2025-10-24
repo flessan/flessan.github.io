@@ -6,37 +6,8 @@ import html from 'remark-html';
 import slug from 'remark-slug';
 import { visit } from 'unist-util-visit';
 import type { Root } from 'remark-parse/lib';
+import type { BlogPost, Project, TocEntry } from '@/lib/types';
 
-
-// Define types for TOC
-export interface TocEntry {
-  level: number;
-  text: string;
-  slug: string;
-}
-
-export interface Project {
-  slug: string;
-  title: string;
-  description: string;
-  image: string;
-  detailImage: string;
-  content: string;
-  toc: TocEntry[];
-  technologies?: string[];
-  [key: string]: any;
-}
-
-export interface BlogPost {
-  slug: string;
-  title: string;
-  excerpt: string;
-  date: string;
-  image: string;
-  content: string;
-  toc: TocEntry[];
-  [key:string]: any;
-}
 
 const contentDirectory = path.join(process.cwd(), '_content');
 
