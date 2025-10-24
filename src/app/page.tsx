@@ -7,6 +7,7 @@ import { Card, CardHeader, CardContent, CardTitle, CardDescription } from '@/com
 import { getAllProjects } from '@/lib/api';
 import { ArrowRight } from 'lucide-react';
 import { TechnologyCarousel } from '@/components/technology-carousel';
+import { AnimatedHeadline } from '@/components/animated-headline';
 
 export default function Home() {
   const featuredProjects = getAllProjects().slice(0, 2);
@@ -22,7 +23,7 @@ export default function Home() {
       <section className="container grid items-center gap-8 pt-6 md:py-12 lg:grid-cols-2">
         <div className="flex flex-col gap-4">
           <h1 className="font-headline text-3xl font-bold tracking-tighter md:text-5xl lg:text-6xl">
-            A Developer and Designer Crafting Digital Experiences
+            <AnimatedHeadline />
           </h1>
           <p className="max-w-[600px] text-muted-foreground md:text-xl">
             I'm a passionate developer with a keen eye for design, specializing
