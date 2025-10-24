@@ -3,11 +3,12 @@ import Link from 'next/link';
 
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { getAllProjects, aboutMeImage } from '@/lib/api';
+import { getAllProjects, getAboutMeImage } from '@/lib/api';
 import { ArrowRight } from 'lucide-react';
 
 export default function Home() {
   const featuredProjects = getAllProjects().slice(0, 2);
+  const aboutMeImage = getAboutMeImage();
 
   return (
     <div className="flex flex-col gap-12 md:gap-20 lg:gap-24">

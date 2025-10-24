@@ -2,7 +2,6 @@
 import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
-import placeholderData from './placeholder-images.json';
 
 export type ImagePlaceholder = {
   id: string;
@@ -11,9 +10,11 @@ export type ImagePlaceholder = {
   imageHint: string;
 };
 
-const placeholderImages: ImagePlaceholder[] = placeholderData.placeholderImages;
-
 function getImage(id: string): ImagePlaceholder {
+  // Directly import the JSON data inside the function to ensure it's loaded.
+  const placeholderData = require('./placeholder-images.json');
+  const placeholderImages: ImagePlaceholder[] = placeholderData.placeholderImages;
+
   const image = placeholderImages.find((img) => img.id === id);
   if (!image) {
     // Return a default or throw an error
@@ -27,7 +28,9 @@ function getImage(id: string): ImagePlaceholder {
   return image;
 };
 
-export const aboutMeImage = getImage('about-me');
+export function getAboutMeImage(): ImagePlaceholder {
+    return getImage('about-me');
+};
 
 
 export interface Project {
