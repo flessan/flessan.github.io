@@ -1,8 +1,8 @@
 ---
 title: 'AV Test Studio Pro'
 description: 'A professional audio-visual testing and diagnostics tool for testing camera and microphone functionality directly in your browser.'
-image: 'https://images.unsplash.com/photo-1589994292433-1a74d3145025?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNzEyODZ8MHwxfGFsbHwxfHx8fHx8fHwxNjE3MjE1NjU4&ixlib=rb-1.2.1&q=80&w=1080'
-detailImage: 'https://images.unsplash.com/photo-1601546101027-753e8037792d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8Ym9va3MlMjBzdGFja3xlbnwwfHx8fDE3NjEyMTE0MzN8MA&ixlib=rb-4.1.0&q=80&w=1080'
+image: 'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNzEyODZ8MHwxfGFsbHwxfHx8fHx8fHwxNjE3MjE1NjU4&ixlib=rb-1.2.1&q=80&w=1080'
+detailImage: 'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNzEyODZ8MHwxfGFsbHwxfHx8fHx8fHwxNjE3MjE1NjU4&ixlib=rb-1.2.1&q=80&w=1080'
 technologies: ['JavaScript', 'Web APIs']
 links:
   github: 'https://github.com/frgdps/fles/tree/main/cam'
