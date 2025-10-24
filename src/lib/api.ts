@@ -3,8 +3,6 @@ import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
 
-// The ImagePlaceholder logic is removed. We'll use direct URLs.
-
 export interface Project {
   slug: string;
   title: string;
