@@ -35,7 +35,7 @@ export default function Home() {
               <Link href="/projects">View My Projects</Link>
             </Button>
             <Button asChild variant="outline" size="lg">
-              <Link href="/cv.pdf" target="_blank" rel="noopener noreferrer">
+              <Link href="/cv">
                 View CV
               </Link>
             </Button>

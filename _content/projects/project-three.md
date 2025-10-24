@@ -3,9 +3,7 @@ title: 'ListAndDo++'
 description: 'A powerful, offline-ready Progressive Web App (PWA) for advanced task management and productivity.'
 image: 'https://images.unsplash.com/photo-1521713362244-1b5e5d150b29?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxtb2Rlcm4lMjBhcmNoaXRlY3R1cmV8ZW58MHx8fHwxNzYxMTc4NjMzfDA&ixlib=rb-4.1.0&q=80&w=1080'
 detailImage: 'https://images.unsplash.com/photo-1521713362244-1b5e5d150b29?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxtb2Rlcm4lMjBhcmNoaXRlY3R1cmV8ZW58MHx8fHwxNzYxMTc4NjMzfDA&ixlib=rb-4.1.0&q=80&w=1080'
-links:
-  github: '#'
-  live: 'https://flessan.pages.dev/list'
+technologies: ['JavaScript', 'PWA']
 ---
 
 ## Overview

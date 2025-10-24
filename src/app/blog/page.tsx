@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
+import Image from 'next/image';
 import { getAllBlogPosts, BlogPost } from '@/lib/api';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
@@ -46,25 +47,35 @@ export default function BlogPage() {
         />
       </div>
 
-      <div className="mt-12 grid gap-8 md:grid-cols-1 lg:max-w-4xl lg:mx-auto">
+      <div className="mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
         {filteredPosts.length > 0 ? (
           filteredPosts.map((post) => (
             <Link href={`/blog/${post.slug}`} key={post.slug} className="group">
-              <Card className="flex flex-col h-full transition-all group-hover:shadow-xl">
-                <CardHeader>
+              <Card className="flex flex-col h-full transition-all group-hover:shadow-xl overflow-hidden">
+                 <CardHeader className="p-0">
+                  <div className="aspect-video relative">
+                    <Image
+                      src={post.image}
+                      alt={post.title}
+                      fill
+                      className="object-cover transition-transform group-hover:scale-105"
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                      data-ai-hint={post.title}
+                    />
+                  </div>
+                </CardHeader>
+                <div className="p-6 flex flex-col flex-grow">
                   <CardTitle className="font-headline text-2xl">{post.title}</CardTitle>
-                  <p className="text-sm text-muted-foreground">
+                  <p className="text-sm text-muted-foreground mt-2">
                     {format(new Date(post.date), 'MMMM d, yyyy')}
                   </p>
-                </CardHeader>
-                <CardContent>
-                  <CardDescription>{post.excerpt}</CardDescription>
-                </CardContent>
-                <CardFooter>
-                  <div className="flex items-center text-sm font-medium text-accent-foreground dark:text-accent">
-                    Read More <ArrowRight className="ml-1 h-4 w-4 transition-transform group-hover:translate-x-1" />
-                  </div>
-                </CardFooter>
+                  <CardDescription className="mt-4 flex-grow">{post.excerpt}</CardDescription>
+                  <CardFooter className="p-0 pt-4 mt-auto">
+                    <div className="flex items-center text-sm font-medium text-accent-foreground dark:text-accent">
+                      Read More <ArrowRight className="ml-1 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                    </div>
+                  </CardFooter>
+                </div>
               </Card>
             </Link>
           ))

@@ -1,11 +1,9 @@
 ---
 title: 'Code & Text Cleaner Pro'
 description: 'A no-nonsense, offline-friendly web toolbox for cleaning, converting, and managing text and code directly in your browser.'
-image: 'code-text-cleaner-thumbnail'
-detailImage: 'https://github.com/user-attachments/assets/6076d21d-ec17-4598-9abb-8876d7a11d16'
-links:
-  github: 'https://github.com/frgdps/fles/tree/main/ctc'
-  live: 'https://flessan.pages.dev/ctc'
+image: 'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNzEyODZ8MHwxfGFsbHwxfHx8fHx8fHwxNjE3MjE1NjU4&ixlib=rb-1.2.1&q=80&w=1080'
+detailImage: 'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNzEyODZ8MHwxfGFsbHwxfHx8fHx8fHwxNjE3MjE1NjU4&ixlib=rb-1.2.1&q=80&w=1080'
+technologies: ['JavaScript', 'HTML5', 'CSS3']
 ---
 
 ## Overview

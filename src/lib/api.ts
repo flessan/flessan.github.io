@@ -23,10 +23,7 @@ export interface Project {
   detailImage: string;
   content: string;
   toc: TocEntry[];
-  links?: {
-    github?: string;
-    live?: string;
-  };
+  technologies?: string[];
   [key: string]: any;
 }
 

@@ -2,30 +2,40 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
+import { Button } from '@/components/ui/button';
 import { getAllProjects, Project } from '@/lib/api';
 import { ArrowRight } from 'lucide-react';
 
 export default function ProjectsPage() {
   const [allProjects, setAllProjects] = useState<Project[]>([]);
-  const [filteredProjects, setFilteredProjects] = useState<Project[]>([]);
   const [searchTerm, setSearchTerm] = useState('');
+  const [selectedTech, setSelectedTech] = useState<string | null>(null);
 
   useEffect(() => {
     const projects = getAllProjects();
     setAllProjects(projects);
-    setFilteredProjects(projects);
   }, []);
 
-  useEffect(() => {
-    const results = allProjects.filter(project =>
-      project.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      project.description.toLowerCase().includes(searchTerm.toLowerCase())
-    );
-    setFilteredProjects(results);
-  }, [searchTerm, allProjects]);
+  const technologies = useMemo(() => {
+    const techSet = new Set<string>();
+    allProjects.forEach(project => {
+      project.technologies?.forEach(tech => techSet.add(tech));
+    });
+    return Array.from(techSet).sort();
+  }, [allProjects]);
+
+  const filteredProjects = useMemo(() => {
+    return allProjects.filter(project => {
+      const matchesSearch = project.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                            project.description.toLowerCase().includes(searchTerm.toLowerCase());
+      const matchesTech = selectedTech ? project.technologies?.includes(selectedTech) : true;
+      
+      return matchesSearch && matchesTech;
+    });
+  }, [allProjects, searchTerm, selectedTech]);
 
   return (
     <section className="container py-12 md:py-16 lg:py-20">
@@ -36,17 +46,37 @@ export default function ProjectsPage() {
         </p>
       </div>
 
-      <div className="mb-12 max-w-xl">
-        <Input
-          type="text"
-          placeholder="Search projects..."
-          className="w-full"
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-        />
+      <div className="flex flex-col md:flex-row gap-4 mb-8">
+        <div className="relative w-full md:max-w-md">
+          <Input
+            type="text"
+            placeholder="Search projects..."
+            className="w-full"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+          />
+        </div>
+      </div>
+      
+      <div className="flex flex-wrap gap-2 mb-12">
+        <Button 
+          variant={!selectedTech ? 'default' : 'outline'}
+          onClick={() => setSelectedTech(null)}
+        >
+          All
+        </Button>
+        {technologies.map(tech => (
+          <Button 
+            key={tech} 
+            variant={selectedTech === tech ? 'default' : 'outline'}
+            onClick={() => setSelectedTech(tech)}
+          >
+            {tech}
+          </Button>
+        ))}
       </div>
 
-      <div className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
         {filteredProjects.length > 0 ? (
           filteredProjects.map((project) => (
             <Link href={`/projects/${project.slug}`} key={project.slug} className="group">

@@ -30,6 +30,12 @@ const nextConfig: NextConfig = {
         port: '',
         pathname: '/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'asset-2.tribunnews.com',
+        port: '',
+        pathname: '/**',
+      }
     ],
   },
 };
