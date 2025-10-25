@@ -2,7 +2,7 @@ import fs from 'fs';
 import { globby } from 'globby';
 
 async function generateSitemap() {
-  const APP_URL = 'https://flessan.pages.dev'; // Ganti dengan URL Anda
+  const APP_URL = 'https://flessan.github.io'; // Ganti dengan URL Anda
   
   // 1. Dapatkan semua halaman statis dari direktori `app`
   const pages = await globby([

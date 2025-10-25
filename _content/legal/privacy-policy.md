@@ -2,7 +2,7 @@
 title: 'Privacy Policy'
 ---
 
-**Last Updated: 2024**
+**Last Updated: 2025**
 
 This privacy policy ("Policy") describes how we collect, use, and handle your information when you use our website.
 
@@ -37,3 +37,4 @@ We may update this Policy from time to time. We will notify you of any changes b
 ### 6. Contact Us
 
 If you have any questions about this Privacy Policy, you can contact us.
+[flessan.pages.dev](https://flessan.pages.dev/#contact)

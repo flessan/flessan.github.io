@@ -9,7 +9,7 @@ import { ThemeProvider } from '@/components/theme-provider';
 
 const APP_NAME = "MinimalFolio";
 const APP_DESCRIPTION = "A professional, minimalist portfolio and blog for Thio Saputra.";
-const APP_URL = "https://flessan.pages.dev"; // Ganti dengan URL Anda nanti
+const APP_URL = "https://flessan.github.io"; // Ganti dengan URL Anda nanti
 
 export const metadata: Metadata = {
   title: {

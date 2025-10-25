@@ -2,4 +2,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://flessan.pages.dev/sitemap.xml
+Sitemap: https://flessan.github.io/sitemap.xml
