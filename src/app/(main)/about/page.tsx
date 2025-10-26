@@ -1,7 +1,8 @@
 import CodeStatsChart from "@/components/codestats-chart";
 import { Card, CardContent } from "@/components/ui/card";
 import type { CodeStatsXP } from "@/lib/types";
-import { Activity, Code, Share2, Users, BrainCircuit } from "lucide-react";
+import { Activity, Code, BrainCircuit, Users } from "lucide-react";
+import type { Metadata } from 'next';
 
 async function getCodeStatsData(): Promise<CodeStatsXP[]> {
   try {
@@ -38,7 +39,6 @@ async function getCodeStatsData(): Promise<CodeStatsXP[]> {
   }
 }
 
-
 const principles = [
     {
         icon: Code,
@@ -61,6 +61,11 @@ const principles = [
         description: "Great things are built together. I value teamwork and open communication to achieve common goals."
     }
 ]
+
+export const metadata: Metadata = {
+  title: 'About Me',
+  description: 'Learn more about me, my interests, my skills, and my coding journey as a software engineering student.',
+};
 
 export default async function AboutPage() {
   const codestatsData = await getCodeStatsData();
@@ -96,8 +101,3 @@ export default async function AboutPage() {
     </div>
   );
 }
-
-export const metadata = {
-  title: 'About | FleFolio',
-  description: 'Learn more about me, my interests, and my coding journey.',
-};
