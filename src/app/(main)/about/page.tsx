@@ -1,7 +1,7 @@
 import CodeStatsChart from "@/components/codestats-chart";
 import { Card, CardContent } from "@/components/ui/card";
 import type { CodeStatsXP } from "@/lib/types";
-import { Activity, Code, Share2, Users } from "lucide-react";
+import { Activity, Code, Share2, Users, BrainCircuit } from "lucide-react";
 
 async function getCodeStatsData(): Promise<CodeStatsXP[]> {
   try {
@@ -40,23 +40,23 @@ async function getCodeStatsData(): Promise<CodeStatsXP[]> {
 const principles = [
     {
         icon: Code,
-        title: "Clean & Performant Code",
-        description: "I believe in writing code that is not just functional, but also efficient, readable, and maintainable for long-term success."
+        title: "Kecintaan pada Koding",
+        description: "Saya percaya bahwa menulis kode bukan hanya soal logika, tetapi juga seni. Saya suka membuat kode yang bersih dan efisien."
     },
     {
-        icon: Users,
-        title: "User-Centric Design",
-        description: "The best applications are built with the end-user in mind. I prioritize intuitive UI/UX to create engaging experiences."
+        icon: BrainCircuit,
+        title: "Pemecahan Masalah",
+        description: "Tantangan adalah kesempatan untuk belajar. Saya menikmati proses menganalisis masalah dan menemukan solusi kreatif."
     },
     {
         icon: Activity,
-        title: "Continuous Learning",
-        description: "The tech world is always evolving. I'm committed to constantly learning new technologies and improving my skillset."
+        title: "Selalu Ingin Tahu",
+        description: "Dunia teknologi terus berkembang. Saya berkomitmen untuk terus belajar hal-hal baru dan meningkatkan kemampuan saya."
     },
     {
-        icon: Share2,
-        title: "Collaboration & Communication",
-        description: "Great things are built in teams. I value open communication and collaborative problem-solving to achieve shared goals."
+        icon: Users,
+        title: "Kolaborasi Tim",
+        description: "Hal-hal hebat dibangun bersama. Saya menghargai kerja sama tim dan komunikasi terbuka untuk mencapai tujuan bersama."
     }
 ]
 
@@ -66,9 +66,9 @@ export default async function AboutPage() {
   return (
     <div className="space-y-12">
       <section className="text-center">
-        <h1 className="text-4xl font-extrabold tracking-tight lg:text-5xl text-primary">About Me</h1>
+        <h1 className="text-4xl font-extrabold tracking-tight lg:text-5xl text-primary">Tentang Saya</h1>
         <p className="mt-4 max-w-2xl mx-auto text-lg text-muted-foreground">
-          I'm a passionate full-stack developer with a love for building beautiful, functional, and user-friendly web applications.
+          Saya seorang siswa SMK jurusan Rekayasa Perangkat Lunak yang bersemangat membangun aplikasi web yang keren dan bermanfaat.
         </p>
       </section>
 
@@ -96,6 +96,6 @@ export default async function AboutPage() {
 }
 
 export const metadata = {
-  title: 'About | FleFolio',
-  description: 'Learn more about my skills, experience, and coding statistics.',
+  title: 'Tentang | FleFolio',
+  description: 'Pelajari lebih lanjut tentang saya, minat saya, dan perjalanan belajar saya dalam dunia koding.',
 };
