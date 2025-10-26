@@ -12,7 +12,8 @@ export interface Project {
   slug: string;
   title: string;
   description: string;
-  tags: string[];
+  tags: string[]; // for filtering on project list page
+  technologies: string[]; // for frontmatter
   image: string;
   liveUrl?: string;
   repoUrl?: string;
@@ -37,9 +38,10 @@ export interface CvData {
   title: string;
   summary: string;
   email: string;
-  phone: string;
+  phone:string;
   website: string;
   location: string;
+  avatar: string;
   skills: string[];
   experience: Experience[];
   education: Education[];

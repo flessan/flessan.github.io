@@ -15,7 +15,7 @@ type Props = {
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const project = await getProjectBySlug(params.slug)
+  const project = getProjectBySlug(params.slug)
   if (!project) {
     return {
       title: 'Project Not Found'
@@ -29,21 +29,22 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export async function generateStaticParams() {
-  const projects = await getSortedProjects();
+  const projects = getSortedProjects();
   return projects.map(project => ({
     slug: project.slug,
   }));
 }
 
 export default async function ProjectPage({ params }: Props) {
-  const project = await getProjectBySlug(params.slug);
+  const project = getProjectBySlug(params.slug);
 
   if (!project) {
     notFound();
   }
 
   // For static export, window is not available. We construct the URL manually.
-  const projectUrl = `https://flefolio.dev/projects/${project.slug}`;
+  // This needs to be your actual domain for sharing to work.
+  const projectUrl = `https://your-domain.com/projects/${project.slug}`;
 
   return (
     <div className="flex flex-col lg:flex-row gap-12">
@@ -67,7 +68,7 @@ export default async function ProjectPage({ params }: Props) {
           <div className="flex flex-wrap items-center gap-x-6 gap-y-4 text-muted-foreground">
             <div className="flex items-center gap-2 flex-wrap">
               <TagIcon className="h-4 w-4" />
-              {project.tags.map(tag => <TagBadge key={tag} tag={tag} />)}
+              {(project.technologies || []).map(tag => <TagBadge key={tag} tag={tag} />)}
             </div>
             <div className="flex items-center gap-2">
               {project.liveUrl && (

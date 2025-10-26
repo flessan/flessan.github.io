@@ -13,10 +13,10 @@ export default function ProjectsPage() {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    getSortedProjects().then(projects => {
-      setAllProjects(projects);
-      setIsLoading(false);
-    });
+    // This is now a synchronous call since we are using static export
+    const projects = getSortedProjects();
+    setAllProjects(projects);
+    setIsLoading(false);
   }, []);
 
   const [searchTerm, setSearchTerm] = useState('');
@@ -24,7 +24,7 @@ export default function ProjectsPage() {
 
   const allTags = useMemo(() => {
     const tags = new Set<string>();
-    allProjects.forEach(project => project.tags.forEach(tag => tags.add(tag)));
+    allProjects.forEach(project => (project.technologies || []).forEach(tag => tags.add(tag)));
     return Array.from(tags);
   }, [allProjects]);
 
@@ -32,7 +32,7 @@ export default function ProjectsPage() {
     return allProjects.filter(project => {
       const matchesSearch = project.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
                             project.description.toLowerCase().includes(searchTerm.toLowerCase());
-      const matchesTag = selectedTag ? project.tags.includes(selectedTag) : true;
+      const matchesTag = selectedTag ? (project.technologies || []).includes(selectedTag) : true;
       return matchesSearch && matchesTag;
     });
   }, [allProjects, searchTerm, selectedTag]);

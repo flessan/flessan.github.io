@@ -37,7 +37,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
       </CardContent>
       <CardFooter className="p-6 pt-0 flex flex-col sm:flex-row gap-4 justify-between items-start sm:items-center">
         <div className="flex items-center gap-2 flex-wrap">
-          {project.tags.map((tag) => (
+          {(project.technologies || []).map((tag) => (
             <TagBadge key={tag} tag={tag} />
           ))}
         </div>
