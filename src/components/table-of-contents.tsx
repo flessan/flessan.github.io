@@ -31,6 +31,8 @@ export default function TableOfContents({ content }: TableOfContentsProps) {
   }, [content]);
 
   useEffect(() => {
+    if (headings.length === 0) return;
+
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach(entry => {
@@ -64,7 +66,7 @@ export default function TableOfContents({ content }: TableOfContentsProps) {
   }
 
   return (
-    <aside className="sticky top-24 self-start w-64 hidden lg:block pr-8">
+    <aside className="sticky top-24 self-start w-64 hidden lg:block pr-8 no-print">
       <h3 className="text-lg font-semibold mb-4 flex items-center gap-2 text-primary">
         <List className="h-5 w-5"/>
         On This Page

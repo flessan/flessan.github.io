@@ -1,9 +1,10 @@
 'use client';
 
 import { useState } from 'react';
-import { Linkedin, Twitter, Link, Check, Send, MessageCircle } from 'lucide-react';
+import { Linkedin, Twitter, Link as LinkIcon, Check, Send, MessageCircle } from 'lucide-react';
 import { Button } from './ui/button';
 import { useToast } from '@/hooks/use-toast';
+import { usePathname } from 'next/navigation';
 
 interface ShareButtonsProps {
   url: string;
@@ -13,13 +14,20 @@ interface ShareButtonsProps {
 export default function ShareButtons({ url, title }: ShareButtonsProps) {
   const { toast } = useToast();
   const [copied, setCopied] = useState(false);
-  const encodedUrl = encodeURIComponent(url);
+  
+  const [origin, setOrigin] = useState('');
+  React.useEffect(() => {
+    setOrigin(window.location.origin);
+  }, []);
+
+  const fullUrl = `${origin}${url}`;
+  const encodedUrl = encodeURIComponent(fullUrl);
   const encodedTitle = encodeURIComponent(title);
 
   const handleCopy = () => {
-    navigator.clipboard.writeText(url).then(() => {
+    navigator.clipboard.writeText(fullUrl).then(() => {
       setCopied(true);
-      toast({ title: 'Link Copied!', description: 'The post URL has been copied to your clipboard.' });
+      toast({ title: 'Link Copied!', description: 'The URL has been copied to your clipboard.' });
       setTimeout(() => setCopied(false), 2000);
     }, () => {
       toast({ variant: 'destructive', title: 'Failed to copy', description: 'Could not copy link to clipboard.' });
@@ -30,22 +38,22 @@ export default function ShareButtons({ url, title }: ShareButtonsProps) {
     {
       name: 'X',
       url: `https://twitter.com/intent/tweet?url=${encodedUrl}&text=${encodedTitle}`,
-      icon: <Twitter />,
+      icon: <Twitter className="h-5 w-5" />,
     },
     {
       name: 'LinkedIn',
       url: `https://www.linkedin.com/shareArticle?mini=true&url=${encodedUrl}&title=${encodedTitle}`,
-      icon: <Linkedin />,
+      icon: <Linkedin className="h-5 w-5" />,
     },
     {
       name: 'Telegram',
       url: `https://t.me/share/url?url=${encodedUrl}&text=${encodedTitle}`,
-      icon: <Send />,
+      icon: <Send className="h-5 w-5" />,
     },
     {
       name: 'WhatsApp',
       url: `https://api.whatsapp.com/send?text=${encodedTitle}%20${encodedUrl}`,
-      icon: <MessageCircle />,
+      icon: <MessageCircle className="h-5 w-5" />,
     },
   ];
 
@@ -71,7 +79,7 @@ export default function ShareButtons({ url, title }: ShareButtonsProps) {
             onClick={handleCopy}
             aria-label="Copy link"
         >
-            {copied ? <Check className="h-5 w-5 text-green-500" /> : <Link className="h-5 w-5" />}
+            {copied ? <Check className="h-5 w-5 text-green-500" /> : <LinkIcon className="h-5 w-5" />}
         </Button>
       </div>
     </div>

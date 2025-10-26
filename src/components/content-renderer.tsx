@@ -27,12 +27,13 @@ const ContentRenderer: React.FC<ContentRendererProps> = ({ content }) => {
   const renderContent = () => {
     if (!content) return null;
 
-    const blocks = content.split(/(\n```[\s\S]*?```\n|\n\s*\n)/);
+    // A more robust regex to handle various markdown blocks without empty splits
+    const blocks = content.split(/(\n(?:```[\s\S]*?```|#{1,6}.*|>\s.*|\s*[-*+]\s.*|\s*\d+\.\s.*)\n?|\n{2,})/g).filter(Boolean);
 
     return blocks.map((block, index) => {
       if (!block || block.trim() === '') return null;
 
-      if (block.startsWith('\n```') && block.endsWith('```\n')) {
+      if (block.trim().startsWith('```') && block.trim().endsWith('```')) {
         const languageMatch = block.match(/```(\w+)/);
         const language = languageMatch ? languageMatch[1] : '';
         const code = block.replace(/```\w*\n?/g, '').replace(/```\n?$/, '').trim();
@@ -57,18 +58,20 @@ const ContentRenderer: React.FC<ContentRendererProps> = ({ content }) => {
         );
       }
 
-      const headingMatch = block.match(/^(#{1,4})\s(.+)/);
+      const headingMatch = block.trim().match(/^(#{1,6})\s(.+)/);
       if (headingMatch) {
           const level = headingMatch[1].length;
           const text = headingMatch[2];
           const id = text.toLowerCase().replace(/\s+/g, '-').replace(/[^\w-]+/g, '');
           const Tag = `h${level}` as keyof JSX.IntrinsicElements;
           const classNames = [
-            'font-headline', 'scroll-mt-24', 'group/heading',
-            level === 1 ? 'text-4xl font-bold mt-8 pb-2 border-b mb-4' : '',
-            level === 2 ? 'text-3xl font-semibold mt-8 pb-2 border-b mb-4' : '',
-            level === 3 ? 'text-2xl font-semibold mt-6 mb-4' : '',
-            level === 4 ? 'text-xl font-semibold mt-6 mb-4' : '',
+            'font-bold', 'scroll-mt-24', 'group/heading',
+            level === 1 ? 'text-4xl mt-12 pb-2 border-b mb-6' : '',
+            level === 2 ? 'text-3xl mt-10 pb-2 border-b mb-6' : '',
+            level === 3 ? 'text-2xl mt-8 mb-4' : '',
+            level === 4 ? 'text-xl mt-6 mb-4' : '',
+            level === 5 ? 'text-lg mt-6 mb-4' : '',
+            level === 6 ? 'text-base mt-6 mb-4' : '',
           ].join(' ');
           
           return (
@@ -81,7 +84,7 @@ const ContentRenderer: React.FC<ContentRendererProps> = ({ content }) => {
           );
       }
 
-      if (block.startsWith('>')) {
+      if (block.trim().startsWith('>')) {
         return (
           <blockquote key={index} className="border-l-4 border-primary pl-4 italic text-muted-foreground my-4">
             {block.replace(/^>\s*/gm, '')}
@@ -89,7 +92,8 @@ const ContentRenderer: React.FC<ContentRendererProps> = ({ content }) => {
         );
       }
       
-      if (block.split('\n').some(line => line.trim().startsWith('* ') || line.trim().startsWith('- '))) {
+      const isUList = block.split('\n').some(line => line.trim().startsWith('* ') || line.trim().startsWith('- '));
+      if (isUList) {
         const items = block.split('\n').filter(line => line.trim().startsWith('* ') || line.trim().startsWith('- '));
         return (
           <ul key={index} className="list-disc list-outside ml-6 space-y-2 my-4">
@@ -100,7 +104,8 @@ const ContentRenderer: React.FC<ContentRendererProps> = ({ content }) => {
         );
       }
       
-      if (block.match(/^\d+\.\s/)) {
+      const isOList = block.split('\n').some(line => line.trim().match(/^\d+\.\s/));
+      if (isOList) {
         const items = block.split('\n').filter(line => line.match(/^\d+\.\s/));
         return (
           <ol key={index} className="list-decimal list-outside ml-6 space-y-2 my-4">
@@ -111,13 +116,20 @@ const ContentRenderer: React.FC<ContentRendererProps> = ({ content }) => {
         );
       }
 
-      const paragraphWithInlineElements = block.split(/(`[^`]+`|\[[^\]]+\]\([^\)]+\))/g).map((part, i) => {
+      const paragraphWithInlineElements = block.split(/(`[^`]+`|!\[[^\]]*\]\([^\)]+\)|\[[^\]]+\]\([^\)]+\))/g).map((part, i) => {
         if (part.startsWith('`') && part.endsWith('`')) {
           return <code key={i} className="font-code bg-muted text-foreground rounded-sm px-1.5 py-1 text-sm">{part.slice(1, -1)}</code>;
         }
         const linkMatch = part.match(/\[([^\]]+)\]\(([^)]+)\)/);
         if (linkMatch) {
             return <a key={i} href={linkMatch[2]} className="text-primary hover:underline" target="_blank" rel="noopener noreferrer">{linkMatch[1]}</a>;
+        }
+        const imageMatch = part.match(/!\[([^\]]*)\]\(([^)]+)\)/);
+        if (imageMatch) {
+          // Note: Next.js Image optimization is not used here for simplicity with markdown content.
+          // For optimized images in markdown, a more complex setup with MDX is needed.
+          // eslint-disable-next-line @next/next/no-img-element
+          return <img key={i} src={imageMatch[2]} alt={imageMatch[1]} className="my-6 rounded-lg shadow-md" />;
         }
         return part;
       });
@@ -126,7 +138,7 @@ const ContentRenderer: React.FC<ContentRendererProps> = ({ content }) => {
     }).filter(Boolean);
   };
 
-  return <div className="prose">{renderContent()}</div>;
+  return <div className="prose dark:prose-invert prose-p:text-foreground/80 prose-headings:text-foreground prose-strong:text-foreground prose-a:text-primary prose-blockquote:border-primary prose-code:text-foreground">{renderContent()}</div>;
 };
 
 export default ContentRenderer;
