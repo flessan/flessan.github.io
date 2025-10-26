@@ -1,4 +1,4 @@
-import { getCVData, getPostBySlug, getSortedPosts, getSortedProjects } from "@/lib/content-api";
+import { getCVData, getPostBySlug, getProjectBySlug, getSortedPosts, getSortedProjects } from "@/lib/content-api";
 import { NextResponse } from "next/server";
 
 export async function GET(
@@ -22,6 +22,13 @@ export async function GET(
         if (slug[0] === 'projects' && slug.length === 1) {
             const projects = getSortedProjects();
             return NextResponse.json(projects);
+        }
+        if (slug[0] === 'projects' && slug.length === 2) {
+            const project = getProjectBySlug(slug[1]);
+            if (project) {
+                return NextResponse.json(project);
+            }
+            return new NextResponse('Project not found', { status: 404 });
         }
         if (slug[0] === 'cv' && slug.length === 1) {
             const cvData = getCVData();

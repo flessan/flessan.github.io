@@ -44,6 +44,17 @@ export async function getSortedProjects(): Promise<Project[]> {
   }
 }
 
+export async function getProjectBySlug(slug: string): Promise<Project | undefined> {
+  try {
+    const res = await fetch(`${API_URL}/projects/${slug}`, { cache: 'no-store' });
+    if (!res.ok) return undefined;
+    return res.json();
+  } catch (error) {
+    console.error(`Failed to fetch project by slug ${slug}:`, error);
+    return undefined;
+  }
+}
+
 export async function getCVData(): Promise<CvData | null> {
   try {
     const res = await fetch(`${API_URL}/cv`, { cache: 'no-store' });

@@ -83,13 +83,33 @@ export function getSortedProjects(): Project[] {
     const slug = filename.replace(/\.md$/, '');
     const fullPath = path.join(projectsDirectory, filename);
     const fileContents = fs.readFileSync(fullPath, 'utf8');
-    const { data } = parseFrontmatter(fileContents);
+    const { data, content } = parseFrontmatter(fileContents);
 
     return {
       slug,
+      content,
       ...data,
     } as Project;
   });
+}
+
+
+export function getProjectBySlug(slug: string): Project | undefined {
+    const projectsDirectory = path.join(contentDirectory, 'projects');
+    const filePath = path.join(projectsDirectory, `${slug}.md`);
+
+    if (!fs.existsSync(filePath)) {
+        return undefined;
+    }
+
+    const fileContents = fs.readFileSync(filePath, 'utf8');
+    const { data, content } = parseFrontmatter(fileContents);
+
+    return {
+        slug,
+        content,
+        ...data,
+    } as Project;
 }
 
 

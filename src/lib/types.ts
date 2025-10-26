@@ -16,6 +16,7 @@ export interface Project {
   image: string;
   liveUrl?: string;
   repoUrl?: string;
+  content: string;
 }
 
 export interface Experience {
