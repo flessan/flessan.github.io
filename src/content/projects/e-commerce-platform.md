@@ -1,10 +1,12 @@
 ---
 title: "Full-Stack E-commerce Platform"
 description: "A complete e-commerce solution with features like product management, shopping cart, and payment integration, using a MERN stack."
-tags: ["React", "Node.js", "MongoDB", "Express", "Full-Stack"]
-image: "e-commerce-platform"
+date: "2023-10-15"
+technologies: ["React", "Node.js", "MongoDB", "Express", "Full-Stack"]
 liveUrl: "#"
 repoUrl: "#"
+featured: true
+image: "e-commerce-platform"
 ---
 
 A full-featured e-commerce platform built from scratch, providing a robust, scalable, and secure solution for online businesses. The goal was to create a production-ready application that covers the entire user journey, from browsing products to secure checkout and order management.

@@ -13,6 +13,22 @@ interface CodeStatsChartProps {
 }
 
 export default function CodeStatsChart({ data }: CodeStatsChartProps) {
+  if (!data || data.length === 0) {
+    return (
+        <Card>
+            <CardHeader>
+                <CardTitle>Top 10 Languages by XP</CardTitle>
+                <CardDescription>
+                Could not load Code::Stats data.
+                </CardDescription>
+            </CardHeader>
+            <CardContent className="h-[400px] w-full flex items-center justify-center">
+                <p className="text-muted-foreground">There was an error fetching data from Code::Stats API.</p>
+            </CardContent>
+        </Card>
+    )
+  }
+  
   const chartData = data.sort((a,b) => b.total_xp - a.total_xp).slice(0, 10);
 
   const chartConfig = {
@@ -27,7 +43,7 @@ export default function CodeStatsChart({ data }: CodeStatsChartProps) {
       <CardHeader>
         <CardTitle>Top 10 Languages by XP</CardTitle>
         <CardDescription>
-          Programming language statistics from my Code::Stats profile.
+          Programming language statistics from my <a href="https://codestats.net/users/fless" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Code::Stats</a> profile.
         </CardDescription>
       </CardHeader>
       <CardContent>
@@ -49,7 +65,7 @@ export default function CodeStatsChart({ data }: CodeStatsChartProps) {
                         cursor={{ fill: 'hsl(var(--card))' }}
                         content={<ChartTooltipContent indicator="dot" />}
                     />
-                    <Bar dataKey="total_xp" name="Total XP" fill="hsl(var(--primary))" radius={[0, 4, 4, 0]} />
+                    <Bar dataKey="total_xp" name="Total XP" fill="var(--color-xp)" radius={[0, 4, 4, 0]} />
                 </BarChart>
             </ResponsiveContainer>
         </ChartContainer>

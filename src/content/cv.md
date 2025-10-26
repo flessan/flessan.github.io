@@ -3,8 +3,9 @@ name: Alex Doe
 title: Software Engineering Student
 email: alex.doe@email.com
 phone: (123) 456-7890
-website: flefolio.dev
+website: https://flessan.pages.dev
 location: Jakarta, Indonesia
+avatar: cv-avatar
 ---
 
 ## Summary
@@ -12,27 +13,23 @@ location: Jakarta, Indonesia
 A highly motivated and passionate vocational high school student majoring in Software Engineering. Possess a deep interest in web development and an ambition to build useful and engaging applications. Always enthusiastic about learning new technologies, solving problems, and collaborating on creative projects.
 
 ## Skills
-
-- **Programming Languages:** JavaScript (ES6+), TypeScript, Python, HTML5, CSS3
-- **Frontend:** React, Next.js, Tailwind CSS
-- **Backend:** Node.js, Express
-- **Databases:** MySQL, MongoDB (Basic)
-- **Tools & Others:** Git, GitHub, CI/CD (GitHub Actions), Firebase, Figma
-- **Methodologies:** Self-learning, Teamwork, Problem Solving
+JavaScript, TypeScript, React, Next.js, Python, Node.js, Express, HTML5, CSS3, Tailwind CSS, MySQL, Git, GitHub, Firebase
 
 ## Experience
 
 ### School Project: School News Portal
-**Role:** Full-Stack Developer (Team)
+**Company:** SMK Teknologi Bangsa
 **Period:** 2024
+**Role:** Full-Stack Developer (Team)
 - Designed and built a school news portal from scratch using Next.js and Tailwind CSS for the user interface.
 - Developed a simple backend with Node.js and Express to manage articles and news categories.
 - Collaborated with a team of 3 students to plan features, divide tasks, and integrate work using Git.
 - Learned about the importance of responsive design and good user experience.
 
 ### Personal Project: Simple Notes App
-**Role:** Sole Developer
+**Company:** Personal
 **Period:** 2023
+**Role:** Sole Developer
 - Created a CRUD (Create, Read, Update, Delete) web application for personal notes using React and Firebase.
 - Implemented user authentication with Firebase Authentication to keep notes private.
 - Stored and retrieved data in real-time using Firestore.
@@ -43,5 +40,6 @@ A highly motivated and passionate vocational high school student majoring in Sof
 ### Student, Software Engineering
 **Institution:** SMK Teknologi Bangsa
 **Period:** 2022 - Present
+**Degree:** Vocational High School Diploma
 - Studied fundamental and advanced concepts in software development, including algorithms, data structures, and object-oriented programming paradigms.
 - Actively participated in coding extracurricular activities and internal competitions.

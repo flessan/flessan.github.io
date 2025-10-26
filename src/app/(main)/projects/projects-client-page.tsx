@@ -30,26 +30,26 @@ export default function ProjectsClientPage({ allProjects, allTags }: ProjectsCli
       <section className="text-center">
         <h1 className="text-4xl font-extrabold tracking-tight lg:text-5xl text-primary">My Work</h1>
         <p className="mt-4 max-w-2xl mx-auto text-lg text-muted-foreground">
-          A collection of projects I've built, from personal experiments to client work.
+          A collection of projects I've built, from personal experiments to school assignments.
         </p>
       </section>
 
-      <section className="space-y-4">
+      <section className="space-y-4 max-w-3xl mx-auto">
         <div className="relative">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
           <Input
             type="search"
-            placeholder="Search projects..."
+            placeholder="Search projects by title or description..."
             className="pl-10"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
           />
         </div>
-        <div className="flex flex-wrap gap-2">
+        <div className="flex flex-wrap gap-2 justify-center">
             <Button 
                 variant={selectedTag === null ? 'default' : 'outline'}
                 onClick={() => setSelectedTag(null)}
-                className="transition-all"
+                className="transition-all rounded-full"
             >
                 All
             </Button>
@@ -58,7 +58,7 @@ export default function ProjectsClientPage({ allProjects, allTags }: ProjectsCli
               key={tag}
               variant={selectedTag === tag ? 'default' : 'outline'}
               onClick={() => setSelectedTag(tag)}
-              className="transition-all"
+              className="transition-all rounded-full"
             >
               {tag}
             </Button>

@@ -1,22 +1,26 @@
 export interface Post {
   slug: string;
   title: string;
+  description: string;
   date: string;
   tags: string[];
-  excerpt: string;
-  image: string;
+  draft: boolean;
+  featured: boolean;
+  image?: string;
   content: string;
+  readingTime: number;
 }
 
 export interface Project {
   slug: string;
   title: string;
   description: string;
-  tags: string[]; // for filtering on project list page
-  technologies: string[]; // for frontmatter
-  image: string;
+  date: string;
+  technologies: string[];
   liveUrl?: string;
   repoUrl?: string;
+  featured: boolean;
+  image?: string;
   content: string;
 }
 
@@ -41,7 +45,7 @@ export interface CvData {
   phone:string;
   website: string;
   location: string;
-  avatar: string;
+  avatar?: string;
   skills: string[];
   experience: Experience[];
   education: Education[];

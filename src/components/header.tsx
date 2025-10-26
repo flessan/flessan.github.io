@@ -6,7 +6,7 @@ import { Code, Menu, X, Search } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { cn } from '@/lib/utils';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { ThemeToggle } from './theme-toggle';
 import { CommandPalette } from './command-palette';
 
@@ -22,6 +22,16 @@ export default function Header() {
   const pathname = usePathname();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isCommandPaletteOpen, setIsCommandPaletteOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 0);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
 
   const NavLink = ({ href, label, isMobile = false }: { href: string; label: string, isMobile?: boolean }) => {
     const isActive = pathname === href;
@@ -42,8 +52,11 @@ export default function Header() {
 
   return (
     <>
-      <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur-sm no-print">
-        <div className="container flex h-16 items-center justify-between">
+      <header className={cn(
+          "sticky top-0 z-50 w-full border-b transition-colors no-print",
+          isScrolled ? "bg-background/95 backdrop-blur-sm border-border" : "bg-background/0 border-transparent"
+        )}>
+        <div className="container flex h-16 items-center justify-between max-w-6xl">
           <Link href="/" className="flex items-center gap-2">
             <Code className="h-7 w-7 text-primary" />
             <span className="text-xl font-bold">FleFolio</span>
@@ -67,7 +80,7 @@ export default function Header() {
                       <span className="sr-only">Open menu</span>
                   </Button>
                   </SheetTrigger>
-                  <SheetContent side="right" className="w-full">
+                  <SheetContent side="right" className="w-full bg-background p-0">
                       <div className="flex flex-col items-start h-full">
                           <div className="flex items-center justify-between w-full p-4 border-b">
                               <Link href="/" className="flex items-center gap-2" onClick={() => setIsMobileMenuOpen(false)}>
@@ -79,7 +92,7 @@ export default function Header() {
                                   <span className="sr-only">Close menu</span>
                               </Button>
                           </div>
-                          <nav className="flex-1 w-full mt-8">
+                          <nav className="flex-1 w-full mt-8 space-y-4 px-4">
                               {navItems.map((item) => (
                                   <NavLink key={item.href} {...item} isMobile />
                               ))}

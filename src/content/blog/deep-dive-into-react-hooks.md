@@ -1,8 +1,10 @@
 ---
 title: "A Deep Dive into React Hooks"
+description: "Explore the power and flexibility of React Hooks, from useState and useEffect to creating your own custom hooks for maximum code reusability."
 date: "2024-06-15"
 tags: ["React", "JavaScript", "Web Development", "Frontend"]
-excerpt: "Explore the power and flexibility of React Hooks, from useState and useEffect to creating your own custom hooks for maximum code reusability."
+draft: false
+featured: false
 image: "deep-dive-into-react-hooks"
 ---
 
@@ -136,11 +138,14 @@ For example, let's create a hook to fetch window dimensions:
 import { useState, useEffect } from 'react';
 
 function useWindowSize() {
-  const [size, setSize] = useState([window.innerWidth, window.innerHeight]);
+  const [size, setSize] = useState([0, 0]);
   
   useEffect(() => {
-    const handleResize = () => setSize([window.innerWidth, window.innerHeight]);
+    function handleResize() {
+        setSize([window.innerWidth, window.innerHeight]);
+    }
     window.addEventListener('resize', handleResize);
+    handleResize(); // Set initial size
     return () => window.removeEventListener('resize', handleResize);
   }, []);
   

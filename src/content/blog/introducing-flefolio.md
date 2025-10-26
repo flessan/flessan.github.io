@@ -1,8 +1,10 @@
 ---
-title: "Introducing FleFolio: A Modern Student Developer Portfolio"
+title: "Introducing FleFolio: My Modern Developer Portfolio"
+description: "Welcome to my new personal portfolio, FleFolio. Built from the ground up with Next.js 14, it's a showcase of my learning journey in web development and a testament to modern frontend practices."
 date: "2024-07-20"
 tags: ["Next.js", "React", "Tailwind CSS", "Personal", "Web Development"]
-excerpt: "Welcome to my new personal portfolio, FleFolio. Built from the ground up with Next.js 14, it's a showcase of my learning journey in web development and a testament to modern frontend practices."
+draft: false
+featured: true
 image: "introducing-flefolio"
 ---
 

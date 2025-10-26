@@ -1,10 +1,12 @@
 ---
 title: "Interactive Data Visualization Tool"
 description: "A web-based tool for creating interactive charts and dashboards from various data sources, built with D3.js and React."
-tags: ["React", "D3.js", "Data Visualization", "Frontend"]
-image: "data-visualization-tool"
+date: "2023-05-20"
+technologies: ["React", "D3.js", "Data Visualization", "Frontend"]
 liveUrl: "#"
 repoUrl: "#"
+featured: false
+image: "data-visualization-tool"
 ---
 
 This tool empowers users to transform raw data into beautiful, interactive visualizations without writing a single line of code. It's designed for data analysts, marketers, and students who need to quickly generate insights from their data.

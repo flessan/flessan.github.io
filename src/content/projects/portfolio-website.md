@@ -1,10 +1,12 @@
 ---
 title: "FleFolio - This Portfolio"
 description: "My personal portfolio website, designed and developed to showcase my projects and blog. Built with Next.js, Tailwind CSS, and deployed as a static site."
-tags: ["Next.js", "React", "Tailwind CSS", "TypeScript", "Static Site"]
-image: "portfolio-website"
+date: "2024-07-21"
+technologies: ["Next.js", "React", "Tailwind CSS", "TypeScript", "Static Site"]
 liveUrl: "#"
 repoUrl: "#"
+featured: true
+image: "portfolio-website"
 ---
 
 This is the very portfolio you are looking at right now! It's a personal project designed to be a central hub for my professional life, showcasing my skills, projects, and thoughts on technology. The entire project was built from the ground up with specific goals in mind.
@@ -38,6 +40,7 @@ This approach provides a simple but effective Git-based Content Management Syste
 // Simplified logic from `lib/content.ts`
 import fs from 'fs';
 import path from 'path';
+import matter from 'gray-matter';
 
 const postsDirectory = path.join(process.cwd(), 'src/content/blog');
 
