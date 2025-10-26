@@ -2,9 +2,8 @@ import { getSortedProjects } from '@/lib/content';
 import ProjectsClientPage from './projects-client-page';
 import type { Project } from '@/lib/types';
 
-export default function ProjectsPage() {
-  // Fetch projects at build time on the server
-  const allProjects: Project[] = getSortedProjects();
+export default async function ProjectsPage() {
+  const allProjects: Project[] = await getSortedProjects();
 
   const allTags = Array.from(
     new Set(allProjects.flatMap(project => project.technologies || []))
