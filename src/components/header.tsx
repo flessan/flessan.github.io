@@ -7,6 +7,7 @@ import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { cn } from '@/lib/utils';
 import { useState } from 'react';
+import { ThemeToggle } from './theme-toggle';
 
 const navItems = [
   { href: '/', label: 'Home' },
@@ -44,39 +45,42 @@ export default function Header() {
           <Code className="h-7 w-7 text-primary" />
           <span className="text-xl font-bold">FleFolio</span>
         </Link>
-        <nav className="hidden md:flex items-center gap-6">
-          {navItems.map((item) => (
-            <NavLink key={item.href} {...item} />
-          ))}
-        </nav>
-        <div className="md:hidden">
-          <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
-            <SheetTrigger asChild>
-              <Button variant="ghost" size="icon">
-                <Menu className="h-6 w-6" />
-                <span className="sr-only">Open menu</span>
-              </Button>
-            </SheetTrigger>
-            <SheetContent side="right" className="w-full">
-                <div className="flex flex-col items-start h-full">
-                    <div className="flex items-center justify-between w-full p-4 border-b">
-                        <Link href="/" className="flex items-center gap-2" onClick={() => setIsMobileMenuOpen(false)}>
-                            <Code className="h-7 w-7 text-primary" />
-                            <span className="text-xl font-bold">FleFolio</span>
-                        </Link>
-                        <Button variant="ghost" size="icon" onClick={() => setIsMobileMenuOpen(false)}>
-                            <X className="h-6 w-6" />
-                            <span className="sr-only">Close menu</span>
-                        </Button>
+        <div className="flex items-center gap-2">
+            <nav className="hidden md:flex items-center gap-6">
+            {navItems.map((item) => (
+                <NavLink key={item.href} {...item} />
+            ))}
+            </nav>
+            <ThemeToggle />
+            <div className="md:hidden">
+            <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
+                <SheetTrigger asChild>
+                <Button variant="ghost" size="icon">
+                    <Menu className="h-6 w-6" />
+                    <span className="sr-only">Open menu</span>
+                </Button>
+                </SheetTrigger>
+                <SheetContent side="right" className="w-full">
+                    <div className="flex flex-col items-start h-full">
+                        <div className="flex items-center justify-between w-full p-4 border-b">
+                            <Link href="/" className="flex items-center gap-2" onClick={() => setIsMobileMenuOpen(false)}>
+                                <Code className="h-7 w-7 text-primary" />
+                                <span className="text-xl font-bold">FleFolio</span>
+                            </Link>
+                            <Button variant="ghost" size="icon" onClick={() => setIsMobileMenuOpen(false)}>
+                                <X className="h-6 w-6" />
+                                <span className="sr-only">Close menu</span>
+                            </Button>
+                        </div>
+                        <nav className="flex-1 w-full mt-8">
+                            {navItems.map((item) => (
+                                <NavLink key={item.href} {...item} isMobile />
+                            ))}
+                        </nav>
                     </div>
-                    <nav className="flex-1 w-full mt-8">
-                        {navItems.map((item) => (
-                            <NavLink key={item.href} {...item} isMobile />
-                        ))}
-                    </nav>
-                </div>
-            </SheetContent>
-          </Sheet>
+                </SheetContent>
+            </Sheet>
+            </div>
         </div>
       </div>
     </header>
