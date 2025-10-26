@@ -6,6 +6,7 @@ import TagBadge from '@/components/tag-badge';
 import ContentRenderer from '@/components/content-renderer';
 import { format } from 'date-fns';
 import type { Metadata } from 'next';
+import ShareButtons from '@/components/share-buttons';
 
 type Props = {
   params: { slug: string }
@@ -39,6 +40,8 @@ export default async function BlogPostPage({ params }: Props) {
     notFound();
   }
 
+  const postUrl = typeof window !== 'undefined' ? window.location.href : `https://flefolio.dev/blog/${post.slug}`;
+
   return (
     <article className="max-w-4xl mx-auto">
       <header className="mb-8">
@@ -55,7 +58,7 @@ export default async function BlogPostPage({ params }: Props) {
         <h1 className="text-4xl font-extrabold tracking-tight lg:text-5xl text-primary mb-4">
           {post.title}
         </h1>
-        <div className="flex flex-wrap items-center gap-x-6 gap-y-2 text-muted-foreground">
+        <div className="flex flex-wrap items-center gap-x-6 gap-y-4 text-muted-foreground">
           <div className="flex items-center gap-2">
             <Calendar className="h-4 w-4" />
             <time dateTime={post.date}>{format(new Date(post.date), "MMMM d, yyyy")}</time>
@@ -69,6 +72,9 @@ export default async function BlogPostPage({ params }: Props) {
 
       <ContentRenderer content={post.content} />
       
+      <footer className="mt-12 pt-8 border-t">
+        <ShareButtons url={postUrl} title={post.title} />
+      </footer>
     </article>
   );
 }
