@@ -1,5 +1,6 @@
 'use client';
 
+import { useEffect, useState } from 'react';
 import { getCVData } from '@/lib/content';
 import type { CvData } from '@/lib/types';
 import { Button } from '@/components/ui/button';
@@ -15,11 +16,19 @@ import {
 import TagBadge from '@/components/tag-badge';
 
 export default function CVPage() {
-  const cvData: CvData = getCVData();
+  const [cvData, setCvData] = useState<CvData | null>(null);
+
+  useEffect(() => {
+    getCVData().then(data => setCvData(data));
+  }, []);
 
   const handlePrint = () => {
     window.print();
   };
+
+  if (!cvData) {
+    return <div className="text-center">Loading CV...</div>;
+  }
 
   return (
     <div className="max-w-5xl mx-auto">

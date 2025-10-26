@@ -12,7 +12,7 @@ type Props = {
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const post = getPostBySlug(params.slug)
+  const post = await getPostBySlug(params.slug)
   if (!post) {
     return {
       title: 'Post Not Found'
@@ -26,14 +26,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export async function generateStaticParams() {
-  const posts = getSortedPosts();
+  const posts = await getSortedPosts();
   return posts.map(post => ({
     slug: post.slug,
   }));
 }
 
-export default function BlogPostPage({ params }: Props) {
-  const post = getPostBySlug(params.slug);
+export default async function BlogPostPage({ params }: Props) {
+  const post = await getPostBySlug(params.slug);
 
   if (!post) {
     notFound();

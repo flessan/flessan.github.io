@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { getSortedPosts } from '@/lib/content';
 import type { Post } from '@/lib/types';
 import BlogPostCard from '@/components/blog-post-card';
@@ -12,11 +12,15 @@ import { useSearchParams } from 'next/navigation';
 import PaginationControls from '@/components/pagination-controls';
 
 export default function BlogPage() {
-  // We fetch all posts, but do it in a client component context.
-  // For a real app with many posts, this should be paginated on the server.
-  // However, `getSortedPosts` runs at build time or on the server, so it's pre-fetched.
-  // We'll just manage the client-side view of this static data.
-  const allPosts: Post[] = getSortedPosts();
+  const [allPosts, setAllPosts] = useState<Post[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  
+  useEffect(() => {
+    getSortedPosts().then(posts => {
+      setAllPosts(posts);
+      setIsLoading(false);
+    })
+  }, []);
 
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedTag, setSelectedTag] = useState<string | null>(null);
@@ -49,6 +53,22 @@ export default function BlogPage() {
   
   const hasNextPage = (currentPage * postsPerPage) < filteredPosts.length;
   const hasPrevPage = currentPage > 1;
+
+  if (isLoading) {
+    return (
+      <div className="space-y-8">
+        <section className="text-center">
+          <h1 className="text-4xl font-extrabold tracking-tight lg:text-5xl text-primary">Blog</h1>
+          <p className="mt-4 max-w-2xl mx-auto text-lg text-muted-foreground">
+            Thoughts on web development, technology, and beyond.
+          </p>
+        </section>
+        <div className="text-center py-16 text-muted-foreground">
+            <p>Loading posts...</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="space-y-8">

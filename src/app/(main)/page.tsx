@@ -5,9 +5,9 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { ArrowRight, Code, FileText, MessageSquare } from "lucide-react";
 
-export default function HomePage() {
-  const featuredProjects = getSortedProjects().slice(0, 3);
-  const recentPosts = getSortedPosts().slice(0, 3);
+export default async function HomePage() {
+  const featuredProjects = (await getSortedProjects()).slice(0, 3);
+  const recentPosts = (await getSortedPosts()).slice(0, 3);
 
   return (
     <div className="space-y-16 md:space-y-24">
