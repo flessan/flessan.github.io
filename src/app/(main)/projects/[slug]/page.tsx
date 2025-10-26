@@ -15,7 +15,7 @@ type Props = {
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const project = getProjectBySlug(params.slug)
+  const project = await getProjectBySlug(params.slug)
   if (!project) {
     return {
       title: 'Project Not Found'
@@ -42,14 +42,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export async function generateStaticParams() {
-  const projects = getSortedProjects();
+  const projects = await getSortedProjects();
   return projects.map(project => ({
     slug: project.slug,
   }));
 }
 
 export default async function ProjectPage({ params }: Props) {
-  const project = getProjectBySlug(params.slug);
+  const project = await getProjectBySlug(params.slug);
 
   if (!project) {
     notFound();
@@ -80,8 +80,8 @@ export default async function ProjectPage({ params }: Props) {
               <TagIcon className="h-4 w-4" />
               {(project.technologies || []).map(tag => <TagBadge key={tag} tag={tag} />)}
             </div>
-            <div className="flex items-center gap-2">
-              {project.liveUrl && (
+            <div className="flex items-center gap-4">
+              {project.liveUrl && project.liveUrl !== '#' && (
                 <Button variant="outline" size="sm" asChild>
                   <Link href={project.liveUrl} target="_blank" rel="noopener noreferrer">
                     <Globe className="mr-2 h-4 w-4" />
@@ -89,7 +89,7 @@ export default async function ProjectPage({ params }: Props) {
                   </Link>
                 </Button>
               )}
-              {project.repoUrl && (
+              {project.repoUrl && project.repoUrl !== '#' && (
                 <Button variant="outline" size="sm" asChild>
                   <Link href={project.repoUrl} target="_blank" rel="noopener noreferrer">
                     <Github className="mr-2 h-4 w-4" />
@@ -107,7 +107,7 @@ export default async function ProjectPage({ params }: Props) {
             <ShareButtons url={`/projects/${project.slug}`} title={project.title} />
         </footer>
       </article>
-      <TableOfContents content={project.content} />
+      <TableOfContents contentHtml={project.content} />
     </div>
   );
 }

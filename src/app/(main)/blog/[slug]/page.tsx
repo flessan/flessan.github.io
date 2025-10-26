@@ -100,7 +100,7 @@ export default async function BlogPostPage({ params }: Props) {
           </footer>
           
         </article>
-        <TableOfContents content={post.content} />
+        <TableOfContents contentHtml={post.content} />
       </div>
     </>
   );

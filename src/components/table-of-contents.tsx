@@ -11,53 +11,66 @@ interface Heading {
 }
 
 interface TableOfContentsProps {
-  content: string;
+  contentHtml: string;
 }
 
-export default function TableOfContents({ content }: TableOfContentsProps) {
+export default function TableOfContents({ contentHtml }: TableOfContentsProps) {
   const [headings, setHeadings] = useState<Heading[]>([]);
   const [activeId, setActiveId] = useState<string>('');
 
   useEffect(() => {
-    const headingRegex = /^(#{2,4})\s(.+)/gm;
-    const matches = Array.from(content.matchAll(headingRegex));
-    const extractedHeadings = matches.map(match => {
-      const level = match[1].length;
-      const text = match[2];
-      const id = text.toLowerCase().replace(/\s+/g, '-').replace(/[^\w-]+/g, '');
-      return { id, level, text };
-    });
+    const tempDiv = document.createElement('div');
+    tempDiv.innerHTML = contentHtml;
+    const headingElements = tempDiv.querySelectorAll('h2, h3, h4');
+    
+    const extractedHeadings = Array.from(headingElements).map(el => ({
+      id: el.id,
+      level: parseInt(el.tagName.substring(1), 10),
+      text: el.textContent || '',
+    }));
+
     setHeadings(extractedHeadings);
-  }, [content]);
+  }, [contentHtml]);
 
   useEffect(() => {
     if (headings.length === 0) return;
 
     const observer = new IntersectionObserver(
       (entries) => {
-        entries.forEach(entry => {
+        for (const entry of entries) {
           if (entry.isIntersecting) {
             setActiveId(entry.target.id);
+            // Don't break, allow multiple to be active, we'll take the first one
           }
-        });
+        }
       },
-      { rootMargin: `0% 0% -80% 0%` }
+      { rootMargin: `-20% 0% -70% 0%` }
     );
+    
+    const elements = headings.map(h => document.getElementById(h.id)).filter(Boolean);
+    elements.forEach(el => el && observer.observe(el));
 
-    headings.forEach(heading => {
-      const element = document.getElementById(heading.id);
-      if (element) {
-        observer.observe(element);
-      }
-    });
+    // Fallback for when nothing is intersecting
+    const scrollListener = () => {
+      const activeHeading = headings.find((heading, i) => {
+          const element = document.getElementById(heading.id);
+          if (!element) return false;
+          const nextElement = i < headings.length - 1 ? document.getElementById(headings[i+1].id) : null;
+          const top = element.getBoundingClientRect().top;
+          if (nextElement) {
+              return top < window.innerHeight * 0.25 && nextElement.getBoundingClientRect().top > window.innerHeight * 0.25;
+          }
+          return top < window.innerHeight * 0.25;
+      });
+      if(activeHeading) setActiveId(activeHeading.id);
+    };
+
+    window.addEventListener('scroll', scrollListener);
+
 
     return () => {
-      headings.forEach(heading => {
-        const element = document.getElementById(heading.id);
-        if (element) {
-          observer.unobserve(element);
-        }
-      });
+      elements.forEach(el => el && observer.unobserve(el));
+      window.removeEventListener('scroll', scrollListener);
     };
   }, [headings]);
 
