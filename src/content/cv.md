@@ -1,6 +1,6 @@
 ---
 name: Alex Doe
-title: Siswa Rekayasa Perangkat Lunak
+title: Software Engineering Student
 email: alex.doe@email.com
 phone: (123) 456-7890
 website: flefolio.dev
@@ -9,39 +9,39 @@ location: Jakarta, Indonesia
 
 ## Summary
 
-Siswa SMK jurusan Rekayasa Perangkat Lunak yang sangat termotivasi dan bersemangat. Memiliki ketertarikan mendalam pada pengembangan web dan berambisi untuk membangun aplikasi yang berguna dan menarik. Selalu antusias untuk mempelajari teknologi baru, memecahkan masalah, dan berkolaborasi dalam proyek-proyek kreatif.
+A highly motivated and passionate vocational high school student majoring in Software Engineering. Possess a deep interest in web development and an ambition to build useful and engaging applications. Always enthusiastic about learning new technologies, solving problems, and collaborating on creative projects.
 
 ## Skills
 
-- **Bahasa Pemrograman:** JavaScript (ES6+), TypeScript, Python, HTML5, CSS3
+- **Programming Languages:** JavaScript (ES6+), TypeScript, Python, HTML5, CSS3
 - **Frontend:** React, Next.js, Tailwind CSS
 - **Backend:** Node.js, Express
-- **Database:** MySQL, MongoDB (Dasar)
-- **Alat & Lainnya:** Git, GitHub, CI/CD (GitHub Actions), Firebase, Figma
-- **Metodologi:** Belajar mandiri, Kerja tim, Pemecahan masalah
+- **Databases:** MySQL, MongoDB (Basic)
+- **Tools & Others:** Git, GitHub, CI/CD (GitHub Actions), Firebase, Figma
+- **Methodologies:** Self-learning, Teamwork, Problem Solving
 
 ## Experience
 
-### Proyek Sekolah: Portal Berita Sekolah
-**Peran:** Full-Stack Developer (Tim)
-**Periode:** 2024
-- Merancang dan membangun portal berita sekolah dari awal menggunakan Next.js dan Tailwind CSS untuk antarmuka pengguna.
-- Mengembangkan backend sederhana dengan Node.js dan Express untuk mengelola artikel dan kategori berita.
-- Berkolaborasi dengan tim yang terdiri dari 3 siswa untuk merencanakan fitur, membagi tugas, dan mengintegrasikan pekerjaan menggunakan Git.
-- Belajar tentang pentingnya desain responsif dan pengalaman pengguna yang baik.
+### School Project: School News Portal
+**Role:** Full-Stack Developer (Team)
+**Period:** 2024
+- Designed and built a school news portal from scratch using Next.js and Tailwind CSS for the user interface.
+- Developed a simple backend with Node.js and Express to manage articles and news categories.
+- Collaborated with a team of 3 students to plan features, divide tasks, and integrate work using Git.
+- Learned about the importance of responsive design and good user experience.
 
-### Proyek Pribadi: Aplikasi Catatan Sederhana
-**Peran:** Pengembang Tunggal
-**Periode:** 2023
-- Membuat aplikasi web CRUD (Create, Read, Update, Delete) untuk catatan pribadi menggunakan React dan Firebase.
-- Mengimplementasikan otentikasi pengguna dengan Firebase Authentication untuk menjaga catatan tetap pribadi.
-- Menyimpan dan mengambil data secara real-time menggunakan Firestore.
-- Proyek ini membantu saya memahami dasar-dasar state management di React dan cara kerja database NoSQL.
+### Personal Project: Simple Notes App
+**Role:** Sole Developer
+**Period:** 2023
+- Created a CRUD (Create, Read, Update, Delete) web application for personal notes using React and Firebase.
+- Implemented user authentication with Firebase Authentication to keep notes private.
+- Stored and retrieved data in real-time using Firestore.
+- This project helped me understand the basics of state management in React and how NoSQL databases work.
 
 ## Education
 
-### Siswa, Rekayasa Perangkat Lunak
-**Institusi:** SMK Teknologi Bangsa
-**Periode:** 2022 - Sekarang
-- Mempelajari konsep dasar dan lanjutan dalam pengembangan perangkat lunak, termasuk algoritma, struktur data, dan paradigma pemrograman berorientasi objek.
-- Aktif berpartisipasi dalam kegiatan ekstrakurikuler coding dan kompetisi internal.
+### Student, Software Engineering
+**Institution:** SMK Teknologi Bangsa
+**Period:** 2022 - Present
+- Studied fundamental and advanced concepts in software development, including algorithms, data structures, and object-oriented programming paradigms.
+- Actively participated in coding extracurricular activities and internal competitions.

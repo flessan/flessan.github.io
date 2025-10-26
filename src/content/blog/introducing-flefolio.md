@@ -1,46 +1,46 @@
 ---
-title: "Memperkenalkan FleFolio: Portofolio Modern Siswa RPL"
+title: "Introducing FleFolio: A Modern Student Developer Portfolio"
 date: "2024-07-20"
-tags: ["Next.js", "React", "Tailwind CSS", "Pribadi", "Web Development"]
-excerpt: "Selamat datang di portofolio pribadi baru saya, FleFolio. Dibangun dari awal dengan Next.js 14, ini adalah etalase perjalanan belajar saya di dunia pengembangan web dan bukti praktik frontend modern."
+tags: ["Next.js", "React", "Tailwind CSS", "Personal", "Web Development"]
+excerpt: "Welcome to my new personal portfolio, FleFolio. Built from the ground up with Next.js 14, it's a showcase of my learning journey in web development and a testament to modern frontend practices."
 image: "introducing-flefolio"
 ---
 
-Halo dan selamat datang! Saya sangat bersemangat untuk meluncurkan ruang pribadi baru saya di web: **FleFolio**.
+Hello and welcome! I'm incredibly excited to launch my new personal space on the web: **FleFolio**.
 
-Proyek ini lahir dari keinginan untuk membuat platform yang modern, berkinerja baik, dan menarik secara visual untuk memamerkan hasil karya saya, berbagi pemikiran, dan mendokumentasikan perjalanan saya sebagai seorang siswa Rekayasa Perangkat Lunak (RPL). Ini lebih dari sekadar portofolio; ini adalah taman digital dan tempat bermain untuk bereksperimen.
+This project was born out of a desire to create a modern, performant, and visually appealing platform to showcase my work, share my thoughts, and document my journey as a Software Engineering student. It's more than just a portfolio; it's a digital garden and a playground for experimentation.
 
-### Filosofi di Balik FleFolio
+### The Philosophy Behind FleFolio
 
-Tujuan saya adalah membangun situs yang:
-- **Cepat dan Berkinerja**: Memanfaatkan teknologi web modern terbaik untuk memberikan pengalaman pengguna yang gegas.
-- **Bersih dan Mudah Dibaca**: Baik dari segi desain UI maupun struktur kode.
-- **Didorong oleh Konten**: Menggunakan sistem berbasis Markdown yang sederhana namun efektif untuk mengelola proyek dan postingan blog.
-- **Dapat Dikembangkan**: Dibangun dengan fondasi yang kokoh yang dapat dengan mudah diperluas dengan fitur-fitur baru di masa depan.
+My goal was to build a site that is:
+- **Fast & Performant**: Leveraging the best of modern web technologies to deliver a snappy user experience.
+- **Clean & Readable**: Both in terms of its UI design and its code structure.
+- **Content-Driven**: Using a simple yet effective Markdown-based system to manage projects and blog posts.
+- **Extendable**: Built on a solid foundation that can be easily expanded with new features in the future.
 
-### Mengintip Tumpukan Teknologi
+### Peeking at the Tech Stack
 
-Saya memilih tumpukan teknologi yang saya sukai dan yang mewakili perkembangan terkini dalam pengembangan web saat ini:
+I chose a tech stack that I'm passionate about and that represents the cutting edge of web development today:
 
--   **Next.js (App Router)**: Karena Server Components-nya yang kuat, routing berbasis file yang intuitif, dan pengalaman pengembang yang luar biasa secara keseluruhan. App Router memungkinkan kontrol yang halus atas strategi rendering dan pengambilan data.
--   **React**: Inti dari UI, memungkinkan komponen yang dinamis dan interaktif dibangun dengan API deklaratif.
--   **TypeScript**: Untuk memastikan keamanan tipe, meningkatkan kualitas kode, dan membuat basis kode lebih kuat dan mudah dipelihara.
--   **Tailwind CSS**: Untuk pendekatan styling utility-first yang cepat dan sangat dapat disesuaikan tanpa harus meninggalkan HTML saya.
--   **Shadcn/ui**: Kumpulan komponen yang dirancang dengan indah, mudah diakses, dan tidak bergaya yang sangat menyenangkan untuk digunakan. Ini bukan pustaka komponen, melainkan seperangkat komponen yang dapat digunakan kembali yang bisa saya salin dan tempel ke aplikasi saya dan sesuaikan.
--   **Static Site Generation (SSG)**: Seluruh situs di-pre-render menjadi HTML statis saat waktu build, memastikan kinerja maksimum dan manfaat SEO. Ini sangat cocok untuk penerapan di platform seperti GitHub Pages.
+-   **Next.js (App Router)**: For its powerful Server Components, intuitive file-based routing, and excellent overall developer experience. The App Router allows for fine-grained control over rendering and data-fetching strategies.
+-   **React**: The heart of the UI, allowing for dynamic and interactive components built with a declarative API.
+-   **TypeScript**: To ensure type safety, improve code quality, and make the codebase more robust and maintainable.
+-   **Tailwind CSS**: For a rapid, utility-first styling approach that is highly customizable without ever leaving my HTML.
+-   **Shadcn/ui**: A beautifully designed, accessible, and unstyled collection of components that is an absolute joy to work with. It's not a component library, but rather a set of reusable components I can copy and paste into my app and customize.
+-   **Static Site Generation (SSG)**: The entire site is pre-rendered into static HTML at build time, ensuring maximum performance and SEO benefits. This is perfect for deploying on platforms like GitHub Pages.
 
-### Apa Saja yang Ada di Dalam?
+### What's Inside?
 
--   **Proyek**: Daftar pilihan karya saya, dengan detail tentang teknologi yang digunakan, tantangan yang dihadapi, dan tautan ke demo langsung dan kode sumber.
--   **Blog**: Ruang bagi saya untuk menulis tentang teknologi, pengembangan web, tutorial coding, dan hal lain yang saya anggap menarik. Setiap postingan di-render dari Markdown.
--   **CV**: Versi resume profesional saya yang interaktif dan dapat dicetak, juga bersumber dari file Markdown untuk pembaruan yang mudah.
--   **Integrasi Code::Stats**: Bagian kecil yang menyenangkan di halaman "Tentang" untuk memvisualisasikan aktivitas coding dan distribusi bahasa saya, diambil langsung dari API Code::Stats.
+-   **Projects**: A curated list of my work, with details on the tech used, challenges faced, and links to live demos and source code.
+-   **Blog**: A space for me to write about technology, web development, coding tutorials, and anything else I find interesting. Each post is rendered from Markdown.
+-   **CV**: An interactive and printable version of my professional resume, also sourced from a Markdown file for easy updates.
+-   **Code::Stats Integration**: A fun little section on the "About" page to visualize my coding activity and language distribution, fetched directly from the Code::Stats API.
 
-### Rencana Masa Depan
+### Future Plans
 
-Ini lebih dari sekadar portofolio; ini adalah proyek hidup yang akan terus saya kembangkan. Beberapa fitur yang saya pertimbangkan untuk masa depan termasuk:
-- Fungsi pencarian yang lebih canggih.
-- Menambahkan komentar pada postingan blog.
-- Menerapkan lebih banyak visualisasi data interaktif.
+This is more than just a portfolio; it's a living project that I will continue to evolve. Some features I'm considering for the future include:
+- More advanced search functionality.
+- Adding comments to blog posts.
+- Implementing more interactive data visualizations.
 
-Saya harap Anda menikmati menjelajahi FleFolio sama seperti saya menikmati proses pembuatannya. Jangan ragu untuk menelusuri proyek-proyek saya, membaca artikel-artikel saya, dan terhubung dengan saya!
+I hope you enjoy exploring FleFolio as much as I enjoyed building it. Feel free to browse my projects, read my articles, and connect with me!

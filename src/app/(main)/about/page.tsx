@@ -5,24 +5,26 @@ import { Activity, Code, Share2, Users, BrainCircuit } from "lucide-react";
 
 async function getCodeStatsData(): Promise<CodeStatsXP[]> {
   try {
+    // Fetch data, revalidating once per hour to keep it fresh without constant API calls.
     const res = await fetch('https://codestats.net/api/users/fless/xp?since=2000-01-01', { 
-        next: { revalidate: 3600 } // Revalidate once per hour
+        next: { revalidate: 3600 } 
     });
     if (!res.ok) { 
-      console.error("Failed to fetch Code::Stats data");
+      console.error("Failed to fetch Code::Stats data, status:", res.status);
       return []; 
     }
     const data = await res.json();
-    // The API returns an object with dates as keys, we need the values
+    
+    // The API returns an object where keys are dates. We need to process the XP values from all dates.
     const allXps = Object.values(data.dates).flat() as { language: string, new_xp: number }[];
 
-    // Aggregate XP per language
+    // Aggregate total XP for each language
     const languageXpMap = new Map<string, number>();
     for (const xp of allXps) {
         languageXpMap.set(xp.language, (languageXpMap.get(xp.language) || 0) + xp.new_xp);
     }
     
-    // Convert map to array of objects
+    // Convert the map to an array of objects suitable for the chart
     const aggregatedData: CodeStatsXP[] = Array.from(languageXpMap.entries()).map(([language, total_xp]) => ({
         language,
         total_xp,
@@ -40,23 +42,23 @@ async function getCodeStatsData(): Promise<CodeStatsXP[]> {
 const principles = [
     {
         icon: Code,
-        title: "Kecintaan pada Koding",
-        description: "Saya percaya bahwa menulis kode bukan hanya soal logika, tetapi juga seni. Saya suka membuat kode yang bersih dan efisien."
+        title: "Love for Coding",
+        description: "I believe writing code is not just about logic, but also an art. I enjoy creating clean and efficient code."
     },
     {
         icon: BrainCircuit,
-        title: "Pemecahan Masalah",
-        description: "Tantangan adalah kesempatan untuk belajar. Saya menikmati proses menganalisis masalah dan menemukan solusi kreatif."
+        title: "Problem Solving",
+        description: "Challenges are opportunities to learn. I enjoy the process of analyzing problems and finding creative solutions."
     },
     {
         icon: Activity,
-        title: "Selalu Ingin Tahu",
-        description: "Dunia teknologi terus berkembang. Saya berkomitmen untuk terus belajar hal-hal baru dan meningkatkan kemampuan saya."
+        title: "Always Curious",
+        description: "The world of technology is constantly evolving. I am committed to continuously learning new things and improving my skills."
     },
     {
         icon: Users,
-        title: "Kolaborasi Tim",
-        description: "Hal-hal hebat dibangun bersama. Saya menghargai kerja sama tim dan komunikasi terbuka untuk mencapai tujuan bersama."
+        title: "Team Collaboration",
+        description: "Great things are built together. I value teamwork and open communication to achieve common goals."
     }
 ]
 
@@ -66,9 +68,9 @@ export default async function AboutPage() {
   return (
     <div className="space-y-12">
       <section className="text-center">
-        <h1 className="text-4xl font-extrabold tracking-tight lg:text-5xl text-primary">Tentang Saya</h1>
+        <h1 className="text-4xl font-extrabold tracking-tight lg:text-5xl text-primary">About Me</h1>
         <p className="mt-4 max-w-2xl mx-auto text-lg text-muted-foreground">
-          Saya seorang siswa SMK jurusan Rekayasa Perangkat Lunak yang bersemangat membangun aplikasi web yang keren dan bermanfaat.
+          I'm a vocational high school student majoring in Software Engineering, passionate about building cool and useful web applications.
         </p>
       </section>
 
@@ -96,6 +98,6 @@ export default async function AboutPage() {
 }
 
 export const metadata = {
-  title: 'Tentang | FleFolio',
-  description: 'Pelajari lebih lanjut tentang saya, minat saya, dan perjalanan belajar saya dalam dunia koding.',
+  title: 'About | FleFolio',
+  description: 'Learn more about me, my interests, and my coding journey.',
 };

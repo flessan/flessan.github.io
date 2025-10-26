@@ -14,23 +14,23 @@ export default async function HomePage() {
       {/* Hero Section */}
       <section className="text-center py-16 md:py-24">
         <h1 className="text-4xl md:text-6xl font-extrabold tracking-tighter">
-          <span className="block">Siswa Rekayasa Perangkat Lunak.</span>
-          <span className="block text-primary mt-2">Pemecah Masalah Kreatif.</span>
+          <span className="block">Software Engineering Student.</span>
+          <span className="block text-primary mt-2">Creative Problem Solver.</span>
         </h1>
         <p className="mt-6 max-w-2xl mx-auto text-lg md:text-xl text-muted-foreground">
-          Selamat datang di ruang digital saya. Saya sedang belajar membangun aplikasi web modern dan suka berbagi apa yang saya pelajari di sepanjang jalan.
+          Welcome to my digital space. I'm learning to build modern web applications and love sharing what I learn along the way.
         </p>
         <div className="mt-8 flex flex-wrap justify-center gap-4">
           <Button size="lg" asChild>
             <Link href="/projects">
               <Code className="mr-2 h-5 w-5" />
-              Proyek Saya
+              My Projects
             </Link>
           </Button>
           <Button size="lg" variant="outline" asChild>
             <Link href="/cv">
               <FileText className="mr-2 h-5 w-5" />
-              Lihat CV
+              View CV
             </Link>
           </Button>
         </div>
@@ -39,10 +39,10 @@ export default async function HomePage() {
       {/* Featured Projects */}
       <section>
         <div className="flex items-center justify-between mb-8">
-            <h2 className="text-3xl font-bold tracking-tight">Proyek Unggulan</h2>
+            <h2 className="text-3xl font-bold tracking-tight">Featured Projects</h2>
             <Button variant="ghost" asChild className="text-primary hover:text-primary">
                 <Link href="/projects">
-                    Lihat Semua <ArrowRight className="ml-2 h-4 w-4" />
+                    View All <ArrowRight className="ml-2 h-4 w-4" />
                 </Link>
             </Button>
         </div>
@@ -56,10 +56,10 @@ export default async function HomePage() {
       {/* Recent Blog Posts */}
       <section>
         <div className="flex items-center justify-between mb-8">
-            <h2 className="text-3xl font-bold tracking-tight">Postingan Terbaru</h2>
+            <h2 className="text-3xl font-bold tracking-tight">Recent Posts</h2>
             <Button variant="ghost" asChild className="text-primary hover:text-primary">
                 <Link href="/blog">
-                    Baca Semua <ArrowRight className="ml-2 h-4 w-4" />
+                    Read All <ArrowRight className="ml-2 h-4 w-4" />
                 </Link>
             </Button>
         </div>
