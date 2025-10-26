@@ -1,7 +1,9 @@
 'use client';
 
-import { Linkedin, Twitter } from 'lucide-react';
+import { useState } from 'react';
+import { Linkedin, Twitter, Link, Check } from 'lucide-react';
 import { Button } from './ui/button';
+import { useToast } from '@/hooks/use-toast';
 
 const TelegramIcon = () => (
   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-5 w-5">
@@ -11,10 +13,13 @@ const TelegramIcon = () => (
 );
 
 const WhatsAppIcon = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-5 w-5">
-    <path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48" />
-  </svg>
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-5 w-5">
+        <path d="M22 12-4.22 16.32a.55.55 0 0 1-.32-.9L17.44 3.7a.55.55 0 0 1 .9.32Z"/>
+        <path d="M4.22 16.32 1.43 14.07a.55.55 0 0 1 .32-.9L6.1 11.9"/>
+        <path d="m3.14 12.35 1.1 4.54a.55.55 0 0 0 .9.32l2.45-2.45"/>
+    </svg>
 );
+
 
 interface ShareButtonsProps {
   url: string;
@@ -22,8 +27,20 @@ interface ShareButtonsProps {
 }
 
 export default function ShareButtons({ url, title }: ShareButtonsProps) {
+  const { toast } = useToast();
+  const [copied, setCopied] = useState(false);
   const encodedUrl = encodeURIComponent(url);
   const encodedTitle = encodeURIComponent(title);
+
+  const handleCopy = () => {
+    navigator.clipboard.writeText(url).then(() => {
+      setCopied(true);
+      toast({ title: 'Link Copied!', description: 'The post URL has been copied to your clipboard.' });
+      setTimeout(() => setCopied(false), 2000);
+    }, () => {
+      toast({ variant: 'destructive', title: 'Failed to copy', description: 'Could not copy link to clipboard.' });
+    });
+  };
 
   const shareLinks = [
     {
@@ -64,6 +81,14 @@ export default function ShareButtons({ url, title }: ShareButtonsProps) {
             </a>
           </Button>
         ))}
+        <Button
+            variant="outline"
+            size="icon"
+            onClick={handleCopy}
+            aria-label="Copy link"
+        >
+            {copied ? <Check className="h-5 w-5 text-green-500" /> : <Link className="h-5 w-5" />}
+        </Button>
       </div>
     </div>
   );
