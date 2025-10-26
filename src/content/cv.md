@@ -1,10 +1,10 @@
 ---
-name: Alex Doe
+name: Thio Saputra
 title: Software Engineering Student
-email: alex.doe@email.com
-phone: (123) 456-7890
+email: flessan@yahoo.com
+phone: (+62) 895-2323-4160
 website: https://flessan.pages.dev
-location: Jakarta, Indonesia
+location: Kalimantan Selatan, Indonesia
 avatar: cv-avatar
 ---
 
@@ -13,7 +13,7 @@ avatar: cv-avatar
 A highly motivated and passionate vocational high school student majoring in Software Engineering. Possess a deep interest in web development and an ambition to build useful and engaging applications. Always enthusiastic about learning new technologies, solving problems, and collaborating on creative projects.
 
 ## Skills
-JavaScript, TypeScript, React, Next.js, Python, Node.js, Express, HTML5, CSS3, Tailwind CSS, MySQL, Git, GitHub, Firebase
+JavaScript, TypeScript, React, Next.js, Python, Java, PHP, HTML5, CSS3, Tailwind CSS, MySQL, Git, GitHub, Firebase
 
 ## Experience
 

@@ -1,12 +1,12 @@
 ---
 title: "FleFolio - This Portfolio"
 description: "My personal portfolio website, designed and developed to showcase my projects and blog. Built with Next.js, Tailwind CSS, and deployed as a static site."
-date: "2024-07-21"
+date: "2025-10-26"
 technologies: ["Next.js", "React", "Tailwind CSS", "TypeScript", "Static Site"]
-liveUrl: "#"
-repoUrl: "#"
+liveUrl: "/"
+repoUrl: "https://github.com/flessan/flessan.github.io"
 featured: true
-image: "portfolio-website"
+image: "https://res.cloudinary.com/dahcxjdbl/image/upload/v1761489657/cropped-download_iuzxvo.png"
 ---
 
 This is the very portfolio you are looking at right now! It's a personal project designed to be a central hub for my professional life, showcasing my skills, projects, and thoughts on technology. The entire project was built from the ground up with specific goals in mind.
