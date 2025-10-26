@@ -3,50 +3,32 @@
 import { useState, useEffect, useMemo } from 'react';
 import { cn } from '@/lib/utils';
 import { List } from 'lucide-react';
-
-interface Heading {
-  id: string;
-  level: number;
-  text: string;
-}
+import type { Heading } from '@/lib/markdown';
 
 interface TableOfContentsProps {
-  contentHtml: string;
+  headings: Heading[];
 }
 
-export default function TableOfContents({ contentHtml }: TableOfContentsProps) {
+export default function TableOfContents({ headings }: TableOfContentsProps) {
   const [activeId, setActiveId] = useState<string>('');
-
-  const headings = useMemo(() => {
-    if (typeof window === 'undefined') return [];
-    const tempDiv = document.createElement('div');
-    tempDiv.innerHTML = contentHtml;
-    const headingElements = tempDiv.querySelectorAll('h2, h3, h4');
-    
-    return Array.from(headingElements).map(el => ({
-      id: el.id,
-      level: parseInt(el.tagName.substring(1), 10),
-      text: el.textContent || '',
-    }));
-  }, [contentHtml]);
 
   useEffect(() => {
     if (headings.length === 0) return;
 
     const observer = new IntersectionObserver(
       (entries) => {
-        entries.forEach(entry => {
+        for (const entry of entries) {
           if (entry.isIntersecting) {
             setActiveId(entry.target.id);
+            // Don't break, we want the last intersecting one for scrolling down
           }
-        });
+        }
       },
-      { rootMargin: `0% 0% -80% 0%` }
+      { rootMargin: `0% 0% -85% 0%` }
     );
     
     const elements = headings.map(h => document.getElementById(h.id)).filter(Boolean);
     elements.forEach(el => el && observer.observe(el));
-
 
     return () => {
       elements.forEach(el => el && observer.unobserve(el));
@@ -68,20 +50,19 @@ export default function TableOfContents({ contentHtml }: TableOfContentsProps) {
   };
 
   return (
-    <div className="w-full lg:w-64 lg:sticky top-24 self-start no-print">
-      <h3 className="text-lg font-semibold mb-4 flex items-center gap-2 text-primary">
-        <List className="h-5 w-5"/>
+    <div className="w-full">
+      <h3 className="text-sm font-semibold mb-4 flex items-center gap-2 uppercase tracking-wider text-muted-foreground">
         On This Page
       </h3>
       <nav>
-        <ul className="space-y-2">
+        <ul className="space-y-2 text-sm">
           {headings.map(heading => (
             <li key={heading.id}>
               <a
                 href={`#${heading.id}`}
                 className={cn(
-                  'text-sm transition-colors hover:text-primary',
-                  heading.id === activeId ? 'font-bold text-primary' : 'text-muted-foreground',
+                  'block transition-colors hover:text-primary',
+                  heading.id === activeId ? 'font-medium text-primary' : 'text-muted-foreground',
                   heading.level === 3 && 'pl-4',
                   heading.level === 4 && 'pl-8'
                 )}

@@ -9,6 +9,7 @@ import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import TableOfContents from '@/components/table-of-contents';
 import ShareButtons from '@/components/share-buttons';
+import { MobileTocAccordion } from '@/components/mobile-toc-accordion';
 
 type Props = {
   params: { slug: string }
@@ -56,11 +57,8 @@ export default async function ProjectPage({ params }: Props) {
   }
 
   return (
-    <div className="flex flex-col lg:flex-row gap-12">
-      <aside className="w-full lg:w-64 lg:sticky top-24 self-start order-2 lg:order-1">
-        <TableOfContents contentHtml={project.content} />
-      </aside>
-      <article className="w-full max-w-4xl mx-auto flex-1 order-1 lg:order-2">
+    <div className="grid grid-cols-1 lg:grid-cols-[1fr,280px] lg:gap-12">
+      <article className="w-full max-w-4xl mx-auto">
         <header className="mb-8">
           {project.image && (
             <div className="relative w-full aspect-video rounded-lg overflow-hidden mb-8 shadow-lg">
@@ -74,7 +72,7 @@ export default async function ProjectPage({ params }: Props) {
               />
             </div>
           )}
-          <h1 className="text-4xl font-extrabold tracking-tight lg:text-5xl text-primary mb-4">
+          <h1 className="text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-tight text-primary mb-4">
             {project.title}
           </h1>
           <p className="text-lg text-muted-foreground mt-2 mb-4">{project.description}</p>
@@ -103,6 +101,8 @@ export default async function ProjectPage({ params }: Props) {
             </div>
           </div>
         </header>
+        
+        <MobileTocAccordion headings={project.headings} />
 
         <ContentRenderer content={project.content} />
         
@@ -110,6 +110,9 @@ export default async function ProjectPage({ params }: Props) {
             <ShareButtons url={`/projects/${project.slug}`} title={project.title} />
         </footer>
       </article>
+      <aside className="hidden lg:block lg:sticky top-24 self-start">
+        <TableOfContents headings={project.headings} />
+      </aside>
     </div>
   );
 }

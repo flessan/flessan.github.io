@@ -27,14 +27,15 @@ export async function getSortedPosts(): Promise<Post[]> {
         const fullPath = path.join(postsDirectory, filename);
         const fileContents = fs.readFileSync(fullPath, 'utf8');
         const { data, content } = matter(fileContents);
-        const htmlContent = await markdownToHtml(content);
+        const { html, headings } = await markdownToHtml(content);
 
         const imagePlaceholder = PlaceHolderImages.find(img => img.id === data.image);
         const imageUrl = imagePlaceholder ? imagePlaceholder.imageUrl : '';
 
         return {
             slug,
-            content: htmlContent,
+            content: html,
+            headings,
             readingTime: calculateReadingTime(content),
             image: imageUrl,
             ...(data as { title: string; description: string; date: string; tags: string[]; draft: boolean; featured: boolean; }),
@@ -56,14 +57,15 @@ export async function getPostBySlug(slug: string): Promise<Post | undefined> {
 
     const fileContents = fs.readFileSync(filePath, 'utf8');
     const { data, content } = matter(fileContents);
-    const htmlContent = await markdownToHtml(content);
+    const { html, headings } = await markdownToHtml(content);
     
     const imagePlaceholder = PlaceHolderImages.find(img => img.id === data.image);
     const imageUrl = imagePlaceholder ? imagePlaceholder.imageUrl : '';
 
     return {
         slug,
-        content: htmlContent,
+        content: html,
+        headings,
         readingTime: calculateReadingTime(content),
         image: imageUrl,
         ...(data as { title: string; description: string; date: string; tags: string[]; draft: boolean; featured: boolean; }),
@@ -83,14 +85,15 @@ export async function getSortedProjects(): Promise<Project[]> {
         const fullPath = path.join(projectsDirectory, filename);
         const fileContents = fs.readFileSync(fullPath, 'utf8');
         const { data, content } = matter(fileContents);
-        const htmlContent = await markdownToHtml(content);
+        const { html, headings } = await markdownToHtml(content);
 
         const imagePlaceholder = PlaceHolderImages.find(img => img.id === data.image);
         const imageUrl = imagePlaceholder ? imagePlaceholder.imageUrl : '';
 
         return {
             slug,
-            content: htmlContent,
+            content: html,
+            headings,
             image: imageUrl,
             ...(data as { title: string; description: string; date: string; technologies: string[]; liveUrl?: string; repoUrl?: string; featured: boolean; }),
         } as Project;
@@ -109,14 +112,15 @@ export async function getProjectBySlug(slug: string): Promise<Project | undefine
 
     const fileContents = fs.readFileSync(filePath, 'utf8');
     const { data, content } = matter(fileContents);
-    const htmlContent = await markdownToHtml(content);
+    const { html, headings } = await markdownToHtml(content);
     
     const imagePlaceholder = PlaceHolderImages.find(img => img.id === data.image);
     const imageUrl = imagePlaceholder ? imagePlaceholder.imageUrl : '';
 
     return {
         slug,
-        content: htmlContent,
+        content: html,
+        headings,
         image: imageUrl,
         ...(data as { title: string; description: string; date: string; technologies: string[]; liveUrl?: string; repoUrl?: string; featured: boolean; }),
     } as Project;

@@ -8,6 +8,7 @@ import { format } from 'date-fns';
 import type { Metadata } from 'next';
 import ShareButtons from '@/components/share-buttons';
 import ReadingProgress from '@/components/reading-progress';
+import { MobileTocAccordion } from '@/components/mobile-toc-accordion';
 import TableOfContents from '@/components/table-of-contents';
 
 type Props = {
@@ -59,11 +60,8 @@ export default async function BlogPostPage({ params }: Props) {
   return (
     <>
       <ReadingProgress />
-      <div className="flex flex-col lg:flex-row gap-12">
-        <aside className="w-full lg:w-64 lg:sticky top-24 self-start order-2 lg:order-1">
-          <TableOfContents contentHtml={post.content} />
-        </aside>
-        <article className="w-full max-w-4xl mx-auto flex-1 order-1 lg:order-2">
+      <div className="grid grid-cols-1 lg:grid-cols-[1fr,280px] lg:gap-12">
+        <article className="w-full max-w-4xl mx-auto">
           <header className="mb-8">
             {post.image && (
               <div className="relative w-full aspect-[2.5/1] rounded-lg overflow-hidden mb-8 shadow-lg">
@@ -77,7 +75,7 @@ export default async function BlogPostPage({ params }: Props) {
                   />
               </div>
             )}
-            <h1 className="text-4xl font-extrabold tracking-tight lg:text-5xl text-primary mb-4">
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-tight text-primary mb-4">
               {post.title}
             </h1>
             <div className="flex flex-wrap items-center gap-x-6 gap-y-4 text-muted-foreground">
@@ -96,6 +94,8 @@ export default async function BlogPostPage({ params }: Props) {
             </div>
           </header>
 
+          <MobileTocAccordion headings={post.headings} />
+          
           <ContentRenderer content={post.content} />
 
           <footer className="mt-12 pt-8 border-t">
@@ -103,6 +103,9 @@ export default async function BlogPostPage({ params }: Props) {
           </footer>
           
         </article>
+        <aside className="hidden lg:block lg:sticky top-24 self-start">
+          <TableOfContents headings={post.headings} />
+        </aside>
       </div>
     </>
   );

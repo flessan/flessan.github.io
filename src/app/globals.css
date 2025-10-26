@@ -54,7 +54,7 @@
     @apply border-border;
   }
   html {
-    @apply scroll-pt-20 scroll-smooth;
+    @apply scroll-pt-24 scroll-smooth;
   }
   body {
     @apply bg-background text-foreground;
@@ -83,6 +83,71 @@
 .prose code::before,
 .prose code::after {
   content: "" !important;
+}
+
+/* Base prose styles */
+.prose {
+    @apply text-base text-foreground;
+}
+
+.prose :where(code):not(:where([class~="not-prose"] *)) {
+    @apply text-foreground;
+}
+
+/* Enhanced prose styles for readability */
+.prose {
+    line-height: 1.75;
+}
+
+.prose h1, .prose h2, .prose h3, .prose h4 {
+    @apply font-bold tracking-tight text-primary scroll-m-24;
+}
+
+.prose h1 {
+    @apply text-3xl md:text-4xl lg:text-5xl mt-8 mb-6;
+}
+
+.prose h2 {
+    @apply text-2xl md:text-3xl lg:text-4xl mt-12 mb-6 pb-2 border-b;
+}
+
+.prose h3 {
+    @apply text-xl md:text-2xl lg:text-3xl mt-10 mb-4;
+}
+
+.prose p, .prose ul, .prose ol, .prose blockquote {
+    @apply mb-6;
+}
+
+.prose a {
+    @apply text-accent font-medium no-underline hover:underline;
+}
+
+.prose blockquote {
+    @apply border-l-4 border-accent pl-4 italic text-muted-foreground;
+}
+
+.prose pre {
+  @apply bg-[#0d1117] border border-gray-700 rounded-lg p-4 my-6 text-sm;
+}
+
+.prose pre code {
+    @apply p-0 bg-transparent border-none text-white;
+}
+
+.prose .anchor {
+  @apply absolute invisible;
+  margin-left: -1em;
+}
+
+.prose h2:hover .anchor,
+.prose h3:hover .anchor,
+.prose h4:hover .anchor {
+  @apply visible;
+}
+
+.prose .icon-link {
+    @apply inline-block w-4 h-4 ml-2 text-muted-foreground no-underline;
 }
 
 @media print {

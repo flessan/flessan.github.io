@@ -1,3 +1,5 @@
+import { Heading } from "./markdown";
+
 export interface Post {
   slug: string;
   title: string;
@@ -9,6 +11,7 @@ export interface Post {
   image?: string;
   content: string;
   readingTime: number;
+  headings: Heading[];
 }
 
 export interface Project {
@@ -22,6 +25,7 @@ export interface Project {
   featured: boolean;
   image?: string;
   content: string;
+  headings: Heading[];
 }
 
 export interface Experience {
