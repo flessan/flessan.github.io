@@ -1,25 +1,9 @@
 'use client';
 
 import { useState } from 'react';
-import { Linkedin, Twitter, Link, Check } from 'lucide-react';
+import { Linkedin, Twitter, Link, Check, Send, MessageCircle } from 'lucide-react';
 import { Button } from './ui/button';
 import { useToast } from '@/hooks/use-toast';
-
-const TelegramIcon = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-5 w-5">
-    <path d="M22 2 11 13" />
-    <path d="m22 2-7 20-4-9-9-4 20-7z" />
-  </svg>
-);
-
-const WhatsAppIcon = () => (
-    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-5 w-5">
-        <path d="M22 12-4.22 16.32a.55.55 0 0 1-.32-.9L17.44 3.7a.55.55 0 0 1 .9.32Z"/>
-        <path d="M4.22 16.32 1.43 14.07a.55.55 0 0 1 .32-.9L6.1 11.9"/>
-        <path d="m3.14 12.35 1.1 4.54a.55.55 0 0 0 .9.32l2.45-2.45"/>
-    </svg>
-);
-
 
 interface ShareButtonsProps {
   url: string;
@@ -56,12 +40,12 @@ export default function ShareButtons({ url, title }: ShareButtonsProps) {
     {
       name: 'Telegram',
       url: `https://t.me/share/url?url=${encodedUrl}&text=${encodedTitle}`,
-      icon: <TelegramIcon />,
+      icon: <Send />,
     },
     {
       name: 'WhatsApp',
       url: `https://api.whatsapp.com/send?text=${encodedTitle}%20${encodedUrl}`,
-      icon: <WhatsAppIcon />,
+      icon: <MessageCircle />,
     },
   ];
 
