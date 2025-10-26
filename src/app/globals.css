@@ -63,6 +63,9 @@
   * {
     @apply border-border;
   }
+  html {
+    @apply scroll-pt-20;
+  }
   body {
     @apply bg-background text-foreground;
   }
@@ -88,37 +91,34 @@
     @apply text-foreground max-w-none;
   }
   .prose h1, .prose h2, .prose h3, .prose h4, .prose h5, .prose h6 {
-    @apply font-headline text-primary mt-8 mb-4;
+    @apply font-headline text-primary;
   }
-  .prose h1 { @apply text-4xl font-bold; }
-  .prose h2 { @apply text-3xl font-semibold; }
-  .prose h3 { @apply text-2xl font-semibold; }
   .prose p {
     @apply leading-7 my-4;
   }
   .prose a {
-    @apply text-primary hover:text-accent transition-colors;
+    @apply text-primary hover:underline transition-colors;
   }
   .prose blockquote {
-    @apply border-l-4 border-accent pl-4 italic text-muted-foreground my-6;
+    @apply border-l-4 border-primary pl-4 italic text-muted-foreground my-6;
   }
   .prose ul {
-    @apply list-disc list-outside ml-4 my-4;
+    @apply list-disc list-outside ml-6 space-y-2 my-4;
   }
   .prose ol {
-    @apply list-decimal list-outside ml-4 my-4;
+    @apply list-decimal list-outside ml-6 space-y-2 my-4;
   }
   .prose li {
-    @apply my-2;
+    @apply my-2 pl-2;
   }
   .prose code {
-    @apply font-code bg-muted text-foreground rounded-sm px-1.5 py-1;
+    @apply font-code bg-muted text-foreground rounded-sm px-1.5 py-1 text-sm;
   }
   .prose pre {
-    @apply bg-card p-4 rounded-md overflow-x-auto my-6 shadow-lg;
+    @apply bg-card p-4 rounded-md overflow-x-auto my-6 shadow-lg border;
   }
   .prose pre code {
-    @apply bg-transparent p-0;
+    @apply bg-transparent p-0 border-0;
   }
   .prose img {
     @apply rounded-lg shadow-md my-8;

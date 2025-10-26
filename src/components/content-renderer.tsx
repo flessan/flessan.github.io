@@ -1,7 +1,7 @@
 'use client';
 
-import React, { useState } from 'react';
-import { Check, Clipboard } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { Check, Clipboard, Link as LinkIcon } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 
 interface ContentRendererProps {
@@ -32,12 +32,10 @@ const ContentRenderer: React.FC<ContentRendererProps> = ({ content }) => {
     return blocks.map((block, index) => {
       if (!block || block.trim() === '') return null;
 
-      // Code blocks
       if (block.startsWith('\n```') && block.endsWith('```\n')) {
         const languageMatch = block.match(/```(\w+)/);
         const language = languageMatch ? languageMatch[1] : '';
         const code = block.replace(/```\w*\n?/g, '').replace(/```\n?$/, '').trim();
-        
         const isCopied = copiedStates[index];
 
         return (
@@ -59,28 +57,30 @@ const ContentRenderer: React.FC<ContentRendererProps> = ({ content }) => {
         );
       }
 
-      // Headings
-      if (block.startsWith('#')) {
-        const levelMatch = block.match(/^(#+)\s/);
-        if (levelMatch) {
-            const level = levelMatch[1].length;
-            if (level > 0 && level <= 6) {
-              const Tag = `h${level}` as keyof JSX.IntrinsicElements;
-              const text = block.replace(/^(#+)\s/, '');
-              const id = text.toLowerCase().replace(/\s+/g, '-').replace(/[^\w-]+/g, '');
-              const classNames = [
-                'font-headline', 'scroll-mt-20', 'border-b', 'pb-2', 'mb-4',
-                level === 1 ? 'text-4xl font-bold mt-8' : '',
-                level === 2 ? 'text-3xl font-semibold mt-8' : '',
-                level === 3 ? 'text-2xl font-semibold mt-6' : '',
-                level === 4 ? 'text-xl font-semibold mt-6' : '',
-              ].join(' ');
-              return <Tag key={index} id={id} className={classNames}>{text}</Tag>;
-            }
-        }
+      const headingMatch = block.match(/^(#{1,4})\s(.+)/);
+      if (headingMatch) {
+          const level = headingMatch[1].length;
+          const text = headingMatch[2];
+          const id = text.toLowerCase().replace(/\s+/g, '-').replace(/[^\w-]+/g, '');
+          const Tag = `h${level}` as keyof JSX.IntrinsicElements;
+          const classNames = [
+            'font-headline', 'scroll-mt-24', 'group/heading',
+            level === 1 ? 'text-4xl font-bold mt-8 pb-2 border-b mb-4' : '',
+            level === 2 ? 'text-3xl font-semibold mt-8 pb-2 border-b mb-4' : '',
+            level === 3 ? 'text-2xl font-semibold mt-6 mb-4' : '',
+            level === 4 ? 'text-xl font-semibold mt-6 mb-4' : '',
+          ].join(' ');
+          
+          return (
+            <Tag key={index} id={id} className={classNames}>
+              {text}
+              <a href={`#${id}`} className="ml-2 text-primary opacity-0 group-hover/heading:opacity-100 transition-opacity" aria-label={`Link to ${text}`}>
+                <LinkIcon className="inline h-5 w-5" />
+              </a>
+            </Tag>
+          );
       }
 
-      // Blockquotes
       if (block.startsWith('>')) {
         return (
           <blockquote key={index} className="border-l-4 border-primary pl-4 italic text-muted-foreground my-4">
@@ -89,7 +89,6 @@ const ContentRenderer: React.FC<ContentRendererProps> = ({ content }) => {
         );
       }
       
-      // Unordered Lists
       if (block.split('\n').some(line => line.trim().startsWith('* ') || line.trim().startsWith('- '))) {
         const items = block.split('\n').filter(line => line.trim().startsWith('* ') || line.trim().startsWith('- '));
         return (
@@ -101,7 +100,6 @@ const ContentRenderer: React.FC<ContentRendererProps> = ({ content }) => {
         );
       }
       
-      // Ordered Lists
       if (block.match(/^\d+\.\s/)) {
         const items = block.split('\n').filter(line => line.match(/^\d+\.\s/));
         return (
@@ -113,7 +111,6 @@ const ContentRenderer: React.FC<ContentRendererProps> = ({ content }) => {
         );
       }
 
-      // Paragraphs with inline code and links
       const paragraphWithInlineElements = block.split(/(`[^`]+`|\[[^\]]+\]\([^\)]+\))/g).map((part, i) => {
         if (part.startsWith('`') && part.endsWith('`')) {
           return <code key={i} className="font-code bg-muted text-foreground rounded-sm px-1.5 py-1 text-sm">{part.slice(1, -1)}</code>;

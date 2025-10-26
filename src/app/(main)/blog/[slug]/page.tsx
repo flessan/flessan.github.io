@@ -7,6 +7,7 @@ import ContentRenderer from '@/components/content-renderer';
 import { format } from 'date-fns';
 import type { Metadata } from 'next';
 import ShareButtons from '@/components/share-buttons';
+import TableOfContents from '@/components/table-of-contents';
 
 type Props = {
   params: { slug: string }
@@ -43,38 +44,41 @@ export default async function BlogPostPage({ params }: Props) {
   const postUrl = typeof window !== 'undefined' ? window.location.href : `https://flefolio.dev/blog/${post.slug}`;
 
   return (
-    <article className="max-w-4xl mx-auto">
-      <header className="mb-8">
-        <div className="relative w-full aspect-[2.5/1] rounded-lg overflow-hidden mb-8">
-            <Image 
-                src={post.image} 
-                alt={post.title} 
-                fill 
-                className="object-cover"
-                priority
-                data-ai-hint="blog post header"
-            />
-        </div>
-        <h1 className="text-4xl font-extrabold tracking-tight lg:text-5xl text-primary mb-4">
-          {post.title}
-        </h1>
-        <div className="flex flex-wrap items-center gap-x-6 gap-y-4 text-muted-foreground">
-          <div className="flex items-center gap-2">
-            <Calendar className="h-4 w-4" />
-            <time dateTime={post.date}>{format(new Date(post.date), "MMMM d, yyyy")}</time>
-          </div>
-          <div className="flex items-center gap-2 flex-wrap">
-            <TagIcon className="h-4 w-4" />
-            {post.tags.map(tag => <TagBadge key={tag} tag={tag} />)}
-          </div>
-        </div>
-      </header>
+    <div className="flex flex-col lg:flex-row gap-12">
+        <TableOfContents content={post.content} />
+        <article className="w-full lg:max-w-4xl mx-auto">
+          <header className="mb-8">
+            <div className="relative w-full aspect-[2.5/1] rounded-lg overflow-hidden mb-8">
+                <Image 
+                    src={post.image} 
+                    alt={post.title} 
+                    fill 
+                    className="object-cover"
+                    priority
+                    data-ai-hint="blog post header"
+                />
+            </div>
+            <h1 className="text-4xl font-extrabold tracking-tight lg:text-5xl text-primary mb-4">
+              {post.title}
+            </h1>
+            <div className="flex flex-wrap items-center gap-x-6 gap-y-4 text-muted-foreground">
+              <div className="flex items-center gap-2">
+                <Calendar className="h-4 w-4" />
+                <time dateTime={post.date}>{format(new Date(post.date), "MMMM d, yyyy")}</time>
+              </div>
+              <div className="flex items-center gap-2 flex-wrap">
+                <TagIcon className="h-4 w-4" />
+                {post.tags.map(tag => <TagBadge key={tag} tag={tag} />)}
+              </div>
+            </div>
+          </header>
 
-      <ContentRenderer content={post.content} />
-      
-      <footer className="mt-12 pt-8 border-t">
-        <ShareButtons url={postUrl} title={post.title} />
-      </footer>
-    </article>
+          <ContentRenderer content={post.content} />
+          
+          <footer className="mt-12 pt-8 border-t">
+            <ShareButtons url={postUrl} title={post.title} />
+          </footer>
+        </article>
+    </div>
   );
 }
