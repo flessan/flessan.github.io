@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { cn } from '@/lib/utils';
 import { List } from 'lucide-react';
 
@@ -15,21 +15,19 @@ interface TableOfContentsProps {
 }
 
 export default function TableOfContents({ contentHtml }: TableOfContentsProps) {
-  const [headings, setHeadings] = useState<Heading[]>([]);
   const [activeId, setActiveId] = useState<string>('');
 
-  useEffect(() => {
+  const headings = useMemo(() => {
+    if (typeof window === 'undefined') return [];
     const tempDiv = document.createElement('div');
     tempDiv.innerHTML = contentHtml;
     const headingElements = tempDiv.querySelectorAll('h2, h3, h4');
     
-    const extractedHeadings = Array.from(headingElements).map(el => ({
+    return Array.from(headingElements).map(el => ({
       id: el.id,
       level: parseInt(el.tagName.substring(1), 10),
       text: el.textContent || '',
     }));
-
-    setHeadings(extractedHeadings);
   }, [contentHtml]);
 
   useEffect(() => {
@@ -37,40 +35,21 @@ export default function TableOfContents({ contentHtml }: TableOfContentsProps) {
 
     const observer = new IntersectionObserver(
       (entries) => {
-        for (const entry of entries) {
+        entries.forEach(entry => {
           if (entry.isIntersecting) {
             setActiveId(entry.target.id);
-            // Don't break, allow multiple to be active, we'll take the first one
           }
-        }
+        });
       },
-      { rootMargin: `-20% 0% -70% 0%` }
+      { rootMargin: `0% 0% -80% 0%` }
     );
     
     const elements = headings.map(h => document.getElementById(h.id)).filter(Boolean);
     elements.forEach(el => el && observer.observe(el));
 
-    // Fallback for when nothing is intersecting
-    const scrollListener = () => {
-      const activeHeading = headings.find((heading, i) => {
-          const element = document.getElementById(heading.id);
-          if (!element) return false;
-          const nextElement = i < headings.length - 1 ? document.getElementById(headings[i+1].id) : null;
-          const top = element.getBoundingClientRect().top;
-          if (nextElement) {
-              return top < window.innerHeight * 0.25 && nextElement.getBoundingClientRect().top > window.innerHeight * 0.25;
-          }
-          return top < window.innerHeight * 0.25;
-      });
-      if(activeHeading) setActiveId(activeHeading.id);
-    };
-
-    window.addEventListener('scroll', scrollListener);
-
 
     return () => {
       elements.forEach(el => el && observer.unobserve(el));
-      window.removeEventListener('scroll', scrollListener);
     };
   }, [headings]);
 
@@ -78,8 +57,18 @@ export default function TableOfContents({ contentHtml }: TableOfContentsProps) {
     return null;
   }
 
+  const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
+    e.preventDefault();
+    document.getElementById(id)?.scrollIntoView({
+      behavior: 'smooth',
+      block: 'start'
+    });
+    // Manually update URL hash
+    window.history.pushState(null, '', `#${id}`);
+  };
+
   return (
-    <aside className="sticky top-24 self-start w-64 hidden lg:block pr-8 no-print">
+    <div className="w-full lg:w-64 lg:sticky top-24 self-start no-print">
       <h3 className="text-lg font-semibold mb-4 flex items-center gap-2 text-primary">
         <List className="h-5 w-5"/>
         On This Page
@@ -96,12 +85,7 @@ export default function TableOfContents({ contentHtml }: TableOfContentsProps) {
                   heading.level === 3 && 'pl-4',
                   heading.level === 4 && 'pl-8'
                 )}
-                onClick={(e) => {
-                  e.preventDefault();
-                  document.getElementById(heading.id)?.scrollIntoView({
-                    behavior: 'smooth',
-                  });
-                }}
+                onClick={(e) => handleLinkClick(e, heading.id)}
               >
                 {heading.text}
               </a>
@@ -109,6 +93,6 @@ export default function TableOfContents({ contentHtml }: TableOfContentsProps) {
           ))}
         </ul>
       </nav>
-    </aside>
+    </div>
   );
 }

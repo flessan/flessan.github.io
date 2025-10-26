@@ -57,7 +57,10 @@ export default async function ProjectPage({ params }: Props) {
 
   return (
     <div className="flex flex-col lg:flex-row gap-12">
-      <article className="w-full max-w-4xl mx-auto flex-1">
+      <aside className="w-full lg:w-64 lg:sticky top-24 self-start order-2 lg:order-1">
+        <TableOfContents contentHtml={project.content} />
+      </aside>
+      <article className="w-full max-w-4xl mx-auto flex-1 order-1 lg:order-2">
         <header className="mb-8">
           {project.image && (
             <div className="relative w-full aspect-video rounded-lg overflow-hidden mb-8 shadow-lg">
@@ -107,7 +110,6 @@ export default async function ProjectPage({ params }: Props) {
             <ShareButtons url={`/projects/${project.slug}`} title={project.title} />
         </footer>
       </article>
-      <TableOfContents contentHtml={project.content} />
     </div>
   );
 }

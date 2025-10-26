@@ -1,7 +1,6 @@
 'use client';
 
 import React, { useEffect, useRef } from 'react';
-import { Check, Clipboard } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import 'highlight.js/styles/github-dark.css';
 
@@ -19,7 +18,7 @@ const ContentRenderer: React.FC<ContentRendererProps> = ({ content }) => {
 
     const codeBlocks = container.querySelectorAll('pre');
 
-    codeBlocks.forEach((preElement, index) => {
+    codeBlocks.forEach((preElement) => {
       // Prevent adding buttons multiple times
       if (preElement.querySelector('.copy-button-container')) return;
 

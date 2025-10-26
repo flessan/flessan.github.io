@@ -54,7 +54,7 @@
     @apply border-border;
   }
   html {
-    @apply scroll-pt-20;
+    @apply scroll-pt-20 scroll-smooth;
   }
   body {
     @apply bg-background text-foreground;
@@ -74,6 +74,15 @@
   ::-webkit-scrollbar-thumb:hover {
     background: hsl(var(--secondary));
   }
+
+  .prose-headings:target {
+    @apply scroll-mt-24;
+  }
+}
+
+.prose code::before,
+.prose code::after {
+  content: "" !important;
 }
 
 @media print {

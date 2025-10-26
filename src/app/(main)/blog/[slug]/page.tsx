@@ -60,7 +60,10 @@ export default async function BlogPostPage({ params }: Props) {
     <>
       <ReadingProgress />
       <div className="flex flex-col lg:flex-row gap-12">
-        <article className="w-full max-w-4xl mx-auto flex-1">
+        <aside className="w-full lg:w-64 lg:sticky top-24 self-start order-2 lg:order-1">
+          <TableOfContents contentHtml={post.content} />
+        </aside>
+        <article className="w-full max-w-4xl mx-auto flex-1 order-1 lg:order-2">
           <header className="mb-8">
             {post.image && (
               <div className="relative w-full aspect-[2.5/1] rounded-lg overflow-hidden mb-8 shadow-lg">
@@ -100,7 +103,6 @@ export default async function BlogPostPage({ params }: Props) {
           </footer>
           
         </article>
-        <TableOfContents contentHtml={post.content} />
       </div>
     </>
   );
