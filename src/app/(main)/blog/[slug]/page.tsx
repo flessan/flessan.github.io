@@ -41,7 +41,8 @@ export default async function BlogPostPage({ params }: Props) {
     notFound();
   }
 
-  const postUrl = typeof window !== 'undefined' ? window.location.href : `https://flefolio.dev/blog/${post.slug}`;
+  // For static export, window is not available. We construct the URL manually.
+  const postUrl = `https://flefolio.dev/blog/${post.slug}`;
 
   return (
     <div className="flex flex-col lg:flex-row gap-12">

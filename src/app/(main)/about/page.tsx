@@ -1,29 +1,39 @@
 import CodeStatsChart from "@/components/codestats-chart";
 import { Card, CardContent } from "@/components/ui/card";
 import type { CodeStatsXP } from "@/lib/types";
-import { Activity, Code, HardDrive, Share2, Users } from "lucide-react";
+import { Activity, Code, Share2, Users } from "lucide-react";
 
-// Mock fetching function and data
 async function getCodeStatsData(): Promise<CodeStatsXP[]> {
-  // In a real app, this would be:
-  // const res = await fetch('https://codestats.net/api/users/YOUR_USERNAME/xp?since=2000-01-01', { next: { revalidate: 3600 } });
-  // if (!res.ok) { return []; }
-  // const data = await res.json();
-  // return data.languages;
-  
-  // Using mock data for demonstration
-  return [
-    { language: 'TypeScript', new_xp: 5000, total_xp: 150000 },
-    { language: 'JavaScript', new_xp: 4500, total_xp: 130000 },
-    { language: 'Python', new_xp: 3000, total_xp: 95000 },
-    { language: 'HTML', new_xp: 2500, total_xp: 80000 },
-    { language: 'CSS', new_xp: 2800, total_xp: 75000 },
-    { language: 'Go', new_xp: 1500, total_xp: 40000 },
-    { language: 'SQL', new_xp: 1000, total_xp: 35000 },
-    { language: 'Rust', new_xp: 500, total_xp: 20000 },
-    { language: 'Shell', new_xp: 300, total_xp: 15000 },
-    { language: 'Java', new_xp: 200, total_xp: 10000 },
-  ];
+  try {
+    const res = await fetch('https://codestats.net/api/users/fless/xp?since=2000-01-01', { 
+        next: { revalidate: 3600 } // Revalidate once per hour
+    });
+    if (!res.ok) { 
+      console.error("Failed to fetch Code::Stats data");
+      return []; 
+    }
+    const data = await res.json();
+    // The API returns an object with dates as keys, we need the values
+    const allXps = Object.values(data.dates).flat() as { language: string, new_xp: number }[];
+
+    // Aggregate XP per language
+    const languageXpMap = new Map<string, number>();
+    for (const xp of allXps) {
+        languageXpMap.set(xp.language, (languageXpMap.get(xp.language) || 0) + xp.new_xp);
+    }
+    
+    // Convert map to array of objects
+    const aggregatedData: CodeStatsXP[] = Array.from(languageXpMap.entries()).map(([language, total_xp]) => ({
+        language,
+        total_xp,
+        new_xp: 0 // new_xp is not relevant in this aggregated view
+    }));
+
+    return aggregatedData;
+  } catch (error) {
+    console.error("Error fetching or processing Code::Stats data:", error);
+    return [];
+  }
 }
 
 

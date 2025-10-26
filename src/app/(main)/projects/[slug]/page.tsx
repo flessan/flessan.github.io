@@ -42,7 +42,8 @@ export default async function ProjectPage({ params }: Props) {
     notFound();
   }
 
-  const postUrl = typeof window !== 'undefined' ? window.location.href : `https://flefolio.dev/projects/${project.slug}`;
+  // For static export, window is not available. We construct the URL manually.
+  const projectUrl = `https://flefolio.dev/projects/${project.slug}`;
 
   return (
     <div className="flex flex-col lg:flex-row gap-12">
@@ -92,7 +93,7 @@ export default async function ProjectPage({ params }: Props) {
         <ContentRenderer content={project.content} />
         
         <footer className="mt-12 pt-8 border-t">
-          <ShareButtons url={postUrl} title={project.title} />
+          <ShareButtons url={projectUrl} title={project.title} />
         </footer>
       </article>
     </div>
