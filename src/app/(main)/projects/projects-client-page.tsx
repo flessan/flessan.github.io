@@ -6,6 +6,8 @@ import ProjectCard from '@/components/project-card';
 import { Input } from '@/components/ui/input';
 import { Search } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { Badge } from '@/components/ui/badge';
+import { cn } from '@/lib/utils';
 
 interface ProjectsClientPageProps {
   allProjects: Project[];
@@ -46,24 +48,26 @@ export default function ProjectsClientPage({ allProjects, allTags }: ProjectsCli
           />
         </div>
         <div className="flex flex-wrap gap-2 justify-center">
-            <Button 
-                variant={selectedTag === null ? 'default' : 'outline'}
-                size="sm"
+            <Badge
                 onClick={() => setSelectedTag(null)}
-                className="transition-all rounded-full"
+                className={cn(
+                  'cursor-pointer transition-all',
+                  selectedTag === null ? 'bg-primary text-primary-foreground' : 'bg-secondary text-secondary-foreground hover:bg-secondary/80'
+                )}
             >
                 All
-            </Button>
+            </Badge>
           {allTags.map(tag => (
-            <Button
+            <Badge
               key={tag}
-              variant={selectedTag === tag ? 'default' : 'outline'}
-              size="sm"
               onClick={() => setSelectedTag(tag)}
-              className="transition-all rounded-full"
+              className={cn(
+                'cursor-pointer transition-all',
+                selectedTag === tag ? 'bg-primary text-primary-foreground' : 'bg-secondary text-secondary-foreground hover:bg-secondary/80'
+              )}
             >
               {tag}
-            </Button>
+            </Badge>
           ))}
         </div>
       </section>
