@@ -8,7 +8,7 @@ import {PlaceHolderImages} from "@/lib/placeholder-images";
 async function getCodeStatsData(): Promise<CodeStatsXP[]> {
   try {
     // This API endpoint gives us the total XP accumulated in each language.
-    const res = await fetch('https://codestats.net/api/users/fless/languages', { 
+    const res = await fetch('https://codestats.net/api/users/flessan/languages', { 
         next: { revalidate: 3600 } // Revalidate every hour
     });
     if (!res.ok) { 
