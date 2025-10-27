@@ -17,19 +17,19 @@ JavaScript, TypeScript, React, Next.js, Python, Java, PHP, HTML5, CSS3, Tailwind
 
 ## Experience
 
-### School Project: School News Portal
+### Full-Stack Developer (Team Project)
 **Company:** SMK Teknologi Bangsa
 **Period:** 2024
-**Role:** Full-Stack Developer (Team)
+**Description:** 
 - Designed and built a school news portal from scratch using Next.js and Tailwind CSS for the user interface.
 - Developed a simple backend with Node.js and Express to manage articles and news categories.
 - Collaborated with a team of 3 students to plan features, divide tasks, and integrate work using Git.
 - Learned about the importance of responsive design and good user experience.
 
-### Personal Project: Simple Notes App
+### Sole Developer (Personal Project)
 **Company:** Personal
 **Period:** 2023
-**Role:** Sole Developer
+**Description:**
 - Created a CRUD (Create, Read, Update, Delete) web application for personal notes using React and Firebase.
 - Implemented user authentication with Firebase Authentication to keep notes private.
 - Stored and retrieved data in real-time using Firestore.
