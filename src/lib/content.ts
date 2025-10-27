@@ -166,26 +166,50 @@ export function getCVData(): CvData {
         } else if (title === 'experience') {
             const expItems = body.split('### ').slice(1);
             parsedContent.experience = expItems.map(item => {
-                const itemLines = item.split('\n');
+                const itemLines = item.trim().split('\n');
                 const role = itemLines[0].trim();
                 const expData: any = { role };
+                let descriptionStarted = false;
+                let currentDescription = '';
+
                 itemLines.slice(1).forEach(line => {
                     const match = line.match(/\*\*(.*?):\*\*\s*(.*)/);
                     if (match) {
+                        descriptionStarted = false; // Stop description parsing if a new key is found
+                        if (currentDescription) {
+                            expData.description = (expData.description || '') + currentDescription.trim() + '\n';
+                            currentDescription = '';
+                        }
                         const key = match[1].toLowerCase().trim();
                         const value = match[2].trim();
                         expData[key] = value;
-                    } else {
-                        expData.description = (expData.description || '') + line.replace('- ', '').trim() + '\n';
+                        if (key === 'description') {
+                            descriptionStarted = true;
+                            currentDescription += value + '\n';
+                        }
+                    } else if (descriptionStarted) {
+                        currentDescription += line.trim() + '\n';
+                    } else if (line.trim().startsWith('-')) {
+                        // This handles the case where description might not have a key
+                        descriptionStarted = true;
+                        currentDescription += line.replace('- ', '').trim() + '\n';
                     }
                 });
-                expData.description = expData.description?.trim();
+
+                if (currentDescription) {
+                     expData.description = (expData.description || '') + currentDescription;
+                }
+                
+                if (expData.description) {
+                    expData.description = expData.description.trim();
+                }
+
                 return expData;
             });
         } else if (title === 'education') {
             const eduItems = body.split('### ').slice(1);
             parsedContent.education = eduItems.map(item => {
-                const itemLines = item.split('\n');
+                const itemLines = item.trim().split('\n');
                 const degree = itemLines[0].trim();
                 const eduData: any = { degree };
                 itemLines.slice(1).forEach(line => {
