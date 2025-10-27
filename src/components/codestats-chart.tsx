@@ -43,7 +43,7 @@ export default function CodeStatsChart({ data }: CodeStatsChartProps) {
       <CardHeader>
         <CardTitle>Top 10 Languages by XP</CardTitle>
         <CardDescription>
-          Programming language statistics from my <a href="https://codestats.net/users/flessan" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Code::Stats</a> profile.
+          Programming language statistics from my <a href="https://codestats.net/users/fless" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Code::Stats</a> profile.
         </CardDescription>
       </CardHeader>
       <CardContent>
