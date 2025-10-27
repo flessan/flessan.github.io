@@ -48,6 +48,7 @@ export default function ProjectsClientPage({ allProjects, allTags }: ProjectsCli
         <div className="flex flex-wrap gap-2 justify-center">
             <Button 
                 variant={selectedTag === null ? 'default' : 'outline'}
+                size="sm"
                 onClick={() => setSelectedTag(null)}
                 className="transition-all rounded-full"
             >
@@ -57,6 +58,7 @@ export default function ProjectsClientPage({ allProjects, allTags }: ProjectsCli
             <Button
               key={tag}
               variant={selectedTag === tag ? 'default' : 'outline'}
+              size="sm"
               onClick={() => setSelectedTag(tag)}
               className="transition-all rounded-full"
             >
