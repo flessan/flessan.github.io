@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useState, useMemo } from 'react';
@@ -14,9 +15,12 @@ interface BlogClientPageProps {
   allTags: string[];
 }
 
+const VISIBLE_TAGS_LIMIT = 5;
+
 export default function BlogClientPage({ allPosts, allTags }: BlogClientPageProps) {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedTag, setSelectedTag] = useState<string | null>(null);
+  const [showAllTags, setShowAllTags] = useState(false);
 
   const filteredPosts = useMemo(() => {
     return allPosts.filter(post => {
@@ -26,6 +30,10 @@ export default function BlogClientPage({ allPosts, allTags }: BlogClientPageProp
       return matchesSearch && matchesTag;
     });
   }, [allPosts, searchTerm, selectedTag]);
+
+  const visibleTags = useMemo(() => {
+    return showAllTags ? allTags : allTags.slice(0, VISIBLE_TAGS_LIMIT);
+  }, [allTags, showAllTags]);
 
   return (
     <div className="space-y-8">
@@ -57,7 +65,7 @@ export default function BlogClientPage({ allPosts, allTags }: BlogClientPageProp
           >
             All
           </Badge>
-          {allTags.map(tag => (
+          {visibleTags.map(tag => (
             <Badge
               key={tag}
               onClick={() => setSelectedTag(tag)}
@@ -69,6 +77,11 @@ export default function BlogClientPage({ allPosts, allTags }: BlogClientPageProp
               {tag}
             </Badge>
           ))}
+          {allTags.length > VISIBLE_TAGS_LIMIT && (
+            <Button variant="link" size="sm" onClick={() => setShowAllTags(!showAllTags)} className="text-primary">
+              {showAllTags ? 'Show Less' : `Show All (${allTags.length})`}
+            </Button>
+          )}
         </div>
       </section>
 

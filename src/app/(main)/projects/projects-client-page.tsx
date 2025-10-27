@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useState, useMemo } from 'react';
@@ -14,9 +15,12 @@ interface ProjectsClientPageProps {
   allTags: string[];
 }
 
+const VISIBLE_TAGS_LIMIT = 5;
+
 export default function ProjectsClientPage({ allProjects, allTags }: ProjectsClientPageProps) {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedTag, setSelectedTag] = useState<string | null>(null);
+  const [showAllTags, setShowAllTags] = useState(false);
 
   const filteredProjects = useMemo(() => {
     return allProjects.filter(project => {
@@ -26,6 +30,10 @@ export default function ProjectsClientPage({ allProjects, allTags }: ProjectsCli
       return matchesSearch && matchesTag;
     });
   }, [allProjects, searchTerm, selectedTag]);
+
+  const visibleTags = useMemo(() => {
+    return showAllTags ? allTags : allTags.slice(0, VISIBLE_TAGS_LIMIT);
+  }, [allTags, showAllTags]);
 
   return (
     <div className="space-y-8">
@@ -57,7 +65,7 @@ export default function ProjectsClientPage({ allProjects, allTags }: ProjectsCli
             >
                 All
             </Badge>
-          {allTags.map(tag => (
+          {visibleTags.map(tag => (
             <Badge
               key={tag}
               onClick={() => setSelectedTag(tag)}
@@ -69,6 +77,11 @@ export default function ProjectsClientPage({ allProjects, allTags }: ProjectsCli
               {tag}
             </Badge>
           ))}
+          {allTags.length > VISIBLE_TAGS_LIMIT && (
+            <Button variant="link" size="sm" onClick={() => setShowAllTags(!showAllTags)} className="text-primary">
+              {showAllTags ? 'Show Less' : `Show All (${allTags.length})`}
+            </Button>
+          )}
         </div>
       </section>
 
