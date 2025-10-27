@@ -150,69 +150,58 @@ export function getCVData(): CvData {
         data.avatar = avatarPlaceholder.imageUrl;
     }
 
-    // A simplified parser for the CV markdown body
-    const sections = content.split('## ').slice(1);
+    const sections = content.split(/^##\s/m).slice(1);
     const parsedContent: any = {};
 
     sections.forEach(section => {
-        const lines = section.split('\n');
-        const title = lines[0].trim().toLowerCase();
-        const body = lines.slice(1).join('\n').trim();
+        const lines = section.trim().split('\n');
+        const titleLine = lines.shift()?.trim();
+        if (!titleLine) return;
+
+        const title = titleLine.toLowerCase();
+        const body = lines.join('\n').trim();
 
         if (title === 'summary') {
             parsedContent.summary = body;
         } else if (title === 'skills') {
             parsedContent.skills = body.split(',').map(s => s.trim());
         } else if (title === 'experience') {
-            const expItems = body.split('### ').slice(1);
+            const expItems = body.split(/^###\s/m).slice(1);
             parsedContent.experience = expItems.map(item => {
                 const itemLines = item.trim().split('\n');
-                const role = itemLines[0].trim();
-                const expData: any = { role };
-                let descriptionStarted = false;
-                let currentDescription = '';
-
-                itemLines.slice(1).forEach(line => {
+                const role = itemLines.shift()?.trim() || '';
+                const expData: any = { role, description: '' };
+                
+                let descriptionContent = '';
+                let readingDescription = false;
+                
+                itemLines.forEach(line => {
                     const match = line.match(/\*\*(.*?):\*\*\s*(.*)/);
                     if (match) {
-                        descriptionStarted = false; // Stop description parsing if a new key is found
-                        if (currentDescription) {
-                            expData.description = (expData.description || '') + currentDescription.trim() + '\n';
-                            currentDescription = '';
-                        }
                         const key = match[1].toLowerCase().trim();
                         const value = match[2].trim();
-                        expData[key] = value;
                         if (key === 'description') {
-                            descriptionStarted = true;
-                            currentDescription += value + '\n';
+                            readingDescription = true;
+                            descriptionContent += value + '\n';
+                        } else {
+                            expData[key] = value;
+                            readingDescription = false;
                         }
-                    } else if (descriptionStarted) {
-                        currentDescription += line.trim() + '\n';
-                    } else if (line.trim().startsWith('-')) {
-                        // This handles the case where description might not have a key
-                        descriptionStarted = true;
-                        currentDescription += line.replace('- ', '').trim() + '\n';
+                    } else if (readingDescription || line.trim().startsWith('-')) {
+                        descriptionContent += line + '\n';
                     }
                 });
 
-                if (currentDescription) {
-                     expData.description = (expData.description || '') + currentDescription;
-                }
-                
-                if (expData.description) {
-                    expData.description = expData.description.trim();
-                }
-
+                expData.description = descriptionContent.trim();
                 return expData;
             });
         } else if (title === 'education') {
-            const eduItems = body.split('### ').slice(1);
+            const eduItems = body.split(/^###\s/m).slice(1);
             parsedContent.education = eduItems.map(item => {
                 const itemLines = item.trim().split('\n');
-                const degree = itemLines[0].trim();
+                const degree = itemLines.shift()?.trim() || '';
                 const eduData: any = { degree };
-                itemLines.slice(1).forEach(line => {
+                itemLines.forEach(line => {
                     const match = line.match(/\*\*(.*?):\*\*\s*(.*)/);
                     if (match) {
                         const key = match[1].toLowerCase().trim();
