@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useState, useMemo } from 'react';
@@ -6,15 +7,20 @@ import BlogPostCard from '@/components/blog-post-card';
 import { Input } from '@/components/ui/input';
 import { Search } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { Badge } from '@/components/ui/badge';
+import { cn } from '@/lib/utils';
 
 interface BlogClientPageProps {
   allPosts: Post[];
   allTags: string[];
 }
 
+const VISIBLE_TAGS_LIMIT = 5;
+
 export default function BlogClientPage({ allPosts, allTags }: BlogClientPageProps) {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedTag, setSelectedTag] = useState<string | null>(null);
+  const [showAllTags, setShowAllTags] = useState(false);
 
   const filteredPosts = useMemo(() => {
     return allPosts.filter(post => {
@@ -24,6 +30,10 @@ export default function BlogClientPage({ allPosts, allTags }: BlogClientPageProp
       return matchesSearch && matchesTag;
     });
   }, [allPosts, searchTerm, selectedTag]);
+
+  const visibleTags = useMemo(() => {
+    return showAllTags ? allTags : allTags.slice(0, VISIBLE_TAGS_LIMIT);
+  }, [allTags, showAllTags]);
 
   return (
     <div className="space-y-8">
@@ -46,23 +56,32 @@ export default function BlogClientPage({ allPosts, allTags }: BlogClientPageProp
           />
         </div>
         <div className="flex flex-wrap gap-2 justify-center">
-          <Button 
-            variant={selectedTag === null ? 'default' : 'outline'}
+          <Badge
             onClick={() => setSelectedTag(null)}
-            className="transition-all rounded-full"
+            className={cn(
+              'cursor-pointer transition-all',
+              selectedTag === null ? 'bg-primary text-primary-foreground' : 'bg-secondary text-secondary-foreground hover:bg-secondary/80'
+            )}
           >
             All
-          </Button>
-          {allTags.map(tag => (
-            <Button
+          </Badge>
+          {visibleTags.map(tag => (
+            <Badge
               key={tag}
-              variant={selectedTag === tag ? 'default' : 'outline'}
               onClick={() => setSelectedTag(tag)}
-              className="transition-all rounded-full"
+              className={cn(
+                'cursor-pointer transition-all',
+                selectedTag === tag ? 'bg-primary text-primary-foreground' : 'bg-secondary text-secondary-foreground hover:bg-secondary/80'
+              )}
             >
               {tag}
-            </Button>
+            </Badge>
           ))}
+          {allTags.length > VISIBLE_TAGS_LIMIT && (
+            <Button variant="link" size="sm" onClick={() => setShowAllTags(!showAllTags)} className="text-primary">
+              {showAllTags ? 'Show Less' : `Show All (${allTags.length})`}
+            </Button>
+          )}
         </div>
       </section>
 

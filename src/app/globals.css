@@ -178,3 +178,18 @@
     page-break-inside: avoid;
   }
 }
+
+.typing-cursor {
+  display: inline-block;
+  width: 2px;
+  height: 1em;
+  background-color: hsl(var(--primary));
+  animation: blink 0.7s infinite;
+  margin-left: 4px;
+  transform: translateY(0.15em);
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}

@@ -1,3 +1,4 @@
+
 'use client';
 
 import type { CvData } from '@/lib/types';
@@ -81,7 +82,13 @@ export default function CvClientPage({ cvData }: CvClientPageProps) {
                         <p className="text-sm text-muted-foreground text-right">{job.period}</p>
                       </div>
                       <p className="text-sm text-muted-foreground font-medium">{job.company}</p>
-                      <p className="mt-2 text-muted-foreground whitespace-pre-wrap">{job.description}</p>
+                      {job.description && (
+                        <ul className="mt-2 text-muted-foreground list-disc list-inside space-y-1">
+                          {job.description.split('\n').map((line, i) => (
+                            <li key={i} className="pl-2">{line.replace(/^- /, '')}</li>
+                          ))}
+                        </ul>
+                      )}
                   </div>
               ))}
               </div>
@@ -94,10 +101,10 @@ export default function CvClientPage({ cvData }: CvClientPageProps) {
             {cvData.education.map((edu, index) => (
               <div key={index} className="mb-4">
                   <div className="flex justify-between items-baseline">
-                    <h4 className="font-semibold">{edu.degree}</h4>
+                    <h4 className="font-semibold text-lg">{edu.degree}</h4>
                     <p className="text-sm text-muted-foreground text-right">{edu.period}</p>
                   </div>
-                  <p className="text-sm text-muted-foreground">{edu.institution}</p>
+                  <p className="text-sm text-muted-foreground font-medium">{edu.institution}</p>
               </div>
             ))}
           </section>

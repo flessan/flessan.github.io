@@ -7,8 +7,8 @@ import {PlaceHolderImages} from "@/lib/placeholder-images";
 
 async function getCodeStatsData(): Promise<CodeStatsXP[]> {
   try {
-    const res = await fetch('https://codestats.net/api/users/fless/xp?since=2000-01-01', { 
-        next: { revalidate: 3600 } 
+    const res = await fetch('https://codestats.net/api/users/fless', { 
+        next: { revalidate: 3600 } // Revalidate every hour
     });
     if (!res.ok) { 
       console.error("Failed to fetch Code::Stats data, status:", res.status);
@@ -16,20 +16,16 @@ async function getCodeStatsData(): Promise<CodeStatsXP[]> {
     }
     const data = await res.json();
     
-    // The API returns dates as keys, we need to process all of them
-    const allXps = Object.values(data.dates).flat() as { language: string, new_xp: number }[];
-
-    // Aggregate XP for each language
-    const languageXpMap = new Map<string, number>();
-    for (const xp of allXps) {
-        languageXpMap.set(xp.language, (languageXpMap.get(xp.language) || 0) + xp.new_xp);
-    }
-    
-    const aggregatedData: CodeStatsXP[] = Array.from(languageXpMap.entries()).map(([language, total_xp]) => ({
-        language,
-        total_xp,
-        new_xp: 0 
-    }));
+    // The API returns an object with a nested 'languages' object.
+    const languages = data.languages || {};
+    const aggregatedData: CodeStatsXP[] = Object.entries(languages).map(([language, stats]) => {
+        const { xps, new_xps } = stats as { xps: number; new_xps: number };
+        return {
+            language,
+            total_xp: xps,
+            new_xp: new_xps,
+        };
+    });
 
     return aggregatedData;
   } catch (error) {
