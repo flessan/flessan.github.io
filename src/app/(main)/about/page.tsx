@@ -7,8 +7,7 @@ import {PlaceHolderImages} from "@/lib/placeholder-images";
 
 async function getCodeStatsData(): Promise<CodeStatsXP[]> {
   try {
-    // This API endpoint gives us the total XP accumulated in each language.
-    const res = await fetch('https://codestats.net/api/users/fless/languages', { 
+    const res = await fetch('https://codestats.net/api/users/fless', { 
         next: { revalidate: 3600 } // Revalidate every hour
     });
     if (!res.ok) { 
@@ -17,14 +16,14 @@ async function getCodeStatsData(): Promise<CodeStatsXP[]> {
     }
     const data = await res.json();
     
-    // The API returns an object where keys are language names.
-    // We need to convert this into an array of objects.
-    const aggregatedData: CodeStatsXP[] = Object.entries(data).map(([language, stats]) => {
-        const { xps } = stats as { xps: number };
+    // The API returns an object with a nested 'languages' object.
+    const languages = data.languages || {};
+    const aggregatedData: CodeStatsXP[] = Object.entries(languages).map(([language, stats]) => {
+        const { xps, new_xps } = stats as { xps: number; new_xps: number };
         return {
             language,
             total_xp: xps,
-            new_xp: 0, // The /languages endpoint doesn't provide new_xp.
+            new_xp: new_xps,
         };
     });
 
