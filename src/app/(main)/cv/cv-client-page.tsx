@@ -1,3 +1,4 @@
+
 'use client';
 
 import type { CvData } from '@/lib/types';
@@ -81,7 +82,11 @@ export default function CvClientPage({ cvData }: CvClientPageProps) {
                         <p className="text-sm text-muted-foreground text-right">{job.period}</p>
                       </div>
                       <p className="text-sm text-muted-foreground font-medium">{job.company}</p>
-                      <p className="mt-2 text-muted-foreground whitespace-pre-wrap">{job.description}</p>
+                      <ul className="mt-2 text-muted-foreground list-disc list-inside whitespace-pre-wrap">
+                        {job.description.split('\n').map((line, i) => (
+                          <li key={i} className="pl-2">{line.replace('- ', '')}</li>
+                        ))}
+                      </ul>
                   </div>
               ))}
               </div>
