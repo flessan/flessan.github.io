@@ -4,6 +4,7 @@ import BlogPostCard from "@/components/blog-post-card";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { ArrowRight, Code, FileText } from "lucide-react";
+import TypingAnimation from "@/components/typing-animation";
 
 export default async function HomePage() {
   const featuredProjects = (await getSortedProjects()).filter(p => p.featured).slice(0, 3);
@@ -14,7 +15,15 @@ export default async function HomePage() {
       <section className="text-center py-16 md:py-24">
         <h1 className="text-4xl md:text-6xl font-extrabold tracking-tighter bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent">
           <span className="block">Software Engineering Student.</span>
-          <span className="block mt-2">Creative Problem Solver.</span>
+          <TypingAnimation
+            className="block mt-2"
+            phrases={[
+              "Creative Problem Solver.",
+              "Full-Stack Developer.",
+              "Lifelong Learner.",
+              "Web Innovator.",
+            ]}
+          />
         </h1>
         <p className="mt-6 max-w-2xl mx-auto text-lg md:text-xl text-muted-foreground">
           Welcome to my digital space. I'm a vocational high school student passionate about building modern web applications and sharing what I learn.
