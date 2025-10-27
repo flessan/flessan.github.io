@@ -10,12 +10,7 @@ image: "https://res.cloudinary.com/dahcxjdbl/image/upload/v1761305911/aiease_176
 ---
 
 # 🧰 Code & Text Cleaner Pro 
-![Status](https://img.shields.io/badge/status-active-brightgreen?style=flat-square)  
-![Version](https://img.shields.io/badge/version-1.8.1-blue?style=flat-square)  
-![License](https://img.shields.io/badge/license-open--source-lightgrey?style=flat-square)  
-![Last Updated](https://img.shields.io/badge/updated-2025-orange?style=flat-square)
-
-**Live Demo** → [flessan.pages.dev/ctc](https://flessan.pages.dev/ctc)
+![Status](https://img.shields.io/badge/status-active-brightgreen?style=flat-square)![Version](https://img.shields.io/badge/version-1.8.1-blue?style=flat-square)![License](https://img.shields.io/badge/license-open--source-lightgrey?style=flat-square)![Last Updated](https://img.shields.io/badge/updated-10/13/25-orange?style=flat-square)
 
 > 💡 The 5th project by [**Thio Saputra**](https://flessan.pages.dev)  
 > Motto: **ATM — Amati, Tiru, Modifikasi** *(Observe, Copy, Modify)*
