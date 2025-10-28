@@ -16,14 +16,30 @@ export default async function HomePage() {
         <h1 className="text-4xl md:text-6xl font-extrabold tracking-tighter bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent">
           <span className="block">Software Engineering Student.</span>
           <TypingAnimation
-            className="block mt-2"
-            phrases={[
-              "Creative Problem Solver.",
-              "Full-Stack Developer.",
-              "Lifelong Learner.",
-              "Web Innovator.",
-            ]}
-          />
+  className="block mt-2"
+  phrases={[
+    "Passionate about building functional applications.",
+    "Focused on clean and efficient code.",
+    "Continuously learning new technologies.",
+    "Aspiring full-stack developer.",
+    "Turning ideas into elegant solutions.",
+    "Dedicated software engineering student.",
+    "Exploring the world of web development.",
+    "Crafting user-friendly digital experiences.",
+    "Problem-solver with a keyboard.",
+    "Bridging theory and practical application.",
+    "Mastering the fundamentals, one line at a time.",
+    "Building a strong foundation in code.",
+    "Curious about how things work.",
+    "A lifelong learner in tech.",
+    "Developing responsive and intuitive interfaces.",
+    "Focused on creating impactful software.",
+    "Enjoying the journey of coding.",
+    "Student of software architecture.",
+    "Committed to writing maintainable code.",
+    "Growing with every project.",
+  ]}
+/>
         </h1>
         <p className="mt-6 max-w-2xl mx-auto text-lg md:text-xl text-muted-foreground">
           Welcome to my digital space. I'm a vocational high school student passionate about building modern web applications and sharing what I learn.
