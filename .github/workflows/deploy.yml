@@ -28,6 +28,9 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
+    env:
+      # This is needed to set the basePath and assetPrefix for GitHub pages
+      GITHUB_REPOSITORY: ${{ github.repository }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -45,7 +48,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          # Upload entire repository
+          # Upload static assets from the Next.js export directory
           path: './out'
       - name: Deploy to GitHub Pages
         id: deployment
