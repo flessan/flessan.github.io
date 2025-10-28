@@ -1,10 +1,13 @@
 import type {NextConfig} from 'next';
 
 const isProd = process.env.NODE_ENV === 'production';
-const repoName = process.env.GITHUB_REPOSITORY?.split('/')[1] || '';
+
+// This will be set by the GitHub Actions workflow
+const repoName = process.env.GITHUB_REPOSITORY ? process.env.GITHUB_REPOSITORY.split('/')[1] : '';
 
 const nextConfig: NextConfig = {
   output: 'export',
+  // Set the basePath and assetPrefix for GitHub Pages
   basePath: isProd ? `/${repoName}` : '',
   assetPrefix: isProd ? `/${repoName}/` : '',
   trailingSlash: true,
