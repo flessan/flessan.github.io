@@ -1,7 +1,6 @@
 import fs from 'fs';
 import path from 'path';
-import type { Post, Project, CvData } from '@/lib/types';
-import { PlaceHolderImages } from '@/lib/placeholder-images';
+import type { Post, Project, CvData, Experience, Education } from '@/lib/types';
 import matter from 'gray-matter';
 import { markdownToHtml } from './markdown';
 
@@ -29,16 +28,12 @@ export async function getSortedPosts(): Promise<Post[]> {
         const { data, content } = matter(fileContents);
         const { html, headings } = await markdownToHtml(content);
 
-        const imagePlaceholder = PlaceHolderImages.find(img => img.id === data.image);
-        const imageUrl = imagePlaceholder ? imagePlaceholder.imageUrl : '';
-
         return {
             slug,
             content: html,
             headings,
             readingTime: calculateReadingTime(content),
-            image: imageUrl,
-            ...(data as { title: string; description: string; date: string; tags: string[]; draft: boolean; featured: boolean; }),
+            ...(data as { title: string; description: string; date: string; tags: string[]; draft: boolean; featured: boolean; image?: string }),
         } as Post;
     }));
 
@@ -59,16 +54,12 @@ export async function getPostBySlug(slug: string): Promise<Post | undefined> {
     const { data, content } = matter(fileContents);
     const { html, headings } = await markdownToHtml(content);
     
-    const imagePlaceholder = PlaceHolderImages.find(img => img.id === data.image);
-    const imageUrl = imagePlaceholder ? imagePlaceholder.imageUrl : '';
-
     return {
         slug,
         content: html,
         headings,
         readingTime: calculateReadingTime(content),
-        image: imageUrl,
-        ...(data as { title: string; description: string; date: string; tags: string[]; draft: boolean; featured: boolean; }),
+        ...(data as { title: string; description: string; date: string; tags: string[]; draft: boolean; featured: boolean; image?: string }),
     } as Post;
 }
 
@@ -87,15 +78,11 @@ export async function getSortedProjects(): Promise<Project[]> {
         const { data, content } = matter(fileContents);
         const { html, headings } = await markdownToHtml(content);
 
-        const imagePlaceholder = PlaceHolderImages.find(img => img.id === data.image);
-        const imageUrl = imagePlaceholder ? imagePlaceholder.imageUrl : '';
-
         return {
             slug,
             content: html,
             headings,
-            image: imageUrl,
-            ...(data as { title: string; description: string; date: string; technologies: string[]; liveUrl?: string; repoUrl?: string; featured: boolean; }),
+            ...(data as { title: string; description: string; date: string; technologies: string[]; liveUrl?: string; repoUrl?: string; featured: boolean; image?: string }),
         } as Project;
     }));
 
@@ -114,15 +101,11 @@ export async function getProjectBySlug(slug: string): Promise<Project | undefine
     const { data, content } = matter(fileContents);
     const { html, headings } = await markdownToHtml(content);
     
-    const imagePlaceholder = PlaceHolderImages.find(img => img.id === data.image);
-    const imageUrl = imagePlaceholder ? imagePlaceholder.imageUrl : '';
-
     return {
         slug,
         content: html,
         headings,
-        image: imageUrl,
-        ...(data as { title: string; description: string; date: string; technologies: string[]; liveUrl?: string; repoUrl?: string; featured: boolean; }),
+        ...(data as { title: string; description: string; date: string; technologies: string[]; liveUrl?: string; repoUrl?: string; featured: boolean; image?: string }),
     } as Project;
 }
 
@@ -145,13 +128,12 @@ export function getCVData(): CvData {
     const fileContents = fs.readFileSync(filePath, 'utf8');
     const { data, content } = matter(fileContents);
     
-    const avatarPlaceholder = PlaceHolderImages.find(img => img.id === data.avatar);
-    if (avatarPlaceholder) {
-        data.avatar = avatarPlaceholder.imageUrl;
-    }
-
     const sections = content.split(/^##\s/m).slice(1);
-    const parsedContent: any = {};
+    
+    let summary = '';
+    let skills: string[] = [];
+    let experience: Experience[] = [];
+    let education: Education[] = [];
 
     sections.forEach(section => {
         const lines = section.trim().split('\n');
@@ -162,57 +144,60 @@ export function getCVData(): CvData {
         const body = lines.join('\n').trim();
 
         if (title === 'summary') {
-            parsedContent.summary = body;
+            summary = body;
         } else if (title === 'skills') {
-            parsedContent.skills = body.split(',').map(s => s.trim());
+            skills = body.split(',').map(s => s.trim());
         } else if (title === 'experience') {
             const expItems = body.split(/^###\s/m).slice(1);
-            parsedContent.experience = expItems.map(item => {
+            experience = expItems.map(item => {
                 const itemLines = item.trim().split('\n');
                 const role = itemLines.shift()?.trim() || '';
-                const expData: any = { role, description: '' };
+                const expData: Partial<Experience> = { role, description: '' };
                 
-                let descriptionContent = '';
-                let readingDescription = false;
+                let descLines: string[] = [];
+                let inDescription = false;
                 
                 itemLines.forEach(line => {
-                    const match = line.match(/\*\*(.*?):\*\*\s*(.*)/);
-                    if (match) {
-                        const key = match[1].toLowerCase().trim();
-                        const value = match[2].trim();
-                        if (key === 'description') {
-                            readingDescription = true;
-                            descriptionContent += value + '\n';
-                        } else {
-                            expData[key] = value;
-                            readingDescription = false;
-                        }
-                    } else if (readingDescription || line.trim().startsWith('-')) {
-                        descriptionContent += line + '\n';
+                    const companyMatch = line.match(/\*\*Company:\*\*\s*(.*)/);
+                    const periodMatch = line.match(/\*\*Period:\*\*\s*(.*)/);
+                    const descriptionMatch = line.match(/\*\*Description:\*\*/);
+
+                    if (companyMatch) expData.company = companyMatch[1].trim();
+                    else if (periodMatch) expData.period = periodMatch[1].trim();
+                    else if (descriptionMatch) {
+                        inDescription = true;
+                    } else if (inDescription) {
+                        descLines.push(line);
                     }
                 });
+                
+                expData.description = descLines.join('\n').trim();
 
-                expData.description = descriptionContent.trim();
-                return expData;
+                return expData as Experience;
             });
         } else if (title === 'education') {
             const eduItems = body.split(/^###\s/m).slice(1);
-            parsedContent.education = eduItems.map(item => {
+            education = eduItems.map(item => {
                 const itemLines = item.trim().split('\n');
                 const degree = itemLines.shift()?.trim() || '';
-                const eduData: any = { degree };
+                const eduData: Partial<Education> = { degree };
+
                 itemLines.forEach(line => {
-                    const match = line.match(/\*\*(.*?):\*\*\s*(.*)/);
-                    if (match) {
-                        const key = match[1].toLowerCase().trim();
-                        const value = match[2].trim();
-                        eduData[key] = value;
-                    }
+                    const institutionMatch = line.match(/\*\*Institution:\*\*\s*(.*)/);
+                    const periodMatch = line.match(/\*\*Period:\*\*\s*(.*)/);
+                    if (institutionMatch) eduData.institution = institutionMatch[1].trim();
+                    if (periodMatch) eduData.period = periodMatch[1].trim();
                 });
-                return eduData;
+                return eduData as Education;
             });
         }
     });
 
-    return { ...data, ...parsedContent } as CvData;
+    return { 
+        ...(data as Omit<CvData, 'summary'|'skills'|'experience'|'education'>),
+        summary,
+        skills,
+        experience,
+        education,
+    };
 }

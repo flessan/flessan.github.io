@@ -5,7 +5,7 @@ email: flessan@yahoo.com
 phone: (+62) 895-2323-4160
 website: https://flessan.pages.dev
 location: Kalimantan Selatan, Indonesia
-avatar: cv-avatar
+avatar: "https://picsum.photos/seed/avatar/200/200"
 ---
 
 ## Summary
@@ -13,6 +13,7 @@ avatar: cv-avatar
 A motivated and aspiring Software Engineering student with a strong passion for web development and a proven ability to build full-stack applications. Eager to apply my skills in JavaScript, React, and Next.js to solve real-world problems and contribute to innovative projects. I am a quick learner, a collaborative team player, and dedicated to writing clean, efficient code.
 
 ## Skills
+
 **Frontend:** HTML5, CSS3, JavaScript, TypeScript, React, Next.js, Tailwind CSS
 **Backend:** Node.js, Express, PHP
 **Databases:** Firebase (Firestore), MySQL

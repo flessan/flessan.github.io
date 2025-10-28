@@ -3,7 +3,6 @@ import type { CodeStatsXP } from "@/lib/types";
 import { Activity, Code, BrainCircuit, Users } from "lucide-react";
 import type { Metadata } from 'next';
 import Image from "next/image";
-import {PlaceHolderImages} from "@/lib/placeholder-images";
 
 async function getCodeStatsData(): Promise<CodeStatsXP[]> {
   try {
@@ -64,14 +63,14 @@ export const metadata: Metadata = {
 
 export default async function AboutPage() {
   const codestatsData = await getCodeStatsData();
-  const avatarImage = PlaceHolderImages.find(img => img.id === 'cv-avatar');
+  const avatarImage = "https://picsum.photos/seed/avatar/200/200";
 
   return (
     <div className="space-y-12">
       <section className="flex flex-col md:flex-row items-center justify-center gap-12 text-center md:text-left">
         {avatarImage && (
             <div className="relative w-40 h-40 rounded-full overflow-hidden flex-shrink-0 ring-4 ring-primary/50">
-              <Image src={avatarImage.imageUrl} alt="My Avatar" fill className="object-cover" data-ai-hint="professional portrait" />
+              <Image src={avatarImage} alt="My Avatar" fill className="object-cover" data-ai-hint="professional portrait" />
             </div>
         )}
         <div>

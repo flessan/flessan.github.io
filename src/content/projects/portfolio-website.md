@@ -6,7 +6,7 @@ technologies: ["Next.js", "React", "Tailwind CSS", "TypeScript", "Static Site"]
 liveUrl: "/"
 repoUrl: "https://github.com/flessan/flessan.github.io"
 featured: true
-image: "https://res.cloudinary.com/dahcxjdbl/image/upload/v1761489657/cropped-download_iuzxvo.png"
+image: "https://picsum.photos/seed/portfolio-website/1200/630"
 ---
 
 This is the very portfolio you are looking at right now! It's a personal project designed to be a central hub for my professional life, showcasing my skills, projects, and thoughts on technology. The entire project was built from the ground up with specific goals in mind.

@@ -5,7 +5,7 @@ date: "2024-07-20"
 tags: ["Next.js", "React", "Tailwind CSS", "Personal", "Web Development"]
 draft: false
 featured: true
-image: "introducing-flefolio"
+image: "https://picsum.photos/seed/flefolio/1200/630"
 ---
 
 Hello and welcome! I'm incredibly excited to launch my new personal space on the web: **FleFolio**.

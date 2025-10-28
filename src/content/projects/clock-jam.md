@@ -6,7 +6,7 @@ technologies: ["React", "D3.js", "Data Visualization", "Frontend"]
 liveUrl: "https://flessan.pages.dev/jam"
 repoUrl: "https://github.com/frgdps/fles/tree/main/jam"
 featured: false
-image: "https://res.cloudinary.com/dahcxjdbl/image/upload/v1761314169/aiease_1761314142482_fd9dba.jpg"
+image: "https://picsum.photos/seed/clock-jam/1200/630"
 ---
 
 # ⏰ Jam++ – Advanced Multi-Feature Clock

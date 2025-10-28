@@ -5,7 +5,7 @@ date: "2024-06-15"
 tags: ["React", "JavaScript", "Web Development", "Frontend"]
 draft: false
 featured: false
-image: "deep-dive-into-react-hooks"
+image: "https://picsum.photos/seed/react-hooks/1200/630"
 ---
 
 React Hooks, introduced in React 16.8, revolutionized how we write components. They allow us to use state, lifecycle methods, and other React features in functional components, eliminating the need for class components in most cases.

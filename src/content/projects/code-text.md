@@ -6,7 +6,7 @@ technologies: ["JavaScript", "HTML5", "CSS3"]
 liveUrl: "https://flessan.pages.dev/ctc"
 repoUrl: "https://github.com/frgdps/fles/tree/main/ctc"
 featured: true
-image: "https://res.cloudinary.com/dahcxjdbl/image/upload/v1761305911/aiease_1761305886042_rxuuyc.jpg"
+image: "https://picsum.photos/seed/code-text/1200/630"
 ---
 
 # 🧰 Code & Text Cleaner Pro 
