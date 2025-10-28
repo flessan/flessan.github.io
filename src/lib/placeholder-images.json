@@ -2,9 +2,9 @@
   "placeholderImages": [
     {
       "id": "cv-avatar",
-      "description": "A professional and friendly portrait.",
+      "description": "A selfie cam portrait.",
       "imageUrl": "https://res.cloudinary.com/dahcxjdbl/image/upload/v1761491611/Pi7-Image-Cropper_dbulkp.jpg",
-      "imageHint": "professional portrait"
+      "imageHint": "selfie portrait"
     }
   ]
 }
