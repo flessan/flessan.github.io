@@ -155,7 +155,6 @@ export function getCVData(): CvData {
                 const expData: Partial<Experience> = { role, description: '' };
                 
                 let descLines: string[] = [];
-                let inDescription = false;
                 
                 itemLines.forEach(line => {
                     const companyMatch = line.match(/\*\*Company:\*\*\s*(.*)/);
@@ -165,9 +164,9 @@ export function getCVData(): CvData {
                     if (companyMatch) expData.company = companyMatch[1].trim();
                     else if (periodMatch) expData.period = periodMatch[1].trim();
                     else if (descriptionMatch) {
-                        inDescription = true;
-                    } else if (inDescription) {
-                        descLines.push(line);
+                        // The rest of the lines are description
+                        const descriptionIndex = itemLines.indexOf(line);
+                        descLines = itemLines.slice(descriptionIndex + 1);
                     }
                 });
                 

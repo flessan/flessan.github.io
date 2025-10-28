@@ -8,7 +8,6 @@ import rehypeSlug from 'rehype-slug';
 import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 import rehypeStringify from 'rehype-stringify';
 import { visit } from 'unist-util-visit';
-import { VFile } from 'vfile';
 
 export type Heading = {
   id: string;
@@ -17,11 +16,13 @@ export type Heading = {
 };
 
 // This is a plugin for unified to extract headings
-function extractHeadings(headings: Heading[]) {
-  return () => (tree: any) => {
+function extractHeadings() {
+  return (tree: any, file: any) => {
+    const headings: Heading[] = [];
     visit(tree, 'heading', (node) => {
       const text = node.children
-        .map((child: any) => (child.type === 'text' ? child.value : ''))
+        .filter((child: any) => child.type === 'text')
+        .map((child: any) => child.value)
         .join('');
       
       headings.push({
@@ -30,14 +31,12 @@ function extractHeadings(headings: Heading[]) {
         level: node.depth,
       });
     });
+    file.data.headings = headings;
   };
 }
 
 export async function markdownToHtml(markdown: string) {
-  const headings: Heading[] = [];
-  const file = new VFile({value: markdown});
-
-  const html = await unified()
+  const processor = unified()
     .use(remarkParse)
     .use(remarkGfm)
     .use(remarkRehype, { allowDangerousHtml: true })
@@ -63,25 +62,12 @@ export async function markdownToHtml(markdown: string) {
         }]
       }
     })
-    .use(function () {
-      return (tree) => {
-        visit(tree, 'element', (node: any) => {
-            if (node.tagName === 'h1' || node.tagName === 'h2' || node.tagName === 'h3' || node.tagName === 'h4' || node.tagName === 'h5' || node.tagName === 'h6') {
-                const text = node.children
-                    .map((child: any) => (child.type === 'text' ? child.value : ''))
-                    .join('');
+    .use(extractHeadings)
+    .use(rehypeStringify);
 
-                headings.push({
-                    id: node.properties.id,
-                    level: parseInt(node.tagName.charAt(1), 10),
-                    text,
-                });
-            }
-        });
-      }
-    })
-    .use(rehypeStringify)
-    .process(file);
-
-  return { html: String(html), headings };
+  const file = await processor.process(markdown);
+  const html = String(file);
+  const headings = (file.data.headings as Heading[]) || [];
+  
+  return { html, headings };
 }
