@@ -1,6 +1,6 @@
 import fs from 'fs';
 import path from 'path';
-import type { Post, Project, CvData, Experience, Education } from '@/lib/types';
+import type { Post, Project, CvData, Experience, Education, CategorizedSkill } from '@/lib/types';
 import matter from 'gray-matter';
 import { markdownToHtml } from './markdown';
 
@@ -131,7 +131,7 @@ export function getCVData(): CvData {
     const sections = content.split(/^##\s/m).slice(1);
     
     let summary = '';
-    let skills: string[] = [];
+    let skills: CategorizedSkill[] = [];
     let experience: Experience[] = [];
     let education: Education[] = [];
 
@@ -146,7 +146,14 @@ export function getCVData(): CvData {
         if (title === 'summary') {
             summary = body;
         } else if (title === 'skills') {
-            skills = body.split(',').map(s => s.trim());
+            const skillLines = body.split('\n');
+            skills = skillLines.map(line => {
+                const [category, skillList] = line.split(':');
+                return {
+                    category: category.replace(/\*\*/g, '').trim(),
+                    skills: skillList.split(',').map(s => s.trim())
+                };
+            });
         } else if (title === 'experience') {
             const expItems = body.split(/^###\s/m).slice(1);
             experience = expItems.map(item => {
@@ -155,18 +162,25 @@ export function getCVData(): CvData {
                 const expData: Partial<Experience> = { role, description: '' };
                 
                 let descLines: string[] = [];
+                let isDescription = false;
                 
                 itemLines.forEach(line => {
                     const companyMatch = line.match(/\*\*Company:\*\*\s*(.*)/);
                     const periodMatch = line.match(/\*\*Period:\*\*\s*(.*)/);
                     const descriptionMatch = line.match(/\*\*Description:\*\*/);
 
-                    if (companyMatch) expData.company = companyMatch[1].trim();
-                    else if (periodMatch) expData.period = periodMatch[1].trim();
+                    if (companyMatch) {
+                        expData.company = companyMatch[1].trim();
+                        isDescription = false;
+                    }
+                    else if (periodMatch) {
+                        expData.period = periodMatch[1].trim();
+                        isDescription = false;
+                    }
                     else if (descriptionMatch) {
-                        // The rest of the lines are description
-                        const descriptionIndex = itemLines.indexOf(line);
-                        descLines = itemLines.slice(descriptionIndex + 1);
+                        isDescription = true;
+                    } else if(isDescription) {
+                        descLines.push(line);
                     }
                 });
                 

@@ -41,6 +41,11 @@ export interface Education {
   period: string;
 }
 
+export interface CategorizedSkill {
+    category: string;
+    skills: string[];
+}
+
 export interface CvData {
   name: string;
   title: string;
@@ -50,7 +55,7 @@ export interface CvData {
   website: string;
   location: string;
   avatar?: string;
-  skills: string[];
+  skills: CategorizedSkill[];
   experience: Experience[];
   education: Education[];
 }

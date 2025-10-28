@@ -3,15 +3,9 @@
 
 import type { CvData } from '@/lib/types';
 import { Button } from '@/components/ui/button';
-import { Download, Mail, MapPin, Phone, Globe } from 'lucide-react';
+import { Download, Mail, MapPin, Phone, Globe, Code } from 'lucide-react';
 import Image from 'next/image';
-import { Card, CardContent } from '@/components/ui/card';
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion"
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import TagBadge from '@/components/tag-badge';
 
 interface CvClientPageProps {
@@ -65,8 +59,22 @@ export default function CvClientPage({ cvData }: CvClientPageProps) {
         {cvData.skills?.length > 0 && (
           <section className="py-8 cv-section">
             <h3 className="text-2xl font-semibold mb-4 text-primary">Skills</h3>
-            <div className="flex flex-wrap gap-2">
-              {cvData.skills.map(skill => <TagBadge key={skill} tag={skill} />)}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {cvData.skills.map((skillCategory) => (
+                <Card key={skillCategory.category} className="bg-card/50">
+                  <CardHeader>
+                    <CardTitle className="flex items-center gap-2 text-lg">
+                      <Code className="h-5 w-5 text-accent" />
+                      {skillCategory.category}
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="flex flex-wrap gap-2">
+                      {skillCategory.skills.map(skill => <TagBadge key={skill} tag={skill} />)}
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
             </div>
           </section>
         )}
@@ -83,9 +91,9 @@ export default function CvClientPage({ cvData }: CvClientPageProps) {
                       </div>
                       <p className="text-sm text-muted-foreground font-medium">{job.company}</p>
                       {job.description && (
-                        <ul className="mt-2 text-muted-foreground list-disc list-inside space-y-1">
+                        <ul className="mt-2 text-muted-foreground list-disc list-inside space-y-1 prose prose-sm max-w-none">
                           {job.description.split('\n').map((line, i) => (
-                            <li key={i} className="pl-2">{line.replace(/^- /, '')}</li>
+                            line.trim() ? <li key={i} className="pl-2">{line.replace(/^- /, '')}</li> : null
                           ))}
                         </ul>
                       )}
