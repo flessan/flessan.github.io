@@ -3,7 +3,7 @@
 
 import type { CvData } from '@/lib/types';
 import { Button } from '@/components/ui/button';
-import { Download, Mail, MapPin, Phone, Globe, Code } from 'lucide-react';
+import { Download, Mail, MapPin, Phone, Globe, Code, Briefcase, GraduationCap } from 'lucide-react';
 import Image from 'next/image';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import TagBadge from '@/components/tag-badge';
@@ -81,10 +81,12 @@ export default function CvClientPage({ cvData }: CvClientPageProps) {
         
         {cvData.experience?.length > 0 && (
           <section className="py-8 cv-section">
-              <h3 className="text-2xl font-semibold mb-4 text-primary">Experience</h3>
-              <div className="space-y-6">
+              <h3 className="text-2xl font-semibold mb-4 text-primary flex items-center gap-3"><Briefcase />Experience</h3>
+              <div className="space-y-8">
               {cvData.experience.map((job, index) => (
-                  <div key={index}>
+                  <div key={index} className="relative pl-8">
+                      <div className="absolute left-0 top-1 h-full border-l-2 border-border"></div>
+                      <div className="absolute left-[-6px] top-1 w-3 h-3 rounded-full bg-primary"></div>
                       <div className="flex justify-between items-baseline">
                         <h4 className="font-semibold text-lg">{job.role}</h4>
                         <p className="text-sm text-muted-foreground text-right">{job.period}</p>
@@ -93,7 +95,7 @@ export default function CvClientPage({ cvData }: CvClientPageProps) {
                       {job.description && (
                         <ul className="mt-2 text-muted-foreground list-disc list-inside space-y-1 prose prose-sm max-w-none">
                           {job.description.split('\n').map((line, i) => (
-                            line.trim() ? <li key={i} className="pl-2">{line.replace(/^- /, '')}</li> : null
+                            line.trim() ? <li key={i} className="pl-2">{line.trim()}</li> : null
                           ))}
                         </ul>
                       )}
@@ -105,7 +107,7 @@ export default function CvClientPage({ cvData }: CvClientPageProps) {
 
         {cvData.education?.length > 0 && (
           <section className="py-8 cv-section">
-            <h3 className="text-2xl font-semibold mb-4 text-primary">Education</h3>
+            <h3 className="text-2xl font-semibold mb-4 text-primary flex items-center gap-3"><GraduationCap/>Education</h3>
             {cvData.education.map((edu, index) => (
               <div key={index} className="mb-4">
                   <div className="flex justify-between items-baseline">

@@ -140,19 +140,18 @@ export function getCVData(): CvData {
         const titleLine = lines.shift()?.trim();
         if (!titleLine) return;
 
-        const title = titleLine.toLowerCase();
+        const title = titleLine.replace(/##\s*/, '').trim().toLowerCase();
         const body = lines.join('\n').trim();
 
         if (title === 'summary') {
             summary = body;
         } else if (title === 'skills') {
-            const skillLines = body.split('\n');
+            const skillLines = body.split('\n').filter(line => line.trim().startsWith('**'));
             skills = skillLines.map(line => {
-                const [category, skillList] = line.split(':');
-                return {
-                    category: category.replace(/\*\*/g, '').trim(),
-                    skills: skillList.split(',').map(s => s.trim())
-                };
+                const parts = line.split(':');
+                const category = parts[0].replace(/\*\*/g, '').trim();
+                const skillList = parts[1].split(',').map(s => s.trim());
+                return { category, skills: skillList };
             });
         } else if (title === 'experience') {
             const expItems = body.split(/^###\s/m).slice(1);
@@ -162,8 +161,6 @@ export function getCVData(): CvData {
                 const expData: Partial<Experience> = { role, description: '' };
                 
                 let descLines: string[] = [];
-                let isDescription = false;
-                
                 itemLines.forEach(line => {
                     const companyMatch = line.match(/\*\*Company:\*\*\s*(.*)/);
                     const periodMatch = line.match(/\*\*Period:\*\*\s*(.*)/);
@@ -171,20 +168,15 @@ export function getCVData(): CvData {
 
                     if (companyMatch) {
                         expData.company = companyMatch[1].trim();
-                        isDescription = false;
-                    }
-                    else if (periodMatch) {
+                    } else if (periodMatch) {
                         expData.period = periodMatch[1].trim();
-                        isDescription = false;
-                    }
-                    else if (descriptionMatch) {
-                        isDescription = true;
-                    } else if(isDescription) {
-                        descLines.push(line);
+                    } else if (descriptionMatch) {
+                        // The rest of the lines are description
+                        descLines = itemLines.slice(itemLines.indexOf(line) + 1);
                     }
                 });
                 
-                expData.description = descLines.join('\n').trim();
+                expData.description = descLines.map(l => l.replace(/^- /, '')).join('\n');
 
                 return expData as Experience;
             });
