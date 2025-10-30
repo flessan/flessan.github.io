@@ -1,5 +1,5 @@
 # Simple workflow for deploying static content to GitHub Pages
-name: Deploy static content to Pages
+name: Deploy Next.js to Pages
 
 on:
   # Runs on pushes targeting the default branch
@@ -22,34 +22,54 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  # Single deploy job since we're just deploying
+  # Build and deploy job
   deploy:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
-    env:
-      # This is needed to set the basePath and assetPrefix for GitHub pages
-      GITHUB_REPOSITORY: ${{ github.repository }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - name: Set up Node
+
+      - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 20
-          cache: 'npm'
+          node-version: "20"
+          cache: "npm"
+
       - name: Install dependencies
         run: npm install
+
+      - name: Set Base Path
+        id: base_path
+        run: |
+          # Check if this is a user or organization repository (e.g., username.github.io)
+          if [[ "${{ github.repository }}" == "${{ github.repository_owner }}.github.io" ]]; then
+            echo "base_path=" >> $GITHUB_OUTPUT
+          else
+            # Extract the repository name from the full repository path (owner/repo-name)
+            REPO_NAME=$(echo ${{ github.repository }} | cut -d'/' -f 2)
+            echo "base_path=/$REPO_NAME" >> $GITHUB_OUTPUT
+          fi
+
       - name: Build
+        # The build command now uses the base path set in the previous step
         run: npm run build
+        env:
+          # This environment variable is used by next.config.js
+          NEXT_PUBLIC_BASE_PATH: ${{ steps.base_path.outputs.base_path }}
+          NODE_ENV: production
+
       - name: Setup Pages
         uses: actions/configure-pages@v5
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
           # Upload static assets from the Next.js export directory
           path: './out'
+
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
