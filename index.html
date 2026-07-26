@@ -18,7 +18,6 @@
         }
 
         :root {
-            /* Material You 3 Color Tokens - Light */
             --md-ref-palette-primary-0: #000000;
             --md-ref-palette-primary-10: #21005D;
             --md-ref-palette-primary-20: #381E72;
@@ -73,7 +72,6 @@
             --md-ref-palette-neutral-variant-80: #CCC2CF;
             --md-ref-palette-neutral-variant-90: #E6E0EB;
 
-            /* Semantic Colors - Light */
             --md-sys-color-primary: var(--md-ref-palette-primary-40);
             --md-sys-color-on-primary: var(--md-ref-palette-primary-99);
             --md-sys-color-primary-container: var(--md-ref-palette-primary-90);
@@ -106,19 +104,16 @@
             --md-sys-color-outline: var(--md-ref-palette-neutral-variant-50);
             --md-sys-color-outline-variant: var(--md-ref-palette-neutral-variant-80);
 
-            /* Elevation */
             --md-sys-elevation-1: 0 1px 2px rgba(0,0,0,0.3), 0 1px 3px 1px rgba(0,0,0,0.15);
             --md-sys-elevation-2: 0 1px 2px rgba(0,0,0,0.3), 0 2px 6px 2px rgba(0,0,0,0.15);
             --md-sys-elevation-3: 0 4px 8px 3px rgba(0,0,0,0.15), 0 1px 3px rgba(0,0,0,0.3);
 
-            /* Shape */
             --md-sys-shape-extra-small: 4px;
             --md-sys-shape-small: 8px;
             --md-sys-shape-medium: 12px;
             --md-sys-shape-large: 16px;
             --md-sys-shape-extra-large: 28px;
 
-            /* Typography */
             --md-sys-typescale-display-large: 600 57px/64px 'Google Sans', 'Roboto', sans-serif;
             --md-sys-typescale-display-medium: 600 45px/52px 'Google Sans', 'Roboto', sans-serif;
             --md-sys-typescale-display-small: 600 36px/44px 'Google Sans', 'Roboto', sans-serif;
@@ -136,7 +131,6 @@
             --md-sys-typescale-label-small: 500 11px/16px 'Roboto', sans-serif;
         }
 
-        /* Dark Theme */
         [data-theme="dark"] {
             --md-sys-color-primary: var(--md-ref-palette-primary-80);
             --md-sys-color-on-primary: var(--md-ref-palette-primary-20);
@@ -171,10 +165,7 @@
             --md-sys-color-outline-variant: var(--md-ref-palette-neutral-variant-30);
         }
 
-        html {
-            scroll-behavior: smooth;
-        }
-
+        html { scroll-behavior: smooth; }
         body {
             font: var(--md-sys-typescale-body-large);
             background-color: var(--md-sys-color-background);
@@ -182,923 +173,341 @@
             min-height: 100vh;
             transition: background-color 0.3s ease, color 0.3s ease;
         }
+        a { color: var(--md-sys-color-primary); text-decoration: none; transition: color 0.2s ease; }
+        a:hover { text-decoration: underline; }
 
-        a {
-            color: var(--md-sys-color-primary);
-            text-decoration: none;
-            transition: color 0.2s ease;
-        }
+        .container { max-width: 1200px; margin: 0 auto; padding: 24px; padding-top: 80px; }
+        @media (min-width: 600px) { .container { padding: 32px 48px; padding-top: 88px; } }
 
-        a:hover {
-            text-decoration: underline;
-        }
-
-        /* Container */
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 24px;
-            padding-top: 80px;
-        }
-
-        @media (min-width: 600px) {
-            .container {
-                padding: 32px 48px;
-                padding-top: 88px;
-            }
-        }
-
-        /* Top App Bar */
         .top-app-bar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 64px;
-            background: var(--md-sys-color-surface);
-            display: flex;
-            align-items: center;
-            padding: 0 24px;
-            z-index: 100;
-            transition: box-shadow 0.2s ease, background-color 0.3s ease;
+            position: fixed; top: 0; left: 0; right: 0; height: 64px;
+            background: var(--md-sys-color-surface); display: flex; align-items: center;
+            padding: 0 24px; z-index: 100; transition: box-shadow 0.2s ease, background-color 0.3s ease;
         }
-
-        .top-app-bar.scrolled {
-            box-shadow: var(--md-sys-elevation-2);
-        }
-
+        .top-app-bar.scrolled { box-shadow: var(--md-sys-elevation-2); }
         .top-app-bar-title {
-            font: var(--md-sys-typescale-title-large);
-            color: var(--md-sys-color-on-surface);
-            display: flex;
-            align-items: center;
-            gap: 12px;
+            font: var(--md-sys-typescale-title-large); color: var(--md-sys-color-on-surface);
+            display: flex; align-items: center; gap: 12px;
         }
+        .top-app-bar-title .icon { font-size: 24px; }
+        .top-app-bar-spacer { flex: 1; }
+        .top-app-bar-actions { display: flex; align-items: center; gap: 8px; }
 
-        .top-app-bar-title .icon {
-            font-size: 24px;
-        }
-
-        .top-app-bar-spacer {
-            flex: 1;
-        }
-
-        .top-app-bar-actions {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        /* Icon Button */
         .icon-button {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            border: none;
-            background: transparent;
-            color: var(--md-sys-color-on-surface-variant);
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: background-color 0.2s ease;
-            position: relative;
+            width: 40px; height: 40px; border-radius: 50%; border: none; background: transparent;
+            color: var(--md-sys-color-on-surface-variant); cursor: pointer; display: flex;
+            align-items: center; justify-content: center; transition: background-color 0.2s ease;
         }
+        .icon-button:hover { background: var(--md-sys-color-surface-variant); }
+        .icon-button svg { width: 24px; height: 24px; }
 
-        .icon-button:hover {
-            background: var(--md-sys-color-surface-variant);
-        }
-
-        .icon-button:active {
-            background: var(--md-sys-color-outline-variant);
-        }
-
-        .icon-button svg {
-            width: 24px;
-            height: 24px;
-        }
-
-        /* Cache Indicator */
         .cache-indicator {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            font: var(--md-sys-typescale-label-small);
-            color: var(--md-sys-color-on-surface-variant);
-            padding: 4px 12px;
-            background: var(--md-sys-color-surface-variant);
-            border-radius: 16px;
+            display: flex; align-items: center; gap: 6px; font: var(--md-sys-typescale-label-small);
+            color: var(--md-sys-color-on-surface-variant); padding: 4px 12px;
+            background: var(--md-sys-color-surface-variant); border-radius: 16px;
         }
+        .cache-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--md-sys-color-tertiary); }
+        .cache-dot.stale { background: var(--md-sys-color-error); }
 
-        .cache-dot {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background: var(--md-sys-color-tertiary);
-        }
-
-        .cache-dot.stale {
-            background: var(--md-sys-color-error);
-        }
-
-        /* Card */
         .card {
-            background: var(--md-sys-color-surface);
-            border-radius: var(--md-sys-shape-extra-large);
-            padding: 24px;
-            box-shadow: var(--md-sys-elevation-1);
+            background: var(--md-sys-color-surface); border-radius: var(--md-sys-shape-extra-large);
+            padding: 24px; box-shadow: var(--md-sys-elevation-1);
             transition: box-shadow 0.2s ease, background-color 0.3s ease;
         }
+        .card:hover { box-shadow: var(--md-sys-elevation-2); }
+        @media (min-width: 600px) { .card { padding: 32px; } }
 
-        .card:hover {
-            box-shadow: var(--md-sys-elevation-2);
-        }
-
-        @media (min-width: 600px) {
-            .card {
-                padding: 32px;
-            }
-        }
-
-        /* Profile Hero */
-        .profile-hero {
-            margin-bottom: 24px;
-            display: grid;
-            gap: 24px;
-        }
-
-        @media (min-width: 840px) {
-            .profile-hero {
-                grid-template-columns: auto 1fr;
-                gap: 48px;
-                align-items: start;
-            }
-        }
-
-        .profile-avatar-container {
-            display: flex;
-            justify-content: center;
-        }
-
+        .profile-hero { margin-bottom: 24px; display: grid; gap: 24px; }
+        @media (min-width: 840px) { .profile-hero { grid-template-columns: auto 1fr; gap: 48px; align-items: start; } }
+        .profile-avatar-container { display: flex; justify-content: center; }
         .profile-avatar {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
+            width: 120px; height: 120px; border-radius: 50%;
             border: 4px solid var(--md-sys-color-primary-container);
-            box-shadow: var(--md-sys-elevation-2);
-            transition: transform 0.3s ease;
+            box-shadow: var(--md-sys-elevation-2); transition: transform 0.3s ease;
         }
+        .profile-avatar:hover { transform: scale(1.05); }
+        @media (min-width: 840px) { .profile-avatar { width: 180px; height: 180px; } }
 
-        .profile-avatar:hover {
-            transform: scale(1.05);
-        }
-
-        @media (min-width: 840px) {
-            .profile-avatar {
-                width: 180px;
-                height: 180px;
-            }
-        }
-
-        .profile-info {
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
-        }
-
-        .profile-name {
-            font: var(--md-sys-typescale-headline-large);
-            color: var(--md-sys-color-on-surface);
-        }
-
+        .profile-info { display: flex; flex-direction: column; gap: 16px; }
+        .profile-name { font: var(--md-sys-typescale-headline-large); color: var(--md-sys-color-on-surface); }
         .profile-username {
-            font: var(--md-sys-typescale-title-medium);
-            color: var(--md-sys-color-on-surface-variant);
-            display: flex;
-            align-items: center;
-            gap: 8px;
+            font: var(--md-sys-typescale-title-medium); color: var(--md-sys-color-on-surface-variant);
+            display: flex; align-items: center; gap: 8px;
         }
-
         .profile-bio {
-            font: var(--md-sys-typescale-body-large);
-            color: var(--md-sys-color-on-surface-variant);
-            white-space: pre-line;
-            line-height: 1.6;
+            font: var(--md-sys-typescale-body-large); color: var(--md-sys-color-on-surface-variant);
+            white-space: pre-line; line-height: 1.6;
         }
-
-        .profile-details {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 12px 24px;
-        }
-
+        .profile-details { display: flex; flex-wrap: wrap; gap: 12px 24px; }
         .profile-detail {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font: var(--md-sys-typescale-body-medium);
-            color: var(--md-sys-color-on-surface-variant);
+            display: flex; align-items: center; gap: 8px;
+            font: var(--md-sys-typescale-body-medium); color: var(--md-sys-color-on-surface-variant);
         }
+        .profile-detail svg { width: 18px; height: 18px; color: var(--md-sys-color-on-surface-variant); }
+        .profile-detail a { color: var(--md-sys-color-primary); display: flex; align-items: center; gap: 4px; }
+        .profile-stats { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 8px; }
 
-        .profile-detail svg {
-            width: 18px;
-            height: 18px;
-            color: var(--md-sys-color-on-surface-variant);
-        }
-
-        .profile-detail a {
-            color: var(--md-sys-color-primary);
-            display: flex;
-            align-items: center;
-            gap: 4px;
-        }
-
-        .profile-stats {
-            display: flex;
-            gap: 8px;
-            flex-wrap: wrap;
-            margin-top: 8px;
-        }
-
-        /* Stat Chip */
         .stat-chip {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            padding: 8px 16px;
+            display: flex; align-items: center; gap: 6px; padding: 8px 16px;
             background: var(--md-sys-color-secondary-container);
             color: var(--md-sys-color-on-secondary-container);
-            border-radius: var(--md-sys-shape-large);
-            font: var(--md-sys-typescale-label-large);
+            border-radius: var(--md-sys-shape-large); font: var(--md-sys-typescale-label-large);
         }
+        .stat-chip .value { font-weight: 600; }
 
-        .stat-chip .value {
-            font-weight: 600;
-        }
-
-        /* Buttons */
         .button {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            padding: 10px 24px;
-            border-radius: var(--md-sys-shape-extra-large);
-            font: var(--md-sys-typescale-label-large);
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            border: none;
-            text-decoration: none;
+            display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+            padding: 10px 24px; border-radius: var(--md-sys-shape-extra-large);
+            font: var(--md-sys-typescale-label-large); font-weight: 500; cursor: pointer;
+            transition: all 0.2s ease; border: none; text-decoration: none;
         }
-
-        .button-filled {
-            background: var(--md-sys-color-primary);
-            color: var(--md-sys-color-on-primary);
-        }
-
-        .button-filled:hover {
-            box-shadow: var(--md-sys-elevation-1);
-        }
-
-        .button-filled:active {
-            box-shadow: var(--md-sys-elevation-0);
-        }
-
+        .button-filled { background: var(--md-sys-color-primary); color: var(--md-sys-color-on-primary); }
+        .button-filled:hover { box-shadow: var(--md-sys-elevation-1); }
         .button-outlined {
-            background: transparent;
-            color: var(--md-sys-color-primary);
+            background: transparent; color: var(--md-sys-color-primary);
             border: 1px solid var(--md-sys-color-outline);
         }
+        .button-outlined:hover { background: var(--md-sys-color-surface-variant); }
+        .button svg { width: 18px; height: 18px; }
 
-        .button-outlined:hover {
-            background: var(--md-sys-color-surface-variant);
-        }
-
-        .button svg {
-            width: 18px;
-            height: 18px;
-        }
-
-        /* Section */
-        .section {
-            margin-bottom: 24px;
-        }
-
-        .section-header {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-            margin-bottom: 16px;
-            flex-wrap: wrap;
-        }
-
+        .section { margin-bottom: 24px; }
+        .section-header { display: flex; align-items: center; gap: 16px; margin-bottom: 16px; flex-wrap: wrap; }
         .section-title {
-            font: var(--md-sys-typescale-title-large);
-            color: var(--md-sys-color-on-surface);
-            display: flex;
-            align-items: center;
-            gap: 12px;
+            font: var(--md-sys-typescale-title-large); color: var(--md-sys-color-on-surface);
+            display: flex; align-items: center; gap: 12px;
         }
+        .section-title .icon { font-size: 24px; }
+        .section-subtitle { font: var(--md-sys-typescale-body-medium); color: var(--md-sys-color-on-surface-variant); }
 
-        .section-title .icon {
-            font-size: 24px;
-        }
-
-        .section-subtitle {
-            font: var(--md-sys-typescale-body-medium);
-            color: var(--md-sys-color-on-surface-variant);
-        }
-
-        /* Navigation Chips */
-        .nav-chips {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-        }
-
+        .nav-chips { display: flex; flex-wrap: wrap; gap: 8px; }
         .nav-chip {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            padding: 10px 16px;
-            background: var(--md-sys-color-surface-variant);
-            color: var(--md-sys-color-on-surface-variant);
-            border-radius: var(--md-sys-shape-small);
-            font: var(--md-sys-typescale-label-large);
-            text-decoration: none;
-            transition: all 0.2s ease;
-            border: none;
-            cursor: pointer;
+            display: flex; align-items: center; gap: 8px; padding: 10px 16px;
+            background: var(--md-sys-color-surface-variant); color: var(--md-sys-color-on-surface-variant);
+            border-radius: var(--md-sys-shape-small); font: var(--md-sys-typescale-label-large);
+            text-decoration: none; transition: all 0.2s ease; border: none; cursor: pointer;
         }
+        .nav-chip:hover { background: var(--md-sys-color-outline-variant); text-decoration: none; }
+        .nav-chip .icon { font-size: 18px; }
 
-        .nav-chip:hover {
-            background: var(--md-sys-color-outline-variant);
-            text-decoration: none;
-        }
-
-        .nav-chip .icon {
-            font-size: 18px;
-        }
-
-        /* Search Bar */
-        .search-bar {
-            position: relative;
-            margin-bottom: 24px;
-        }
-
+        .search-bar { position: relative; margin-bottom: 24px; }
         .search-bar input {
-            width: 100%;
-            height: 56px;
-            padding: 0 56px;
-            border: none;
-            border-radius: var(--md-sys-shape-extra-large);
-            background: var(--md-sys-color-surface-variant);
-            color: var(--md-sys-color-on-surface);
-            font: var(--md-sys-typescale-body-large);
+            width: 100%; height: 56px; padding: 0 56px; border: none;
+            border-radius: var(--md-sys-shape-extra-large); background: var(--md-sys-color-surface-variant);
+            color: var(--md-sys-color-on-surface); font: var(--md-sys-typescale-body-large);
             transition: all 0.2s ease;
         }
-
-        .search-bar input:focus {
-            outline: none;
-            box-shadow: 0 0 0 2px var(--md-sys-color-primary);
-        }
-
-        .search-bar input::placeholder {
-            color: var(--md-sys-color-on-surface-variant);
-        }
-
+        .search-bar input:focus { outline: none; box-shadow: 0 0 0 2px var(--md-sys-color-primary); }
+        .search-bar input::placeholder { color: var(--md-sys-color-on-surface-variant); }
         .search-bar .icon-leading {
-            position: absolute;
-            left: 16px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: var(--md-sys-color-on-surface-variant);
-            pointer-events: none;
+            position: absolute; left: 16px; top: 50%; transform: translateY(-50%);
+            color: var(--md-sys-color-on-surface-variant); pointer-events: none;
         }
-
         .search-bar .icon-trailing {
-            position: absolute;
-            right: 16px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: var(--md-sys-color-on-surface-variant);
-            cursor: pointer;
-            display: none;
+            position: absolute; right: 16px; top: 50%; transform: translateY(-50%);
+            color: var(--md-sys-color-on-surface-variant); cursor: pointer; display: none;
         }
+        .search-bar input:not(:placeholder-shown) + .icon-leading + .icon-trailing { display: block; }
 
-        .search-bar input:not(:placeholder-shown) + .icon-leading + .icon-trailing {
-            display: block;
-        }
-
-        /* Filter Chips */
-        .filter-chips {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin-bottom: 24px;
-        }
-
+        .filter-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 24px; }
         .filter-chip {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            padding: 6px 16px;
-            background: transparent;
-            color: var(--md-sys-color-on-surface-variant);
-            border: 1px solid var(--md-sys-color-outline);
-            border-radius: var(--md-sys-shape-extra-large);
-            font: var(--md-sys-typescale-label-large);
-            cursor: pointer;
-            transition: all 0.2s ease;
+            display: flex; align-items: center; gap: 6px; padding: 6px 16px; background: transparent;
+            color: var(--md-sys-color-on-surface-variant); border: 1px solid var(--md-sys-color-outline);
+            border-radius: var(--md-sys-shape-extra-large); font: var(--md-sys-typescale-label-large);
+            cursor: pointer; transition: all 0.2s ease;
         }
-
-        .filter-chip:hover {
-            background: var(--md-sys-color-surface-variant);
-        }
-
+        .filter-chip:hover { background: var(--md-sys-color-surface-variant); }
         .filter-chip.selected {
             background: var(--md-sys-color-secondary-container);
-            color: var(--md-sys-color-on-secondary-container);
-            border-color: transparent;
+            color: var(--md-sys-color-on-secondary-container); border-color: transparent;
         }
+        .filter-chip .lang-dot { width: 12px; height: 12px; border-radius: 50%; }
 
-        .filter-chip .lang-dot {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-        }
+        .repo-grid { display: grid; gap: 16px; }
+        @media (min-width: 600px) { .repo-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (min-width: 840px) { .repo-grid { grid-template-columns: repeat(3, 1fr); } }
 
-        /* Repository Grid */
-        .repo-grid {
-            display: grid;
-            gap: 16px;
-        }
-
-        @media (min-width: 600px) {
-            .repo-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        @media (min-width: 840px) {
-            .repo-grid {
-                grid-template-columns: repeat(3, 1fr);
-            }
-        }
-
-        /* Repository Card */
         .repo-card {
-            background: var(--md-sys-color-surface);
-            border-radius: var(--md-sys-shape-large);
-            padding: 16px;
-            box-shadow: var(--md-sys-elevation-1);
-            transition: all 0.2s ease;
-            display: flex;
-            flex-direction: column;
-            border: 1px solid var(--md-sys-color-outline-variant);
-            cursor: pointer;
+            background: var(--md-sys-color-surface); border-radius: var(--md-sys-shape-large);
+            padding: 16px; box-shadow: var(--md-sys-elevation-1); transition: all 0.2s ease;
+            display: flex; flex-direction: column; border: 1px solid var(--md-sys-color-outline-variant);
+            cursor: pointer; overflow: hidden;
         }
-
         .repo-card:hover {
-            box-shadow: var(--md-sys-elevation-3);
-            transform: translateY(-2px);
+            box-shadow: var(--md-sys-elevation-3); transform: translateY(-2px);
             border-color: var(--md-sys-color-outline);
         }
-
-        .repo-card-header {
-            display: flex;
-            align-items: flex-start;
-            justify-content: space-between;
-            gap: 8px;
-            margin-bottom: 8px;
+        
+        /* NEW: Repo Image Embed Styling */
+        .repo-image {
+            width: 100%; height: 140px; object-fit: cover;
+            border-radius: var(--md-sys-shape-medium); margin-bottom: 12px;
+            background-color: var(--md-sys-color-surface-variant);
+            transition: transform 0.3s ease;
         }
+        .repo-card:hover .repo-image { transform: scale(1.02); }
 
+        .repo-card-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 8px; margin-bottom: 8px; }
         .repo-name {
-            font: var(--md-sys-typescale-title-medium);
-            color: var(--md-sys-color-primary);
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            word-break: break-word;
+            font: var(--md-sys-typescale-title-medium); color: var(--md-sys-color-primary);
+            display: flex; align-items: center; gap: 8px; word-break: break-word;
         }
-
-        .repo-name .icon {
-            font-size: 16px;
-            flex-shrink: 0;
-        }
-
+        .repo-name .icon { font-size: 16px; flex-shrink: 0; }
         .repo-visibility {
-            font: var(--md-sys-typescale-label-small);
-            padding: 2px 8px;
-            background: var(--md-sys-color-surface-variant);
-            color: var(--md-sys-color-on-surface-variant);
-            border-radius: var(--md-sys-shape-extra-small);
-            flex-shrink: 0;
+            font: var(--md-sys-typescale-label-small); padding: 2px 8px;
+            background: var(--md-sys-color-surface-variant); color: var(--md-sys-color-on-surface-variant);
+            border-radius: var(--md-sys-shape-extra-small); flex-shrink: 0;
         }
-
         .repo-description {
-            font: var(--md-sys-typescale-body-small);
-            color: var(--md-sys-color-on-surface-variant);
-            margin-bottom: 12px;
-            flex-grow: 1;
-            display: -webkit-box;
-            -webkit-line-clamp: 3;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
+            font: var(--md-sys-typescale-body-small); color: var(--md-sys-color-on-surface-variant);
+            margin-bottom: 12px; flex-grow: 1; display: -webkit-box; -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical; overflow: hidden;
         }
-
-        .repo-topics {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 4px;
-            margin-bottom: 12px;
-        }
-
+        .repo-topics { display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: 12px; }
         .topic {
-            font: var(--md-sys-typescale-label-small);
-            padding: 2px 8px;
-            background: var(--md-sys-color-primary-container);
-            color: var(--md-sys-color-on-primary-container);
+            font: var(--md-sys-typescale-label-small); padding: 2px 8px;
+            background: var(--md-sys-color-primary-container); color: var(--md-sys-color-on-primary-container);
             border-radius: var(--md-sys-shape-extra-small);
         }
-
         .repo-meta {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-            font: var(--md-sys-typescale-label-medium);
-            color: var(--md-sys-color-on-surface-variant);
+            display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
+            font: var(--md-sys-typescale-label-medium); color: var(--md-sys-color-on-surface-variant);
         }
-
-        .repo-meta-item {
-            display: flex;
-            align-items: center;
-            gap: 4px;
-        }
-
-        .lang-dot {
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-        }
-
-        .repo-updated {
-            margin-left: auto;
-            font: var(--md-sys-typescale-label-small);
-        }
+        .repo-meta-item { display: flex; align-items: center; gap: 4px; }
+        .lang-dot { width: 10px; height: 10px; border-radius: 50%; }
+        .repo-updated { margin-left: auto; font: var(--md-sys-typescale-label-small); }
 
         .repo-card-actions {
-            display: flex;
-            gap: 8px;
-            margin-top: 12px;
-            padding-top: 12px;
+            display: flex; gap: 8px; margin-top: 12px; padding-top: 12px;
             border-top: 1px solid var(--md-sys-color-outline-variant);
         }
-
         .repo-action-btn {
-            flex: 1;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 4px;
-            padding: 6px 12px;
-            background: transparent;
-            border: none;
-            border-radius: var(--md-sys-shape-small);
-            color: var(--md-sys-color-on-surface-variant);
-            font: var(--md-sys-typescale-label-medium);
-            cursor: pointer;
-            transition: all 0.2s ease;
+            flex: 1; display: flex; align-items: center; justify-content: center; gap: 4px;
+            padding: 6px 12px; background: transparent; border: none;
+            border-radius: var(--md-sys-shape-small); color: var(--md-sys-color-on-surface-variant);
+            font: var(--md-sys-typescale-label-medium); cursor: pointer; transition: all 0.2s ease;
         }
+        .repo-action-btn:hover { background: var(--md-sys-color-surface-variant); color: var(--md-sys-color-on-surface); }
+        .repo-action-btn.copied { color: var(--md-sys-color-tertiary); }
+        .repo-action-btn svg { width: 16px; height: 16px; }
 
-        .repo-action-btn:hover {
-            background: var(--md-sys-color-surface-variant);
-            color: var(--md-sys-color-on-surface);
-        }
-
-        .repo-action-btn.copied {
-            color: var(--md-sys-color-tertiary);
-        }
-
-        .repo-action-btn svg {
-            width: 16px;
-            height: 16px;
-        }
-
-        /* GitHub Stats Section */
-        .stats-grid {
-            display: grid;
-            gap: 16px;
-        }
-
-        @media (min-width: 600px) {
-            .stats-grid {
-                grid-template-columns: repeat(4, 1fr);
-            }
-        }
-
+        .stats-grid { display: grid; gap: 16px; }
+        @media (min-width: 600px) { .stats-grid { grid-template-columns: repeat(4, 1fr); } }
         .stats-card {
-            background: var(--md-sys-color-surface-variant);
-            border-radius: var(--md-sys-shape-large);
-            padding: 20px;
-            text-align: center;
-            transition: all 0.2s ease;
+            background: var(--md-sys-color-surface-variant); border-radius: var(--md-sys-shape-large);
+            padding: 20px; text-align: center; transition: all 0.2s ease;
         }
+        .stats-card:hover { background: var(--md-sys-color-outline-variant); }
+        .stats-value { font: var(--md-sys-typescale-headline-medium); color: var(--md-sys-color-on-surface); font-weight: 600; }
+        .stats-label { font: var(--md-sys-typescale-label-medium); color: var(--md-sys-color-on-surface-variant); margin-top: 4px; }
 
-        .stats-card:hover {
-            background: var(--md-sys-color-outline-variant);
-        }
-
-        .stats-value {
-            font: var(--md-sys-typescale-headline-medium);
-            color: var(--md-sys-color-on-surface);
-            font-weight: 600;
-        }
-
-        .stats-label {
-            font: var(--md-sys-typescale-label-medium);
-            color: var(--md-sys-color-on-surface-variant);
-            margin-top: 4px;
-        }
-
-        /* Language Stats */
-        .lang-stats {
-            margin-top: 24px;
-        }
-
-        .lang-bar {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            margin-bottom: 12px;
-        }
-
+        .lang-stats { margin-top: 24px; }
+        .lang-bar { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
         .lang-bar-info {
-            min-width: 100px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font: var(--md-sys-typescale-label-medium);
-            color: var(--md-sys-color-on-surface-variant);
+            min-width: 100px; display: flex; align-items: center; gap: 8px;
+            font: var(--md-sys-typescale-label-medium); color: var(--md-sys-color-on-surface-variant);
         }
-
         .lang-bar-track {
-            flex: 1;
-            height: 8px;
-            background: var(--md-sys-color-surface-variant);
-            border-radius: 4px;
-            overflow: hidden;
+            flex: 1; height: 8px; background: var(--md-sys-color-surface-variant);
+            border-radius: 4px; overflow: hidden;
         }
-
-        .lang-bar-fill {
-            height: 100%;
-            border-radius: 4px;
-            transition: width 0.5s ease;
-        }
-
+        .lang-bar-fill { height: 100%; border-radius: 4px; transition: width 0.5s ease; }
         .lang-bar-percent {
-            font: var(--md-sys-typescale-label-small);
-            color: var(--md-sys-color-on-surface-variant);
-            min-width: 40px;
-            text-align: right;
+            font: var(--md-sys-typescale-label-small); color: var(--md-sys-color-on-surface-variant);
+            min-width: 40px; text-align: right;
         }
 
-        /* Skills Section */
-        .skills-grid {
-            display: grid;
-            gap: 24px;
-        }
-
-        @media (min-width: 600px) {
-            .skills-grid {
-                grid-template-columns: repeat(3, 1fr);
-            }
-        }
-
-        .skill-category {
-            background: var(--md-sys-color-surface-variant);
-            border-radius: var(--md-sys-shape-large);
-            padding: 20px;
-        }
-
-        .skill-category-title {
-            font: var(--md-sys-typescale-title-small);
-            color: var(--md-sys-color-on-surface);
-            margin-bottom: 12px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .skill-item {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 8px 0;
+        /* NEW: Recent Activity Styling */
+        .activity-item {
+            display: flex; gap: 12px; padding: 12px 0;
             border-bottom: 1px solid var(--md-sys-color-outline-variant);
+            font: var(--md-sys-typescale-body-medium); align-items: flex-start;
         }
-
-        .skill-item:last-child {
-            border-bottom: none;
+        .activity-item:last-child { border-bottom: none; }
+        .activity-time {
+            color: var(--md-sys-color-on-surface-variant); min-width: 80px;
+            font: var(--md-sys-typescale-label-medium); padding-top: 2px;
         }
+        .activity-text { color: var(--md-sys-color-on-surface); line-height: 1.5; }
+        .activity-text a { color: var(--md-sys-color-primary); text-decoration: none; font-weight: 500; }
+        .activity-text a:hover { text-decoration: underline; }
 
-        .skill-name {
-            font: var(--md-sys-typescale-body-medium);
-            color: var(--md-sys-color-on-surface);
+        .skills-grid { display: grid; gap: 24px; }
+        @media (min-width: 600px) { .skills-grid { grid-template-columns: repeat(3, 1fr); } }
+        .skill-category { background: var(--md-sys-color-surface-variant); border-radius: var(--md-sys-shape-large); padding: 20px; }
+        .skill-category-title {
+            font: var(--md-sys-typescale-title-small); color: var(--md-sys-color-on-surface);
+            margin-bottom: 12px; display: flex; align-items: center; gap: 8px;
         }
-
-        .skill-level {
-            display: flex;
-            gap: 4px;
+        .skill-item {
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 8px 0; border-bottom: 1px solid var(--md-sys-color-outline-variant);
         }
+        .skill-item:last-child { border-bottom: none; }
+        .skill-name { font: var(--md-sys-typescale-body-medium); color: var(--md-sys-color-on-surface); }
+        .skill-level { display: flex; gap: 4px; }
+        .skill-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--md-sys-color-outline); }
+        .skill-dot.filled { background: var(--md-sys-color-primary); }
 
-        .skill-dot {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background: var(--md-sys-color-outline);
-        }
-
-        .skill-dot.filled {
-            background: var(--md-sys-color-primary);
-        }
-
-        /* Loading Skeleton */
         .skeleton {
-            background: linear-gradient(
-                90deg,
-                var(--md-sys-color-surface-variant) 0%,
-                var(--md-sys-color-outline-variant) 50%,
-                var(--md-sys-color-surface-variant) 100%
-            );
-            background-size: 200% 100%;
-            animation: shimmer 1.5s infinite;
+            background: linear-gradient(90deg, var(--md-sys-color-surface-variant) 0%, var(--md-sys-color-outline-variant) 50%, var(--md-sys-color-surface-variant) 100%);
+            background-size: 200% 100%; animation: shimmer 1.5s infinite;
             border-radius: var(--md-sys-shape-small);
         }
+        @keyframes shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+        .skeleton-text { height: 16px; margin-bottom: 8px; }
+        .skeleton-text.short { width: 60%; }
+        .skeleton-avatar { width: 120px; height: 120px; border-radius: 50%; }
 
-        @keyframes shimmer {
-            0% { background-position: 200% 0; }
-            100% { background-position: -200% 0; }
-        }
-
-        .skeleton-text {
-            height: 16px;
-            margin-bottom: 8px;
-        }
-
-        .skeleton-text.short {
-            width: 60%;
-        }
-
-        .skeleton-avatar {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-        }
-
-        /* Error State */
         .error-state {
-            background: var(--md-sys-color-error-container);
-            color: var(--md-sys-color-on-error-container);
-            border-radius: var(--md-sys-shape-large);
-            padding: 24px;
-            text-align: center;
-            margin-bottom: 24px;
+            background: var(--md-sys-color-error-container); color: var(--md-sys-color-on-error-container);
+            border-radius: var(--md-sys-shape-large); padding: 24px; text-align: center; margin-bottom: 24px;
         }
+        .error-state h3 { font: var(--md-sys-typescale-title-medium); margin-bottom: 8px; }
+        .error-state p { font: var(--md-sys-typescale-body-medium); margin-bottom: 16px; opacity: 0.8; }
+        .empty-state { text-align: center; padding: 48px 24px; color: var(--md-sys-color-on-surface-variant); }
+        .empty-state .icon { font-size: 48px; margin-bottom: 16px; opacity: 0.5; }
 
-        .error-state h3 {
-            font: var(--md-sys-typescale-title-medium);
-            margin-bottom: 8px;
-        }
-
-        .error-state p {
-            font: var(--md-sys-typescale-body-medium);
-            margin-bottom: 16px;
-            opacity: 0.8;
-        }
-
-        /* Empty State */
-        .empty-state {
-            text-align: center;
-            padding: 48px 24px;
-            color: var(--md-sys-color-on-surface-variant);
-        }
-
-        .empty-state .icon {
-            font-size: 48px;
-            margin-bottom: 16px;
-            opacity: 0.5;
-        }
-
-        /* Footer */
         .footer {
-            margin-top: 48px;
-            padding: 24px;
-            background: var(--md-sys-color-surface-variant);
-            border-radius: var(--md-sys-shape-extra-large);
-            text-align: center;
+            margin-top: 48px; padding: 24px; background: var(--md-sys-color-surface-variant);
+            border-radius: var(--md-sys-shape-extra-large); text-align: center;
         }
-
-        .footer-content {
-            font: var(--md-sys-typescale-body-medium);
-            color: var(--md-sys-color-on-surface-variant);
-        }
-
-        .footer-links {
-            display: flex;
-            justify-content: center;
-            gap: 24px;
-            margin-top: 16px;
-        }
-
+        .footer-content { font: var(--md-sys-typescale-body-medium); color: var(--md-sys-color-on-surface-variant); }
+        .footer-links { display: flex; justify-content: center; gap: 24px; margin-top: 16px; }
         .footer-links a {
-            color: var(--md-sys-color-primary);
-            font: var(--md-sys-typescale-label-large);
-            display: flex;
-            align-items: center;
-            gap: 6px;
+            color: var(--md-sys-color-primary); font: var(--md-sys-typescale-label-large);
+            display: flex; align-items: center; gap: 6px;
         }
 
-        /* FAB */
         .fab {
-            position: fixed;
-            bottom: 24px;
-            right: 24px;
-            width: 56px;
-            height: 56px;
-            border-radius: var(--md-sys-shape-large);
-            background: var(--md-sys-color-primary-container);
-            color: var(--md-sys-color-on-primary-container);
-            border: none;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: var(--md-sys-elevation-3);
-            transition: all 0.2s ease;
-            opacity: 0;
-            visibility: hidden;
+            position: fixed; bottom: 24px; right: 24px; width: 56px; height: 56px;
+            border-radius: var(--md-sys-shape-large); background: var(--md-sys-color-primary-container);
+            color: var(--md-sys-color-on-primary-container); border: none; cursor: pointer;
+            display: flex; align-items: center; justify-content: center; box-shadow: var(--md-sys-elevation-3);
+            transition: all 0.2s ease; opacity: 0; visibility: hidden;
         }
+        .fab.visible { opacity: 1; visibility: visible; }
+        .fab:hover { transform: scale(1.05); }
+        .fab svg { width: 24px; height: 24px; }
 
-        .fab.visible {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .fab:hover {
-            transform: scale(1.05);
-        }
-
-        .fab svg {
-            width: 24px;
-            height: 24px;
-        }
-
-        /* Snackbar */
         .snackbar {
-            position: fixed;
-            bottom: 24px;
-            left: 50%;
-            transform: translateX(-50%) translateY(100px);
-            background: var(--md-sys-color-inverse-surface, #313033);
-            color: var(--md-sys-color-inverse-on-surface, #F4EFF4);
-            padding: 14px 16px;
-            border-radius: var(--md-sys-shape-small);
-            font: var(--md-sys-typescale-body-medium);
-            z-index: 1000;
-            transition: transform 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 12px;
+            position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%) translateY(100px);
+            background: #313033; color: #F4EFF4; padding: 14px 16px;
+            border-radius: var(--md-sys-shape-small); font: var(--md-sys-typescale-body-medium);
+            z-index: 1000; transition: transform 0.3s ease; display: flex; align-items: center; gap: 12px;
         }
+        .snackbar.visible { transform: translateX(-50%) translateY(0); }
 
-        .snackbar.visible {
-            transform: translateX(-50%) translateY(0);
-        }
-
-        /* Animations */
         @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
-
-        .animate-in {
-            animation: fadeInUp 0.4s ease forwards;
-        }
-
+        .animate-in { animation: fadeInUp 0.4s ease forwards; }
         .animate-delay-1 { animation-delay: 0.1s; opacity: 0; }
         .animate-delay-2 { animation-delay: 0.2s; opacity: 0; }
         .animate-delay-3 { animation-delay: 0.3s; opacity: 0; }
         .animate-delay-4 { animation-delay: 0.4s; opacity: 0; }
+        .animate-delay-5 { animation-delay: 0.5s; opacity: 0; }
 
-        /* Language Colors */
         .lang-javascript { background: #f1e05a; }
         .lang-typescript { background: #3178c6; }
         .lang-python { background: #3572A5; }
@@ -1117,16 +526,10 @@
         .lang-shell { background: #89e051; }
         .lang-dockerfile { background: #384d54; }
 
-        /* Results count */
-        .results-info {
-            font: var(--md-sys-typescale-label-medium);
-            color: var(--md-sys-color-on-surface-variant);
-            margin-bottom: 16px;
-        }
+        .results-info { font: var(--md-sys-typescale-label-medium); color: var(--md-sys-color-on-surface-variant); margin-bottom: 16px; }
     </style>
 </head>
 <body>
-    <!-- Top App Bar -->
     <header class="top-app-bar" id="topAppBar">
         <div class="top-app-bar-title">
             <span class="icon">📁</span>
@@ -1155,7 +558,6 @@
     </header>
 
     <main class="container">
-        <!-- Profile Hero Card -->
         <section class="card profile-hero animate-in" id="profileSection">
             <div class="profile-avatar-container">
                 <img class="profile-avatar" id="profileAvatar" src="" alt="Profile Avatar">
@@ -1196,10 +598,10 @@
             </div>
         </section>
 
-        <!-- Quick Navigation -->
         <section class="section animate-in animate-delay-1">
             <div class="nav-chips">
                 <a href="#about" class="nav-chip"><span class="icon">👤</span> About</a>
+                <a href="#activity" class="nav-chip"><span class="icon">⚡</span> Activity</a>
                 <a href="#projects" class="nav-chip"><span class="icon">📂</span> Projects</a>
                 <a href="#stats" class="nav-chip"><span class="icon">📊</span> Statistics</a>
                 <a href="#skills" class="nav-chip"><span class="icon">🛠️</span> Skills</a>
@@ -1208,12 +610,8 @@
             </div>
         </section>
 
-        <!-- About Section -->
         <section class="card section animate-in animate-delay-2" id="about">
-            <h2 class="section-title">
-                <span class="icon">👤</span>
-                About Me
-            </h2>
+            <h2 class="section-title"><span class="icon">👤</span> About Me</h2>
             <p class="section-subtitle" style="margin-bottom: 16px;">Get to know me better</p>
             <div id="aboutContent">
                 <p class="profile-bio" id="aboutBio" style="margin-bottom: 16px;"></p>
@@ -1221,70 +619,63 @@
             </div>
         </section>
 
-        <!-- Projects Section -->
-        <section class="section animate-in animate-delay-3" id="projects">
+        <!-- NEW: Recent Activity Section -->
+        <section class="card section animate-in animate-delay-3" id="activity">
+            <h2 class="section-title"><span class="icon">⚡</span> Recent Activity</h2>
+            <p class="section-subtitle" style="margin-bottom: 16px;">Latest actions on GitHub</p>
+            <div id="recentActivity">
+                <div class="skeleton skeleton-text" style="width: 100%; height: 40px;"></div>
+                <div class="skeleton skeleton-text" style="width: 100%; height: 40px;"></div>
+                <div class="skeleton skeleton-text" style="width: 100%; height: 40px;"></div>
+            </div>
+        </section>
+
+        <section class="section animate-in animate-delay-4" id="projects">
             <div class="section-header">
-                <h2 class="section-title">
-                    <span class="icon">📂</span>
-                    repositories/
-                </h2>
+                <h2 class="section-title"><span class="icon">📂</span> repositories/</h2>
             </div>
 
-            <!-- Search -->
             <div class="search-bar">
                 <input type="text" id="searchInput" placeholder="Search repositories...">
                 <svg class="icon-leading" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="24" height="24">
-                    <circle cx="11" cy="11" r="8"/>
-                    <path d="M21 21l-4.35-4.35"/>
+                    <circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/>
                 </svg>
                 <svg class="icon-trailing" id="searchClear" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="24" height="24">
                     <path d="M18 6L6 18M6 6l12 12"/>
                 </svg>
             </div>
 
-            <!-- Filters -->
             <div class="filter-chips" id="filterChips">
-                <button class="filter-chip selected" data-lang="all">
-                    All
-                </button>
+                <button class="filter-chip selected" data-lang="all">All</button>
             </div>
 
-            <!-- Results Info -->
             <div class="results-info" id="resultsInfo"></div>
 
-            <!-- Loading -->
             <div id="reposLoading" class="repo-grid">
-                <div class="skeleton" style="height: 180px; border-radius: 16px;"></div>
-                <div class="skeleton" style="height: 180px; border-radius: 16px;"></div>
-                <div class="skeleton" style="height: 180px; border-radius: 16px;"></div>
-                <div class="skeleton" style="height: 180px; border-radius: 16px;"></div>
-                <div class="skeleton" style="height: 180px; border-radius: 16px;"></div>
-                <div class="skeleton" style="height: 180px; border-radius: 16px;"></div>
+                <div class="skeleton" style="height: 280px; border-radius: 16px;"></div>
+                <div class="skeleton" style="height: 280px; border-radius: 16px;"></div>
+                <div class="skeleton" style="height: 280px; border-radius: 16px;"></div>
+                <div class="skeleton" style="height: 280px; border-radius: 16px;"></div>
+                <div class="skeleton" style="height: 280px; border-radius: 16px;"></div>
+                <div class="skeleton" style="height: 280px; border-radius: 16px;"></div>
             </div>
 
-            <!-- Error -->
             <div id="reposError" style="display: none;" class="error-state">
                 <h3>Unable to load repositories</h3>
                 <p>Please check your connection and try again.</p>
                 <button class="button button-filled" onclick="loadRepos()">Retry</button>
             </div>
 
-            <!-- Empty -->
             <div id="reposEmpty" style="display: none;" class="empty-state">
                 <div class="icon">📭</div>
                 <p>No repositories found matching your search.</p>
             </div>
 
-            <!-- Repository Grid -->
             <div class="repo-grid" id="repoGrid"></div>
         </section>
 
-        <!-- GitHub Stats -->
-        <section class="card section animate-in animate-delay-4" id="stats">
-            <h2 class="section-title">
-                <span class="icon">📊</span>
-                GitHub Statistics
-            </h2>
+        <section class="card section animate-in animate-delay-5" id="stats">
+            <h2 class="section-title"><span class="icon">📊</span> GitHub Statistics</h2>
             <p class="section-subtitle" style="margin-bottom: 16px;">My contribution metrics and repository insights</p>
             
             <div class="stats-grid" id="statsGrid">
@@ -1312,210 +703,54 @@
             </div>
         </section>
 
-        <!-- Skills Section -->
         <section class="card section" id="skills">
-            <h2 class="section-title">
-                <span class="icon">🛠️</span>
-                Technologies & Skills
-            </h2>
+            <h2 class="section-title"><span class="icon">🛠️</span> Technologies & Skills</h2>
             <p class="section-subtitle" style="margin-bottom: 16px;">Tools and technologies I work with</p>
             
             <div class="skills-grid" id="skillsGrid">
                 <div class="skill-category">
-                    <h3 class="skill-category-title">
-                        <span>💻</span> Programming Languages
-                    </h3>
-                    <div class="skill-item">
-                        <span class="skill-name">JavaScript / TypeScript</span>
-                        <div class="skill-level">
-                            <span class="skill-dot filled"></span>
-                            <span class="skill-dot filled"></span>
-                            <span class="skill-dot filled"></span>
-                            <span class="skill-dot filled"></span>
-                            <span class="skill-dot filled"></span>
-                        </div>
-                    </div>
-                    <div class="skill-item">
-                        <span class="skill-name">Python</span>
-                        <div class="skill-level">
-                            <span class="skill-dot filled"></span>
-                            <span class="skill-dot filled"></span>
-                            <span class="skill-dot filled"></span>
-                            <span class="skill-dot filled"></span>
-                            <span class="skill-dot"></span>
-                        </div>
-                    </div>
-                    <div class="skill-item">
-                        <span class="skill-name">HTML / CSS</span>
-                        <div class="skill-level">
-                            <span class="skill-dot filled"></span>
-                            <span class="skill-dot filled"></span>
-                            <span class="skill-dot filled"></span>
-                            <span class="skill-dot filled"></span>
-                            <span class="skill-dot filled"></span>
-                        </div>
-                    </div>
-                    <div class="skill-item">
-                        <span class="skill-name">Go</span>
-                        <div class="skill-level">
-                            <span class="skill-dot filled"></span>
-                            <span class="skill-dot filled"></span>
-                            <span class="skill-dot filled"></span>
-                            <span class="skill-dot"></span>
-                            <span class="skill-dot"></span>
-                        </div>
-                    </div>
-                    <div class="skill-item">
-                        <span class="skill-name">Rust</span>
-                        <div class="skill-level">
-                            <span class="skill-dot filled"></span>
-                            <span class="skill-dot filled"></span>
-                            <span class="skill-dot"></span>
-                            <span class="skill-dot"></span>
-                            <span class="skill-dot"></span>
-                        </div>
-                    </div>
+                    <h3 class="skill-category-title"><span>💻</span> Programming Languages</h3>
+                    <div class="skill-item"><span class="skill-name">JavaScript / TypeScript</span><div class="skill-level"><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot filled"></span></div></div>
+                    <div class="skill-item"><span class="skill-name">Python</span><div class="skill-level"><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot"></span></div></div>
+                    <div class="skill-item"><span class="skill-name">HTML / CSS</span><div class="skill-level"><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot filled"></span></div></div>
+                    <div class="skill-item"><span class="skill-name">Go</span><div class="skill-level"><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot"></span><span class="skill-dot"></span></div></div>
+                    <div class="skill-item"><span class="skill-name">Rust</span><div class="skill-level"><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot"></span><span class="skill-dot"></span><span class="skill-dot"></span></div></div>
                 </div>
 
                 <div class="skill-category">
-                    <h3 class="skill-category-title">
-                        <span>🚀</span> Frameworks & Libraries
-                    </h3>
-                    <div class="skill-item">
-                        <span class="skill-name">React / Next.js</span>
-                        <div class="skill-level">
-                            <span class="skill-dot filled"></span>
-                            <span class="skill-dot filled"></span>
-                            <span class="skill-dot filled"></span>
-                            <span class="skill-dot filled"></span>
-                            <span class="skill-dot"></span>
-                        </div>
-                    </div>
-                    <div class="skill-item">
-                        <span class="skill-name">Node.js</span>
-                        <div class="skill-level">
-                            <span class="skill-dot filled"></span>
-                            <span class="skill-dot filled"></span>
-                            <span class="skill-dot filled"></span>
-                            <span class="skill-dot filled"></span>
-                            <span class="skill-dot"></span>
-                        </div>
-                    </div>
-                    <div class="skill-item">
-                        <span class="skill-name">Tailwind CSS</span>
-                        <div class="skill-level">
-                            <span class="skill-dot filled"></span>
-                            <span class="skill-dot filled"></span>
-                            <span class="skill-dot filled"></span>
-                            <span class="skill-dot filled"></span>
-                            <span class="skill-dot filled"></span>
-                        </div>
-                    </div>
-                    <div class="skill-item">
-                        <span class="skill-name">Express.js</span>
-                        <div class="skill-level">
-                            <span class="skill-dot filled"></span>
-                            <span class="skill-dot filled"></span>
-                            <span class="skill-dot filled"></span>
-                            <span class="skill-dot filled"></span>
-                            <span class="skill-dot"></span>
-                        </div>
-                    </div>
+                    <h3 class="skill-category-title"><span>🚀</span> Frameworks & Libraries</h3>
+                    <div class="skill-item"><span class="skill-name">React / Next.js</span><div class="skill-level"><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot"></span></div></div>
+                    <div class="skill-item"><span class="skill-name">Node.js</span><div class="skill-level"><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot"></span></div></div>
+                    <div class="skill-item"><span class="skill-name">Tailwind CSS</span><div class="skill-level"><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot filled"></span></div></div>
                 </div>
 
                 <div class="skill-category">
-                    <h3 class="skill-category-title">
-                        <span>🛡️</span> Tools & Platforms
-                    </h3>
-                    <div class="skill-item">
-                        <span class="skill-name">Git / GitHub</span>
-                        <div class="skill-level">
-                            <span class="skill-dot filled"></span>
-                            <span class="skill-dot filled"></span>
-                            <span class="skill-dot filled"></span>
-                            <span class="skill-dot filled"></span>
-                            <span class="skill-dot filled"></span>
-                        </div>
-                    </div>
-                    <div class="skill-item">
-                        <span class="skill-name">Docker</span>
-                        <div class="skill-level">
-                            <span class="skill-dot filled"></span>
-                            <span class="skill-dot filled"></span>
-                            <span class="skill-dot filled"></span>
-                            <span class="skill-dot filled"></span>
-                            <span class="skill-dot"></span>
-                        </div>
-                    </div>
-                    <div class="skill-item">
-                        <span class="skill-name">Linux</span>
-                        <div class="skill-level">
-                            <span class="skill-dot filled"></span>
-                            <span class="skill-dot filled"></span>
-                            <span class="skill-dot filled"></span>
-                            <span class="skill-dot filled"></span>
-                            <span class="skill-dot"></span>
-                        </div>
-                    </div>
-                    <div class="skill-item">
-                        <span class="skill-name">VS Code</span>
-                        <div class="skill-level">
-                            <span class="skill-dot filled"></span>
-                            <span class="skill-dot filled"></span>
-                            <span class="skill-dot filled"></span>
-                            <span class="skill-dot filled"></span>
-                            <span class="skill-dot filled"></span>
-                        </div>
-                    </div>
-                    <div class="skill-item">
-                        <span class="skill-name">Cloudflare</span>
-                        <div class="skill-level">
-                            <span class="skill-dot filled"></span>
-                            <span class="skill-dot filled"></span>
-                            <span class="skill-dot filled"></span>
-                            <span class="skill-dot"></span>
-                            <span class="skill-dot"></span>
-                        </div>
-                    </div>
+                    <h3 class="skill-category-title"><span>🛡️</span> Tools & Platforms</h3>
+                    <div class="skill-item"><span class="skill-name">Git / GitHub</span><div class="skill-level"><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot filled"></span></div></div>
+                    <div class="skill-item"><span class="skill-name">Docker</span><div class="skill-level"><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot"></span></div></div>
+                    <div class="skill-item"><span class="skill-name">Linux</span><div class="skill-level"><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot"></span></div></div>
                 </div>
             </div>
         </section>
 
-        <!-- Links Section -->
         <section class="card section" id="links">
-            <h2 class="section-title">
-                <span class="icon">🔗</span>
-                links/
-            </h2>
+            <h2 class="section-title"><span class="icon">🔗</span> links/</h2>
             <p class="section-subtitle" style="margin-bottom: 16px;">Find me around the web</p>
             <div class="nav-chips">
-                <a href="https://github.com/flessan" target="_blank" rel="noopener" class="nav-chip">
-                    <span class="icon">🐙</span> GitHub
-                </a>
-                <a href="https://thio.qzz.io" target="_blank" rel="noopener" class="nav-chip">
-                    <span class="icon">🌐</span> Personal Website
-                </a>
+                <a href="https://github.com/flessan" target="_blank" rel="noopener" class="nav-chip"><span class="icon">🐙</span> GitHub</a>
+                <a href="https://thio.qzz.io" target="_blank" rel="noopener" class="nav-chip"><span class="icon">🌐</span> Personal Website</a>
             </div>
         </section>
 
-        <!-- Contact Section -->
         <section class="card section" id="contact">
-            <h2 class="section-title">
-                <span class="icon">📧</span>
-                contact/
-            </h2>
+            <h2 class="section-title"><span class="icon">📧</span> contact/</h2>
             <p class="section-subtitle" style="margin-bottom: 16px;">Get in touch with me</p>
             <div class="nav-chips">
-                <a href="mailto:tio@cc.cc" class="nav-chip">
-                    <span class="icon">✉️</span> tio@cc.cc
-                </a>
-                <a href="https://github.com/flessan/issues" target="_blank" rel="noopener" class="nav-chip">
-                    <span class="icon">💬</span> Open an Issue
-                </a>
+                <a href="mailto:tio@cc.cc" class="nav-chip"><span class="icon">✉️</span> tio@cc.cc</a>
+                <a href="https://github.com/flessan/issues" target="_blank" rel="noopener" class="nav-chip"><span class="icon">💬</span> Open an Issue</a>
             </div>
         </section>
 
-        <!-- Footer -->
         <footer class="footer">
             <div class="footer-content">
                 <p>Last generated: <span id="generatedTime">-</span></p>
@@ -1528,120 +763,68 @@
                     </svg>
                     GitHub Pages
                 </a>
-                <a href="https://github.com/flessan" target="_blank" rel="noopener">
-                    @flessan
-                </a>
+                <a href="https://github.com/flessan" target="_blank" rel="noopener">@flessan</a>
             </div>
         </footer>
     </main>
 
-    <!-- FAB -->
     <button class="fab" id="fab" title="Scroll to top">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M18 15l-6-6-6 6"/>
         </svg>
     </button>
 
-    <!-- Snackbar -->
     <div class="snackbar" id="snackbar">
         <span id="snackbarText">URL copied to clipboard!</span>
     </div>
 
     <script>
-        // ==================== CACHE SYSTEM ====================
         const CACHE_KEY = 'flessan_portfolio_cache';
-        const CACHE_TTL = 8 * 60 * 60 * 1000; // 8 hours in milliseconds
+        const CACHE_TTL = 8 * 60 * 60 * 1000;
 
         function getCachedData(key) {
             try {
                 const cached = localStorage.getItem(CACHE_KEY);
                 if (!cached) return null;
-                
                 const { data, timestamp } = JSON.parse(cached);
                 const age = Date.now() - timestamp;
-                
-                if (age > CACHE_TTL) {
-                    localStorage.removeItem(CACHE_KEY);
-                    return null;
-                }
-                
+                if (age > CACHE_TTL) { localStorage.removeItem(CACHE_KEY); return null; }
                 return { data, age };
-            } catch (e) {
-                localStorage.removeItem(CACHE_KEY);
-                return null;
-            }
+            } catch (e) { localStorage.removeItem(CACHE_KEY); return null; }
         }
 
         function setCachedData(data) {
             try {
-                localStorage.setItem(CACHE_KEY, JSON.stringify({
-                    data,
-                    timestamp: Date.now()
-                }));
-            } catch (e) {
-                console.warn('Failed to cache data:', e);
-            }
+                localStorage.setItem(CACHE_KEY, JSON.stringify({ data, timestamp: Date.now() }));
+            } catch (e) { console.warn('Failed to cache data:', e); }
         }
 
         function updateCacheIndicator(age) {
             const cacheDot = document.getElementById('cacheDot');
             const cacheText = document.getElementById('cacheText');
-            
-            if (!age) {
-                cacheDot.classList.add('stale');
-                cacheText.textContent = 'No cache';
-                return;
-            }
-            
+            if (!age) { cacheDot.classList.add('stale'); cacheText.textContent = 'No cache'; return; }
             const hours = Math.floor(age / (60 * 60 * 1000));
             const minutes = Math.floor((age % (60 * 60 * 1000)) / (60 * 1000));
-            
-            if (hours > 0) {
-                cacheText.textContent = `${hours}h ago`;
-            } else {
-                cacheText.textContent = `${minutes}m ago`;
-            }
-            
-            // Mark as stale if > 7 hours
-            if (hours >= 7) {
-                cacheDot.classList.add('stale');
-            } else {
-                cacheDot.classList.remove('stale');
-            }
+            cacheText.textContent = hours > 0 ? `${hours}h ago` : `${minutes}m ago`;
+            if (hours >= 7) cacheDot.classList.add('stale');
+            else cacheDot.classList.remove('stale');
         }
 
-        // ==================== STATE ====================
         let profileData = null;
         let reposData = [];
         let filteredRepos = [];
         let selectedLanguage = 'all';
 
-        // ==================== LANGUAGE COLORS ====================
         const languageColors = {
-            'JavaScript': '#f1e05a',
-            'TypeScript': '#3178c6',
-            'Python': '#3572A5',
-            'HTML': '#e34c26',
-            'CSS': '#563d7c',
-            'PHP': '#4F5D95',
-            'Ruby': '#701516',
-            'Java': '#b07219',
-            'Go': '#00ADD9',
-            'Rust': '#dea584',
-            'C': '#555555',
-            'C++': '#f34b7d',
-            'C#': '#178600',
-            'Swift': '#F05138',
-            'Kotlin': '#A97BFF',
-            'Shell': '#89e051',
-            'Dockerfile': '#384d54'
+            'JavaScript': '#f1e05a', 'TypeScript': '#3178c6', 'Python': '#3572A5', 'HTML': '#e34c26',
+            'CSS': '#563d7c', 'PHP': '#4F5D95', 'Ruby': '#701516', 'Java': '#b07219', 'Go': '#00ADD9',
+            'Rust': '#dea584', 'C': '#555555', 'C++': '#f34b7d', 'C#': '#178600', 'Swift': '#F05138',
+            'Kotlin': '#A97BFF', 'Shell': '#89e051', 'Dockerfile': '#384d54'
         };
 
-        // ==================== UTILITIES ====================
         function formatRelativeTime(dateString) {
             const date = new Date(dateString);
-            const now = new Date();
-            const diffMs = now - date;
+            const diffMs = Date.now() - date;
             const diffSecs = Math.floor(diffMs / 1000);
             const diffMins = Math.floor(diffSecs / 60);
             const diffHours = Math.floor(diffMins / 60);
@@ -1660,12 +843,7 @@
         }
 
         function formatDate(dateString) {
-            const date = new Date(dateString);
-            return date.toLocaleDateString('en-US', { 
-                year: 'numeric', 
-                month: 'short', 
-                day: 'numeric' 
-            });
+            return new Date(dateString).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
         }
 
         function showSnackbar(message) {
@@ -1675,7 +853,6 @@
             setTimeout(() => snackbar.classList.remove('visible'), 3000);
         }
 
-        // ==================== THEME TOGGLE ====================
         function initTheme() {
             const savedTheme = localStorage.getItem('theme');
             const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
@@ -1701,7 +878,6 @@
 
         document.getElementById('themeToggle').addEventListener('click', toggleTheme);
 
-        // ==================== TOP APP BAR SCROLL ====================
         const topAppBar = document.getElementById('topAppBar');
         const fab = document.getElementById('fab');
 
@@ -1715,17 +891,13 @@
             }
         });
 
-        fab.addEventListener('click', () => {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
+        fab.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 
-        // ==================== PROFILE LOADING ====================
         async function loadProfile(forceRefresh = false) {
             const loadingEl = document.getElementById('profileLoading');
             const errorEl = document.getElementById('profileError');
             const contentEl = document.getElementById('profileContent');
 
-            // Check cache first
             if (!forceRefresh) {
                 const cached = getCachedData('profile');
                 if (cached) {
@@ -1743,55 +915,32 @@
             try {
                 const response = await fetch('https://api.github.com/users/flessan');
                 if (!response.ok) throw new Error('Failed to fetch profile');
-                
                 profileData = await response.json();
                 
-                // Update cache
-                const currentCache = getCachedData('profile');
-                setCachedData({
-                    ...getCachedData('profile')?.data,
-                    profile: profileData,
-                    repos: reposData
-                });
-                
-                // Update cache indicator
+                const currentCache = getCachedData('profile') || {};
+                setCachedData({ ...currentCache.data, profile: profileData, repos: reposData });
                 updateCacheIndicator(0);
                 
-                // Save to localStorage
-                const fullCache = {
-                    profile: profileData,
-                    repos: reposData,
-                    timestamp: Date.now()
-                };
                 localStorage.setItem('portfolio_profile', JSON.stringify(profileData));
-                localStorage.setItem('portfolio_timestamp', fullCache.timestamp.toString());
+                localStorage.setItem('portfolio_timestamp', Date.now().toString());
                 
                 loadingEl.style.display = 'none';
                 contentEl.style.display = 'block';
                 renderProfile();
                 
-                // Update about section
                 document.getElementById('aboutBio').textContent = profileData.bio || 'No bio available';
                 renderAboutDetails();
-
             } catch (error) {
                 console.error('Error loading profile:', error);
-                
-                // Try to load from localStorage as fallback
                 const localProfile = localStorage.getItem('portfolio_profile');
                 if (localProfile) {
                     profileData = JSON.parse(localProfile);
                     loadingEl.style.display = 'none';
                     contentEl.style.display = 'block';
                     renderProfile();
-                    
-                    const timestamp = localStorage.getItem('portfolio_timestamp');
-                    if (timestamp) {
-                        updateCacheIndicator(Date.now() - parseInt(timestamp));
-                    }
+                    updateCacheIndicator(Date.now() - parseInt(localStorage.getItem('portfolio_timestamp') || Date.now()));
                     return;
                 }
-                
                 loadingEl.style.display = 'none';
                 errorEl.style.display = 'block';
             }
@@ -1799,7 +948,6 @@
 
         function renderProfile() {
             if (!profileData) return;
-
             document.getElementById('profileAvatar').src = profileData.avatar_url;
             document.getElementById('profileAvatar').alt = profileData.name || profileData.login;
             document.getElementById('profileName').textContent = profileData.name || profileData.login;
@@ -1807,20 +955,10 @@
             document.getElementById('profileBio').textContent = profileData.bio || 'No bio available';
             document.getElementById('profileGithubBtn').href = profileData.html_url;
             document.getElementById('profileStats').innerHTML = `
-                <div class="stat-chip">
-                    <span>📦</span>
-                    <span class="value">${profileData.public_repos || 0}</span> repos
-                </div>
-                <div class="stat-chip">
-                    <span>👥</span>
-                    <span class="value">${profileData.followers || 0}</span> followers
-                </div>
-                <div class="stat-chip">
-                    <span>👤</span>
-                    <span class="value">${profileData.following || 0}</span> following
-                </div>
+                <div class="stat-chip"><span>📦</span><span class="value">${profileData.public_repos || 0}</span> repos</div>
+                <div class="stat-chip"><span>👥</span><span class="value">${profileData.followers || 0}</span> followers</div>
+                <div class="stat-chip"><span>👤</span><span class="value">${profileData.following || 0}</span> following</div>
             `;
-
             if (profileData.blog) {
                 const blogBtn = document.getElementById('profileBlogBtn');
                 let blogUrl = profileData.blog;
@@ -1832,72 +970,36 @@
 
         function renderAboutDetails() {
             if (!profileData) return;
-            
             const details = [];
-            
             if (profileData.company) {
-                details.push(`
-                    <div class="profile-detail">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M3 21h18M9 8h1M9 12h1M9 16h1M14 8h1M14 12h1M14 16h1M5 21V5a2 2 0 012-2h10a2 2 0 012 2v16"/>
-                        </svg>
-                        ${profileData.company}
-                    </div>
-                `);
+                details.push(`<div class="profile-detail"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18M9 8h1M9 12h1M9 16h1M14 8h1M14 12h1M14 16h1M5 21V5a2 2 0 012-2h10a2 2 0 012 2v16"/></svg>${profileData.company}</div>`);
             }
-            
             if (profileData.blog) {
                 let blogUrl = profileData.blog;
                 if (!blogUrl.startsWith('http')) blogUrl = 'https://' + blogUrl;
-                details.push(`
-                    <div class="profile-detail">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/>
-                            <path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/>
-                        </svg>
-                        <a href="${blogUrl}" target="_blank" rel="noopener">${profileData.blog}</a>
-                    </div>
-                `);
+                details.push(`<div class="profile-detail"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg><a href="${blogUrl}" target="_blank" rel="noopener">${profileData.blog}</a></div>`);
             }
-            
-            details.push(`
-                <div class="profile-detail">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
-                        <line x1="16" y1="2" x2="16" y2="6"/>
-                        <line x1="8" y1="2" x2="8" y2="6"/>
-                        <line x1="3" y1="10" x2="21" y2="10"/>
-                    </svg>
-                    Joined ${formatDate(profileData.created_at)}
-                </div>
-            `);
-            
+            details.push(`<div class="profile-detail"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>Joined ${formatDate(profileData.created_at)}</div>`);
             document.getElementById('aboutDetails').innerHTML = details.join('');
         }
 
-        // ==================== REPOSITORIES ====================
         async function loadRepos(forceRefresh = false) {
             const loadingEl = document.getElementById('reposLoading');
             const errorEl = document.getElementById('reposError');
             const emptyEl = document.getElementById('reposEmpty');
             const gridEl = document.getElementById('repoGrid');
 
-            // Check localStorage cache first
             if (!forceRefresh) {
                 const cachedRepos = localStorage.getItem('portfolio_repos');
                 const cachedTimestamp = localStorage.getItem('portfolio_repos_timestamp');
-                
-                if (cachedRepos && cachedTimestamp) {
-                    const age = Date.now() - parseInt(cachedTimestamp);
-                    if (age < CACHE_TTL) {
-                        reposData = JSON.parse(cachedRepos);
-                        filteredRepos = reposData;
-                        updateCacheIndicator(age);
-                        renderRepos();
-                        updateLanguageFilters();
-                        updateStats();
-                        return;
-                    }
+                if (cachedRepos && cachedTimestamp && (Date.now() - parseInt(cachedTimestamp) < CACHE_TTL)) {
+                    reposData = JSON.parse(cachedRepos);
+                    filteredRepos = reposData;
+                    updateCacheIndicator(Date.now() - parseInt(cachedTimestamp));
+                    renderRepos();
+                    updateLanguageFilters();
+                    updateStats();
+                    return;
                 }
             }
 
@@ -1909,25 +1011,19 @@
             try {
                 const response = await fetch('https://api.github.com/users/flessan/repos?sort=updated&per_page=100');
                 if (!response.ok) throw new Error('Failed to fetch repositories');
-                
                 reposData = await response.json();
                 filteredRepos = reposData;
                 
-                // Cache the data
                 localStorage.setItem('portfolio_repos', JSON.stringify(reposData));
                 localStorage.setItem('portfolio_repos_timestamp', Date.now().toString());
-                
                 updateCacheIndicator(0);
                 
                 loadingEl.style.display = 'none';
                 renderRepos();
                 updateLanguageFilters();
                 updateStats();
-
             } catch (error) {
                 console.error('Error loading repos:', error);
-                
-                // Try to load from localStorage as fallback
                 const cachedRepos = localStorage.getItem('portfolio_repos');
                 if (cachedRepos) {
                     reposData = JSON.parse(cachedRepos);
@@ -1936,14 +1032,9 @@
                     renderRepos();
                     updateLanguageFilters();
                     updateStats();
-                    
-                    const cachedTimestamp = localStorage.getItem('portfolio_repos_timestamp');
-                    if (cachedTimestamp) {
-                        updateCacheIndicator(Date.now() - parseInt(cachedTimestamp));
-                    }
+                    updateCacheIndicator(Date.now() - parseInt(localStorage.getItem('portfolio_repos_timestamp') || Date.now()));
                     return;
                 }
-                
                 loadingEl.style.display = 'none';
                 errorEl.style.display = 'block';
             }
@@ -1966,12 +1057,13 @@
 
             gridEl.innerHTML = filteredRepos.map(repo => `
                 <article class="repo-card" onclick="window.open('${repo.html_url}', '_blank')">
+                    <img src="https://opengraph.githubassets.com/1/flessan/${encodeURIComponent(repo.name)}" alt="${repo.name} preview" class="repo-image" loading="lazy" onerror="this.style.display='none'">
                     <div class="repo-card-header">
                         <h3 class="repo-name">
                             <span class="icon">📁</span>
                             ${repo.name}
                         </h3>
-                        ${repo.private ? '<span class="repo-visibility">private</span>' : ''}
+                        <span class="repo-visibility">${repo.private ? 'Private' : 'Public'}</span>
                     </div>
                     <p class="repo-description">${repo.description || 'No description available'}</p>
                     ${repo.topics && repo.topics.length > 0 ? `
@@ -1986,27 +1078,43 @@
                                 ${repo.language}
                             </span>
                         ` : ''}
+                        ${repo.license ? `
+                            <span class="repo-meta-item" title="${repo.license.name}">
+                                <span>⚖️</span> ${repo.license.spdx_id}
+                            </span>
+                        ` : ''}
                         <span class="repo-meta-item">
-                            <span>★</span> ${repo.stargazers_count}
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14">
+                                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+                            </svg>
+                            ${repo.stargazers_count}
                         </span>
                         <span class="repo-meta-item">
-                            <span>‎𐂐</span> ${repo.forks_count}
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14">
+                                <circle cx="12" cy="18" r="3"/><circle cx="6" cy="6" r="3"/><circle cx="18" cy="6" r="3"/>
+                                <path d="M18 9v1a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2V9"/><path d="M12 12v3"/>
+                            </svg>
+                            ${repo.forks_count}
                         </span>
-                        <span class="repo-updated">${formatRelativeTime(repo.updated_at)}</span>
+                        <span class="repo-meta-item" title="Repository size">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14">
+                                <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+                                <polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/>
+                            </svg>
+                            ${(repo.size / 1024).toFixed(1)} MB
+                        </span>
+                        <span class="repo-updated" title="Last updated: ${formatDate(repo.updated_at)}">${formatRelativeTime(repo.updated_at)}</span>
                     </div>
                     <div class="repo-card-actions" onclick="event.stopPropagation()">
                         <button class="repo-action-btn" onclick="copyRepoUrl('${repo.html_url}', this)">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
-                                <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/>
+                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/>
                             </svg>
                             Copy
                         </button>
                         <button class="repo-action-btn" onclick="window.open('${repo.html_url}', '_blank')">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/>
-                                <polyline points="15,3 21,3 21,9"/>
-                                <line x1="10" y1="14" x2="21" y2="3"/>
+                                <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/>
                             </svg>
                             Open
                         </button>
@@ -2019,43 +1127,25 @@
             try {
                 await navigator.clipboard.writeText(url);
                 button.classList.add('copied');
-                button.innerHTML = `
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <polyline points="20,6 9,17 4,12"/>
-                    </svg>
-                    Copied!
-                `;
+                button.innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20,6 9,17 4,12"/></svg>Copied!`;
                 setTimeout(() => {
                     button.classList.remove('copied');
-                    button.innerHTML = `
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
-                            <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/>
-                        </svg>
-                        Copy
-                    `;
+                    button.innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>Copy`;
                 }, 2000);
-            } catch (err) {
-                showSnackbar('Failed to copy URL');
-            }
+            } catch (err) { showSnackbar('Failed to copy URL'); }
         }
 
         function updateLanguageFilters() {
             const languages = [...new Set(reposData.map(r => r.language).filter(Boolean))];
             const filterChips = document.getElementById('filterChips');
-            
             filterChips.innerHTML = `
-                <button class="filter-chip ${selectedLanguage === 'all' ? 'selected' : ''}" data-lang="all">
-                    All
-                </button>
+                <button class="filter-chip ${selectedLanguage === 'all' ? 'selected' : ''}" data-lang="all">All</button>
                 ${languages.slice(0, 6).map(lang => `
                     <button class="filter-chip ${selectedLanguage === lang ? 'selected' : ''}" data-lang="${lang}">
-                        <span class="lang-dot" style="background: ${languageColors[lang] || '#8b949e'}"></span>
-                        ${lang}
+                        <span class="lang-dot" style="background: ${languageColors[lang] || '#8b949e'}"></span>${lang}
                     </button>
                 `).join('')}
             `;
-            
             filterChips.querySelectorAll('.filter-chip').forEach(chip => {
                 chip.addEventListener('click', () => {
                     selectedLanguage = chip.dataset.lang;
@@ -2066,23 +1156,36 @@
         }
 
         function filterRepos() {
-            const searchTerm = searchInput.value.toLowerCase();
-            
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
             filteredRepos = reposData.filter(repo => {
-                const matchesSearch = !searchTerm || 
-                    repo.name.toLowerCase().includes(searchTerm) ||
-                    (repo.description && repo.description.toLowerCase().includes(searchTerm));
+                const matchesSearch = !searchTerm || repo.name.toLowerCase().includes(searchTerm) || (repo.description && repo.description.toLowerCase().includes(searchTerm));
                 const matchesLang = selectedLanguage === 'all' || repo.language === selectedLanguage;
                 return matchesSearch && matchesLang;
             });
-            
             renderRepos();
         }
 
-        // ==================== STATS ====================
+        document.getElementById('searchInput').addEventListener('input', filterRepos);
+        document.getElementById('searchClear').addEventListener('click', () => {
+            document.getElementById('searchInput').value = '';
+            filterRepos();
+            document.getElementById('searchInput').focus();
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === '/' && document.activeElement !== document.getElementById('searchInput')) {
+                e.preventDefault();
+                document.getElementById('searchInput').focus();
+            }
+            if (e.key === 'Escape' && document.activeElement === document.getElementById('searchInput')) {
+                document.getElementById('searchInput').value = '';
+                filterRepos();
+                document.getElementById('searchInput').blur();
+            }
+        });
+
         function updateStats() {
             if (!profileData) return;
-            
             const totalStars = reposData.reduce((sum, r) => sum + r.stargazers_count, 0);
             const totalForks = reposData.reduce((sum, r) => sum + r.forks_count, 0);
             
@@ -2091,18 +1194,10 @@
             document.getElementById('statForks').textContent = totalForks;
             document.getElementById('statFollowers').textContent = profileData.followers || 0;
             
-            // Language stats
             const langCounts = {};
-            reposData.forEach(r => {
-                if (r.language) {
-                    langCounts[r.language] = (langCounts[r.language] || 0) + 1;
-                }
-            });
-            
+            reposData.forEach(r => { if (r.language) langCounts[r.language] = (langCounts[r.language] || 0) + 1; });
             const totalWithLang = Object.values(langCounts).reduce((a, b) => a + b, 0);
-            const sortedLangs = Object.entries(langCounts)
-                .sort((a, b) => b[1] - a[1])
-                .slice(0, 5);
+            const sortedLangs = Object.entries(langCounts).sort((a, b) => b[1] - a[1]).slice(0, 5);
             
             if (sortedLangs.length > 0) {
                 document.getElementById('langStats').style.display = 'block';
@@ -2111,8 +1206,7 @@
                     return `
                         <div class="lang-bar">
                             <div class="lang-bar-info">
-                                <span class="lang-dot" style="background: ${languageColors[lang] || '#8b949e'}"></span>
-                                ${lang}
+                                <span class="lang-dot" style="background: ${languageColors[lang] || '#8b949e'}"></span>${lang}
                             </div>
                             <div class="lang-bar-track">
                                 <div class="lang-bar-fill" style="width: ${percent}%; background: ${languageColors[lang] || '#8b949e'}"></div>
@@ -2124,58 +1218,104 @@
             }
         }
 
-        // ==================== SEARCH ====================
-        const searchInput = document.getElementById('searchInput');
-        const searchClear = document.getElementById('searchClear');
+        // NEW: Recent Activity Loader
+        async function loadRecentActivity() {
+            const container = document.getElementById('recentActivity');
+            const ACTIVITY_CACHE_KEY = 'flessan_activity_cache';
+            const ACTIVITY_TTL = 1 * 60 * 60 * 1000; // 1 hour
 
-        searchInput.addEventListener('input', () => {
-            filterRepos();
-        });
+            try {
+                const cached = localStorage.getItem(ACTIVITY_CACHE_KEY);
+                if (cached) {
+                    const { data, timestamp } = JSON.parse(cached);
+                    if (Date.now() - timestamp < ACTIVITY_TTL) {
+                        renderRecentActivity(data);
+                        return;
+                    }
+                }
 
-        searchClear.addEventListener('click', () => {
-            searchInput.value = '';
-            filterRepos();
-            searchInput.focus();
-        });
-
-        // Keyboard shortcuts
-        document.addEventListener('keydown', (e) => {
-            if (e.key === '/' && document.activeElement !== searchInput) {
-                e.preventDefault();
-                searchInput.focus();
-            }
-            if (e.key === 'Escape' && document.activeElement === searchInput) {
-                searchInput.value = '';
-                filterRepos();
-                searchInput.blur();
-            }
-        });
-
-        // ==================== REFRESH ====================
-        document.getElementById('refreshBtn').addEventListener('click', () => {
-            loadProfile(true);
-            loadRepos(true);
-            showSnackbar('Refreshing data from GitHub...');
-        });
-
-        // ==================== UPDATE GENERATED TIME ====================
-        function updateGeneratedTime() {
-            const timestamp = localStorage.getItem('portfolio_timestamp');
-            if (timestamp) {
-                document.getElementById('generatedTime').textContent = formatDate(parseInt(timestamp));
-            } else {
-                document.getElementById('generatedTime').textContent = formatDate(Date.now());
+                const response = await fetch('https://api.github.com/users/flessan/events/public?per_page=5');
+                if (!response.ok) throw new Error('Failed to fetch events');
+                const events = await response.json();
+                
+                localStorage.setItem(ACTIVITY_CACHE_KEY, JSON.stringify({ data: events, timestamp: Date.now() }));
+                renderRecentActivity(events);
+            } catch (error) {
+                console.error('Error loading recent activity:', error);
+                const cachedLocal = localStorage.getItem(ACTIVITY_CACHE_KEY);
+                if (cachedLocal) {
+                    renderRecentActivity(JSON.parse(cachedLocal).data);
+                    return;
+                }
+                container.innerHTML = '<p class="section-subtitle">Unable to load recent activity. <button class="button button-outlined" onclick="loadRecentActivity()" style="margin-top:8px; padding: 4px 12px;">Retry</button></p>';
             }
         }
 
-        // ==================== INITIALIZE ====================
+        function renderRecentActivity(events) {
+            const container = document.getElementById('recentActivity');
+            if (!events || events.length === 0) {
+                container.innerHTML = '<p class="section-subtitle">No recent activity.</p>';
+                return;
+            }
+            
+            const activityHTML = events.slice(0, 5).map(event => {
+                let actionText = '';
+                const repoName = event.repo.name;
+                const repoUrl = `https://github.com/${repoName}`;
+                const time = formatRelativeTime(event.created_at);
+                
+                switch(event.type) {
+                    case 'PushEvent':
+                        const commitCount = event.payload.commits ? event.payload.commits.length : 1;
+                        actionText = `Pushed ${commitCount} commit(s) to <a href="${repoUrl}" target="_blank">${repoName}</a>`;
+                        break;
+                    case 'CreateEvent':
+                        actionText = `Created ${event.payload.ref_type} <strong>${event.payload.ref || 'repository'}</strong> in <a href="${repoUrl}" target="_blank">${repoName}</a>`;
+                        break;
+                    case 'IssuesEvent':
+                        actionText = `${event.payload.action} an issue in <a href="${repoUrl}" target="_blank">${repoName}</a>`;
+                        break;
+                    case 'PullRequestEvent':
+                        actionText = `${event.payload.action} a pull request in <a href="${repoUrl}" target="_blank">${repoName}</a>`;
+                        break;
+                    case 'WatchEvent':
+                        actionText = `Starred <a href="${repoUrl}" target="_blank">${repoName}</a>`;
+                        break;
+                    case 'ForkEvent':
+                        actionText = `Forked <a href="${repoUrl}" target="_blank">${repoName}</a>`;
+                        break;
+                    case 'ReleaseEvent':
+                        actionText = `Released ${event.payload.release.tag_name} in <a href="${repoUrl}" target="_blank">${repoName}</a>`;
+                        break;
+                    default:
+                        actionText = `Activity in <a href="${repoUrl}" target="_blank">${repoName}</a>`;
+                }
+                
+                return `<div class="activity-item"><span class="activity-time">${time}</span><span class="activity-text">${actionText}</span></div>`;
+            }).join('');
+            
+            container.innerHTML = activityHTML;
+        }
+
+        document.getElementById('refreshBtn').addEventListener('click', () => {
+            loadProfile(true);
+            loadRepos(true);
+            loadRecentActivity();
+            showSnackbar('Refreshing data from GitHub...');
+        });
+
+        function updateGeneratedTime() {
+            const timestamp = localStorage.getItem('portfolio_timestamp');
+            document.getElementById('generatedTime').textContent = timestamp ? formatDate(parseInt(timestamp)) : formatDate(Date.now());
+        }
+
         function init() {
             initTheme();
             loadProfile();
             loadRepos();
+            loadRecentActivity();
             updateGeneratedTime();
             
-            // Update cache indicator periodically
             setInterval(() => {
                 const cached = getCachedData('profile');
                 if (cached) updateCacheIndicator(cached.age);
